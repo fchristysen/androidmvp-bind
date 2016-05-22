@@ -3,20 +3,21 @@ package org.sadalsuud.androidmvp_bind.framework.presenter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import org.sadalsuud.androidmvp_bind.framework.model.MvpViewModel;
 import org.sadalsuud.androidmvp_bind.framework.view.MvpView;
 
 /**
  * Created by fchristysen on 5/20/16.
  */
-public interface MvpPresenter<V extends MvpView> {
+public interface MvpPresenter<VM extends MvpViewModel> {
 
     String getID();
 
-    void attachView(@NonNull V view);
+    void attachView(@NonNull MvpView view);
 
     void detachView();
 
-    V getView();
+    MvpView getView();
 
     void create(Bundle savedPresenterState);
 

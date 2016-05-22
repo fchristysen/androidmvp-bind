@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import org.sadalsuud.androidmvp_bind.framework.AppUtil;
+import org.sadalsuud.androidmvp_bind.framework.model.MvpViewModel;
 import org.sadalsuud.androidmvp_bind.framework.view.MvpView;
 
 import java.lang.ref.WeakReference;
@@ -13,10 +14,11 @@ import java.util.Random;
 /**
  * Created by fchristysen on 5/20/16.
  */
-public abstract class Presenter<V extends MvpView> implements MvpPresenter<V> {
+public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter<VM> {
     private final String TAG;
     private final String ID;
-    private WeakReference<V> mView;
+    private VM mViewModel;
+    private WeakReference<MvpView> mView;
     private ArrayList<MvpPresenter.OnDestroyListener> mListeners;
 
     public Presenter(){
@@ -35,20 +37,25 @@ public abstract class Presenter<V extends MvpView> implements MvpPresenter<V> {
     }
 
     @Override
-    public final void attachView(V view){
-        this.mView = new WeakReference<V>(view);
+    public final void attachView(MvpView view){
+        this.mView = new WeakReference<>(view);
         onViewAttached();
+    }
+
+    public VM getViewModel() {
+        return mViewModel;
     }
 
     @Override
     public final void detachView(){
         onDetachView();
         this.mView = null;
+
         onViewDetached();
     }
 
     @Override
-    public final V getView(){
+    public final MvpView getView(){
         if(mView == null)
             return null;
         else
