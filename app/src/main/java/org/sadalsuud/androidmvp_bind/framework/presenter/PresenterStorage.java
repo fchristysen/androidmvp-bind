@@ -3,7 +3,7 @@ package org.sadalsuud.androidmvp_bind.framework.presenter;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
-import org.sadalsuud.androidmvp_bind.framework.AppUtil;
+import org.sadalsuud.androidmvp_bind.util.AppUtil;
 
 import java.util.concurrent.TimeUnit;
 

@@ -3,9 +3,9 @@ package org.sadalsuud.androidmvp_bind.framework.presenter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import org.sadalsuud.androidmvp_bind.framework.AppUtil;
 import org.sadalsuud.androidmvp_bind.framework.model.MvpViewModel;
 import org.sadalsuud.androidmvp_bind.framework.view.MvpView;
+import org.sadalsuud.androidmvp_bind.util.AppUtil;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

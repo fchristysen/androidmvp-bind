@@ -6,12 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 
-import org.sadalsuud.androidmvp_bind.framework.AppUtil;
+import org.sadalsuud.androidmvp_bind.util.AppUtil;
 import org.sadalsuud.androidmvp_bind.framework.model.MvpViewModel;
 import org.sadalsuud.androidmvp_bind.framework.presenter.MvpPresenter;
 import org.sadalsuud.androidmvp_bind.framework.presenter.PresenterFactory;
 import org.sadalsuud.androidmvp_bind.framework.presenter.PresenterManager;
 import org.sadalsuud.androidmvp_bind.framework.view.MvpView;
+import org.sadalsuud.androidmvp_bind.util.ViewServer;
 
 
 /**

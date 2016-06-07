@@ -1,4 +1,4 @@
-package org.sadalsuud.androidmvp_bind.base;
+package org.sadalsuud.androidmvp_bind.util;
 
 /*
  * Copyright (C) 2011 The Android Open Source Project
