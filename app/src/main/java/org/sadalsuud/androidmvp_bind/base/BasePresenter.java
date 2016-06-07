@@ -3,8 +3,8 @@ package org.sadalsuud.androidmvp_bind.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import org.sadalsuud.androidmvp_bind.framework.model.MvpViewModel;
 import org.sadalsuud.androidmvp_bind.framework.presenter.Presenter;
-import org.sadalsuud.androidmvp_bind.framework.view.MvpView;
 
 import icepick.Icepick;
 
@@ -16,7 +16,7 @@ import icepick.Icepick;
  *      > Subclass doesn't have to manually save and restore isntance state
  *        just add @State annotation before variable declaration
  */
-public abstract class BasePresenter<V extends MvpView> extends Presenter<V> {
+public abstract class BasePresenter<VM extends MvpViewModel> extends Presenter<VM> {
 
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
