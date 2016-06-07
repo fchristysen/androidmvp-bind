@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.sadalsuud.androidmvp_bind.app.home.HomeActivity">
+    tools:context="org.greenfroyo.androidmvp_bind.app.home.HomeActivity">
 
     <ListView
         android:id="@+id/lv_content"

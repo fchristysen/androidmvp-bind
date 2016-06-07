@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.sadalsuud.androidmvp_bind">
+    package="org.greenfroyo.androidmvp_bind">
 
     <application
         android:name=".app.App"
