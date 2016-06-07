@@ -1,5 +1,6 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -89,6 +90,11 @@ public abstract class BaseActivity<P extends MvpPresenter, VM extends MvpViewMod
         super.onSaveInstanceState(outState);
         mPresenterManager.onSaveInstanceState(outState);
         AppUtil.log(TAG + " : " + "onSaveInstanceState");
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
     @Override
