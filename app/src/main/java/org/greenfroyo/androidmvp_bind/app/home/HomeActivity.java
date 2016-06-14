@@ -1,14 +1,10 @@
 package org.greenfroyo.androidmvp_bind.app.home;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.f2prateek.dart.Dart;
-import com.f2prateek.dart.InjectExtra;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
@@ -18,12 +14,9 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> {
 
-    @Nullable @InjectExtra int id;
-    @Nullable @InjectExtra String message;
-
     //region Views
-    @BindView(R.id.tv_header) TextView vHeader;
-    @BindView(R.id.lv_content) ListView vContent;
+    @BindView(R.id.tv_header) protected TextView vHeader;
+    @BindView(R.id.lv_content) protected ListView vContent;
     //endregion
 
     @Override
@@ -33,26 +26,31 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> {
 
     @Override
     protected void onInitView() {
+        super.onInitView();
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
     }
 
     @Override
-    protected void onInitState() {
-        Dart.inject(this);
-        vHeader.setText("Prototype");
+    public void onViewModelChanged(HomeViewModel viewModel) {
+        if(viewModel.getPageState() == HomeViewModel.STATE_SHOW) {
+            vHeader.setText("Prototype");
+            vContent.setVisibility(View.VISIBLE);
+            vContent.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, viewModel.getContent()));
+        }else if(viewModel.getPageState() == HomeViewModel.STATE_LOADING) {
+            vHeader.setText("Loading items...");
+            vContent.setVisibility(View.VISIBLE);
+            vContent.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, viewModel.getContent()));
+        }else if(viewModel.getPageState() == HomeViewModel.STATE_ERROR) {
+            vHeader.setText("Error. Please try again...");
+            vContent.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @Override
     protected void onInitListener() {
-        vHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = Henson.with(HomeActivity.this)
-                        .gotoHomeActivity().id(3).build();
-                startActivity(intent);
-            }
-        });
+        super.onInitListener();
     }
 
     @Override
@@ -61,8 +59,5 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> {
     }
 
 
-    @Override
-    public void onViewModelChanged(HomeViewModel viewModel) {
 
-    }
 }

@@ -34,15 +34,17 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     @Override
     public final void create(Bundle savedPresenterState){
         onCreate(savedPresenterState);
+        mViewModel = onInitViewModel();
     }
 
     @Override
     public final void attachView(MvpView view){
         this.mView = new WeakReference<>(view);
         onViewAttached();
+        getView().onViewModelChanged(getViewModel());
     }
 
-    public VM getViewModel() {
+    public final VM getViewModel() {
         return mViewModel;
     }
 
@@ -90,6 +92,12 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     public void onCreate(@Nullable Bundle presenterState) {
         AppUtil.log(TAG + " : " + "onCreate");
     }
+
+    /**
+     * Initialize the View Model here
+     * @return Initial value of the view model
+     */
+    public abstract VM onInitViewModel();
 
     /**
      * Called when activity's onSaveInstanceState is called

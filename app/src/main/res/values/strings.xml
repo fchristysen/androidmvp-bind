@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MVPBind</string>
+
+    <string name="common_add">Add</string>
+    <string name="common_next">Next</string>
+
+    <string name="intent_param_desc">Press the add button to increment the number then next to send the value to next page</string>
+
 </resources>

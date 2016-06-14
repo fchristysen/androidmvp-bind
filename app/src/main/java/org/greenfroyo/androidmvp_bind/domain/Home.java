@@ -16,4 +16,5 @@ public class Home {
         Random random = new Random();
         return random.nextInt(10) < 5;
     }
+
 }

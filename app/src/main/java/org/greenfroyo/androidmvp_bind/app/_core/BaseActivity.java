@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 
+import com.f2prateek.dart.Dart;
+
 import org.greenfroyo.androidmvp_bind.util.AppUtil;
 import org.greenfroyo.androidmvp_bind.framework.model.MvpViewModel;
 import org.greenfroyo.androidmvp_bind.framework.presenter.MvpPresenter;
@@ -33,24 +35,29 @@ public abstract class BaseActivity<P extends MvpPresenter, VM extends MvpViewMod
         AppUtil.log(TAG + " : " + "onCreate");
 
         ViewServer.get(this).addWindow(this);
+        Dart.inject(this);
+
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
         onInitView();
-        onInitState();
         onInitListener();
     }
 
     /** Inflate your layout and other initialized of view here.
      */
-    protected abstract void onInitView();
+    protected void onInitView(){
 
-    /** Set your default state for you view here.
-     */
-    protected abstract void onInitState();
+    };
+
+    public void onViewModelChanged(VM viewModel){
+
+    }
 
     /** Set listener for your view here
      */
-    protected abstract void onInitListener();
+    protected void onInitListener(){
+
+    };
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
