@@ -9,8 +9,6 @@ import org.greenfroyo.androidmvp_bind.provider.HomeProvider;
 
 import java.util.ArrayList;
 
-import rx.functions.Action1;
-
 /**
  * Created by fchristysen on 6/7/16.
  */
@@ -29,7 +27,7 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
     public HomeViewModel onInitViewModel() {
         HomeViewModel model = new HomeViewModel();
         model.setPageState(HomeViewModel.STATE_SHOW);
-        model.setContent(new ArrayList<String>());
+        model.setContent(new ArrayList<>());
         return model;
     }
 
@@ -40,12 +38,9 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
 
         if(Home.isAllowedToShow()){
             getViewModel().getContent().clear();
-            mHomeProvider.getMenuItems().subscribe(new Action1<String>() {
-                @Override
-                public void call(String s) {
-                    getViewModel().getContent().add(s);
-                    getView().onViewModelChanged(getViewModel());
-                }
+            mHomeProvider.getMenuItems().subscribe(s -> {
+                getViewModel().getContent().add(s);
+                getView().onViewModelChanged(getViewModel());
             });
         }
     }
