@@ -9,7 +9,6 @@ import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by fchristysen on 6/7/16.
@@ -33,7 +32,6 @@ public class IntentParamFrontActivity extends BaseActivity<IntentParamFrontPrese
     @Override
     protected void onInitView() {
         setContentView(R.layout.intent_param_front_activity);
-        ButterKnife.bind(this);
     }
 
     @Override

@@ -17,6 +17,8 @@ import org.greenfroyo.androidmvp_bind.framework.presenter.PresenterManager;
 import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
 import org.greenfroyo.androidmvp_bind.util.ViewServer;
 
+import butterknife.ButterKnife;
+
 
 /**
  * Created by fchristysen on 1/21/16.
@@ -40,6 +42,7 @@ public abstract class BaseActivity<P extends MvpPresenter, VM extends MvpViewMod
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
         onInitView();
+        ButterKnife.bind(this);
         onInitListener();
     }
 

@@ -10,7 +10,6 @@ import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> {
 
@@ -28,7 +27,6 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> {
     protected void onInitView() {
         super.onInitView();
         setContentView(R.layout.home_activity);
-        ButterKnife.bind(this);
     }
 
     @Override
