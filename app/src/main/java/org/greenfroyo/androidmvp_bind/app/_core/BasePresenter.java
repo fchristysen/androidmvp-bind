@@ -3,7 +3,6 @@ package org.greenfroyo.androidmvp_bind.app._core;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import org.greenfroyo.androidmvp_bind.framework.model.MvpViewModel;
 import org.greenfroyo.androidmvp_bind.framework.presenter.Presenter;
 
 import icepick.Icepick;
@@ -16,7 +15,7 @@ import icepick.Icepick;
  *      > Subclass doesn't have to manually save and restore isntance state
  *        just add @State annotation before variable declaration
  */
-public abstract class BasePresenter<VM extends MvpViewModel> extends Presenter<VM> {
+public abstract class BasePresenter<VM extends BaseViewModel> extends Presenter<VM> {
 
     @Override
     public void onCreate(@Nullable Bundle presenterState) {

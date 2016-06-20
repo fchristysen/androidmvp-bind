@@ -9,12 +9,10 @@ import android.util.SparseArray;
 
 import com.f2prateek.dart.Dart;
 
-import org.greenfroyo.androidmvp_bind.util.AppUtil;
-import org.greenfroyo.androidmvp_bind.framework.model.MvpViewModel;
-import org.greenfroyo.androidmvp_bind.framework.presenter.MvpPresenter;
 import org.greenfroyo.androidmvp_bind.framework.presenter.PresenterFactory;
 import org.greenfroyo.androidmvp_bind.framework.presenter.PresenterManager;
 import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
+import org.greenfroyo.androidmvp_bind.util.AppUtil;
 import org.greenfroyo.androidmvp_bind.util.ViewServer;
 
 import butterknife.ButterKnife;
@@ -23,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by fchristysen on 1/21/16.
  */
-public abstract class BaseActivity<P extends MvpPresenter, VM extends MvpViewModel> extends AppCompatActivity implements MvpView<P, VM>, PresenterFactory<P> {
+public abstract class BaseActivity<P extends BasePresenter, VM extends BaseViewModel> extends AppCompatActivity implements MvpView<P, VM>, PresenterFactory<P> {
     private String TAG;
     protected final String WINDOW_HIERARCHY_TAG = "android:viewHierarchyState";
     protected final String WINDOW_VIEW_TAG = "android:views";
