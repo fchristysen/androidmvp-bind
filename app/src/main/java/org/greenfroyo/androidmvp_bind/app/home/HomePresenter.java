@@ -3,11 +3,10 @@ package org.greenfroyo.androidmvp_bind.app.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 import org.greenfroyo.androidmvp_bind.domain.Home;
 import org.greenfroyo.androidmvp_bind.provider.HomeProvider;
-
-import java.util.ArrayList;
 
 /**
  * Created by fchristysen on 6/7/16.
@@ -21,37 +20,34 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
         super.onCreate(presenterState);
+        mHomeProvider = new HomeProvider(App.getContext());
     }
 
     @Override
     public HomeViewModel onInitViewModel() {
         HomeViewModel model = new HomeViewModel();
-        model.setPageState(HomeViewModel.STATE_SHOW);
-        model.setContent(new ArrayList<>());
         return model;
     }
 
     @Override
     protected void onViewAttached() {
         super.onViewAttached();
-        mHomeProvider = new HomeProvider(getView().getContext());
+    }
+
+    //region actionable
+    public void refreshList(){
+        getViewModel().setPageState(HomeViewModel.STATE_LOADING);
 
         if(Home.isAllowedToShow()){
-            getViewModel().getContent().clear();
+            getViewModel().clearContent();
             mHomeProvider.getMenuItems().subscribe(s -> {
-                getViewModel().getContent().add(s);
-                getView().onViewModelChanged(getViewModel());
+                getViewModel().addContent(new HomeItemViewModel(s));
+            }, error -> {
+                getViewModel().setPageState(HomeViewModel.STATE_ERROR);
+            }, () -> {
+                getViewModel().setPageState(HomeViewModel.STATE_SHOW);
             });
         }
     }
-
-    @Override
-    protected void onViewDetached() {
-        super.onViewDetached();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outPresenterState) {
-        super.onSaveInstanceState(outPresenterState);
-    }
+    //region end
 }

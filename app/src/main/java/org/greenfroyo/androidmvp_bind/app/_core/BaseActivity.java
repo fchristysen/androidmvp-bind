@@ -15,18 +15,19 @@ import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
 import org.greenfroyo.androidmvp_bind.util.AppUtil;
 import org.greenfroyo.androidmvp_bind.util.ViewServer;
 
-import butterknife.ButterKnife;
-
 
 /**
  * Created by fchristysen on 1/21/16.
  */
-public abstract class BaseActivity<P extends BasePresenter, VM extends BaseViewModel> extends AppCompatActivity implements MvpView<P, VM>, PresenterFactory<P> {
+public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseViewModel> extends AppCompatActivity implements MvpView<P, VM>, PresenterFactory<P> {
     private String TAG;
     protected final String WINDOW_HIERARCHY_TAG = "android:viewHierarchyState";
     protected final String WINDOW_VIEW_TAG = "android:views";
 
     private PresenterManager<P> mPresenterManager= new PresenterManager(this);
+
+    @Override
+    public abstract P createPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +40,13 @@ public abstract class BaseActivity<P extends BasePresenter, VM extends BaseViewM
 
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
-        onInitView();
-        ButterKnife.bind(this);
+        onInitView(getPresenter().getViewModel());
         onInitListener();
     }
 
     /** Inflate your layout and other initialized of view here.
      */
-    protected void onInitView(){
-
-    };
-
-    public void onViewModelChanged(VM viewModel){
+    protected void onInitView(VM viewModel){
 
     }
 
@@ -109,8 +105,5 @@ public abstract class BaseActivity<P extends BasePresenter, VM extends BaseViewM
     public final P getPresenter() {
         return mPresenterManager.getPresenter();
     }
-
-    @Override
-    public abstract P createPresenter();
 
 }

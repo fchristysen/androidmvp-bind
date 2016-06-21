@@ -25,6 +25,5 @@ public class IntentParamFrontPresenter extends BasePresenter<IntentParamFrontVie
 
     public void onIncrementValue(){
         getViewModel().setValue(getViewModel().getValue()+1);
-        getView().onViewModelChanged(getViewModel());
     }
 }

@@ -27,9 +27,4 @@ public interface MvpView<P extends MvpPresenter, VM extends MvpViewModel> {
      */
     P getPresenter();
 
-    /**
-     * This method will be called when there's a changed in the ViewModel
-     */
-    void onViewModelChanged(VM viewModel);
-
 }

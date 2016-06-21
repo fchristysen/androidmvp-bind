@@ -38,6 +38,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
 
     //PresenterStorage
     compile 'com.google.guava:guava:18.0'
@@ -55,11 +56,6 @@ dependencies {
     compile 'com.f2prateek.dart:henson:2.0.0'
     provided 'com.f2prateek.dart:dart-processor:2.0.0'
     provided 'com.f2prateek.dart:henson-processor:2.0.0'
-
-    //Annotation for view binding
-    //http://jakewharton.github.io/butterknife/
-    compile 'com.jakewharton:butterknife:8.0.1'
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
 
     //Annotation for Save-Restore instance state
     //https://github.com/frankiesardo/icepick

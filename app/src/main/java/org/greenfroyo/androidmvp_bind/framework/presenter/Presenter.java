@@ -41,7 +41,6 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     public final void attachView(MvpView view){
         this.mView = new WeakReference<>(view);
         onViewAttached();
-        getView().onViewModelChanged(getViewModel());
     }
 
     public final VM getViewModel() {
