@@ -12,16 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.databinding.library.baseAdapters.BR;
-
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
+import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
 import java.util.List;
 
-public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> implements SwipeRefreshLayout.OnRefreshListener {
+public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
+        implements SwipeRefreshLayout.OnRefreshListener {
 
     //region Views
     private HomeActivityBinding mBinding;
@@ -51,16 +51,10 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> imp
         //configure adapter
         BindArrayAdapter adp = new BindArrayAdapter();
         adp.setDataSet(viewModel.getContent());
-        viewModel.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable observable, int i) {
-                adp.notifyDataSetChanged();
-            }
-        });
         vContent.setHasFixedSize(true);
         vContent.setLayoutManager(new LinearLayoutManager(this));
         vContent.setAdapter(adp);
-        viewModel.addContent(new HomeItemViewModel("Test 1"));
+        viewModel.addOnPropertyChangedCallback(new ViewListener());
     }
 
     @Override
@@ -72,6 +66,15 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel> imp
     @Override
     public void onRefresh() {
         getPresenter().refreshList();
+    }
+
+    public class ViewListener extends Observable.OnPropertyChangedCallback{
+        @Override
+        public void onPropertyChanged(Observable observable, int i) {
+            if(i == BR.content) {
+                HomeActivity.this.vContent.getAdapter().notifyDataSetChanged();
+            }
+        }
     }
 
     public static class BindArrayAdapter extends RecyclerView.Adapter<BindArrayAdapter.BindViewHolder>{

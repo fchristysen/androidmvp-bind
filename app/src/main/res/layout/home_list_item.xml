@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/space_medium"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/text_body"
+            android:textSize="@dimen/text_title"
             android:text="@{item.text}"
             tools:text="List Item"
             />

@@ -1,7 +1,6 @@
 package org.greenfroyo.androidmvp_bind.app.home;
 
 import android.databinding.Bindable;
-import android.databinding.ObservableField;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
@@ -19,10 +18,10 @@ public class HomeViewModel extends BaseViewModel {
     public static final int STATE_ERROR = 2;
 
     public int mPageState;
-    private ObservableField<List<HomeItemViewModel>> mContent;
+    private List<HomeItemViewModel> mContent;
 
     public HomeViewModel(){
-        mContent = new ObservableField<>(new ArrayList<>());
+        mContent = new ArrayList<>();
     }
 
     //region direct_accessor
@@ -30,8 +29,9 @@ public class HomeViewModel extends BaseViewModel {
         return mPageState;
     }
 
+    @Bindable
     public List<HomeItemViewModel> getContent() {
-        return mContent.get();
+        return mContent;
     }
     //region end
 
@@ -56,17 +56,12 @@ public class HomeViewModel extends BaseViewModel {
     }
 
     public void addContent(HomeItemViewModel item){
-        mContent.get().add(item);
-        notifyPropertyChanged(BR.item);
-        notifyPropertyChanged(BR.home);
+        mContent.add(item);
+        notifyPropertyChanged(BR.content);
     }
 
     public void clearContent() {
-        mContent.get().clear();
-    }
-
-    public void setContentListener(OnPropertyChangedCallback callback){
-        mContent.addOnPropertyChangedCallback(callback);
+        mContent.clear();
     }
     //
 

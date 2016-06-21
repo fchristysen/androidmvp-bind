@@ -17,6 +17,6 @@
     <dimen name="text_body">14sp</dimen>
     <dimen name="text_caption">12sp</dimen>
 
-    <dimen name="list_item_min">56dp</dimen>
+    <dimen name="list_item_min">48dp</dimen>
 
 </resources>
