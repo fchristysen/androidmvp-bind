@@ -14,7 +14,7 @@ public class Home {
      */
     public static boolean isAllowedToShow(){
         Random random = new Random();
-        return random.nextInt(10) < 10;
+        return random.nextInt(10) < 8;
     }
 
 }

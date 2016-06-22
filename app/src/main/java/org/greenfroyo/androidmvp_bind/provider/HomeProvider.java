@@ -22,7 +22,7 @@ public class HomeProvider extends BaseProvider {
 
     public Observable<String> getMenuItems(){
         return Observable.<String>create(subscriber -> {
-                for(int i=0;i<10;i++) {
+                for(int i=0;i<5;i++) {
                     subscriber.onNext(PAGE_INTENT_PARAM);
                     try {
                         Thread.sleep(1000);

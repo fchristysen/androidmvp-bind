@@ -12,22 +12,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
-import org.greenfroyo.androidmvp_bind.BR;
+import org.greenfroyo.androidmvp_bind.app.common.OnRecyclerItemClickListener;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
 import java.util.List;
 
 public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
-        implements SwipeRefreshLayout.OnRefreshListener {
+        implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {
 
     //region Views
     private HomeActivityBinding mBinding;
     private TextView vHeader;
     private SwipeRefreshLayout vSwipe;
     private RecyclerView vContent;
+    private BindArrayAdapter mContentAdapter;
     //endregion
 
     @Override
@@ -49,11 +51,11 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         vContent = mBinding.lvContent;
         mBinding.setHome(viewModel);
         //configure adapter
-        BindArrayAdapter adp = new BindArrayAdapter();
-        adp.setDataSet(viewModel.getContent());
+        mContentAdapter = new BindArrayAdapter();
+        mContentAdapter.setDataSet(viewModel.getContent());
         vContent.setHasFixedSize(true);
         vContent.setLayoutManager(new LinearLayoutManager(this));
-        vContent.setAdapter(adp);
+        vContent.setAdapter(mContentAdapter);
         viewModel.addOnPropertyChangedCallback(new ViewListener());
     }
 
@@ -61,6 +63,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     protected void onInitListener() {
         super.onInitListener();
         vSwipe.setOnRefreshListener(this);
+        mContentAdapter.setOnItemClickListener(this);
     }
 
     @Override
@@ -68,19 +71,35 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         getPresenter().refreshList();
     }
 
+    @Override
+    public void onItemClick(int position, HomeItemViewModel item) {
+
+    }
+
     public class ViewListener extends Observable.OnPropertyChangedCallback{
         @Override
         public void onPropertyChanged(Observable observable, int i) {
             if(i == BR.content) {
                 HomeActivity.this.vContent.getAdapter().notifyDataSetChanged();
+            }else if(i == BR.pageTitle) {
+                if(getPresenter().getViewModel().getPageState() == HomeViewModel.STATE_LOADING){
+                    vSwipe.setRefreshing(true);
+                }else{
+                    vSwipe.setRefreshing(false);
+                }
             }
         }
     }
 
     public static class BindArrayAdapter extends RecyclerView.Adapter<BindArrayAdapter.BindViewHolder>{
         private List<HomeItemViewModel> mDataSet;
+        private OnRecyclerItemClickListener<HomeItemViewModel> mListener;
 
         public BindArrayAdapter() {
+        }
+
+        public void setOnItemClickListener(OnRecyclerItemClickListener<HomeItemViewModel> listener) {
+            mListener = listener;
         }
 
         @Override
@@ -94,6 +113,13 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         public void onBindViewHolder(BindArrayAdapter.BindViewHolder holder, int position) {
             holder.getBinding().setVariable(BR.item, mDataSet.get(position));
             holder.getBinding().executePendingBindings();
+            if(mListener!=null){
+                holder.getBinding().getRoot().setOnClickListener(v -> {
+                    mListener.onItemClick(position, mDataSet.get(position));
+                });
+            }else{
+                holder.getBinding().getRoot().setOnClickListener(null);
+            }
         }
 
         @Override

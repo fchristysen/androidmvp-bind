@@ -47,6 +47,8 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
             }, () -> {
                 getViewModel().setPageState(HomeViewModel.STATE_SHOW);
             });
+        }else{
+            getViewModel().setPageState(HomeViewModel.STATE_ERROR);
         }
     }
     //region end
