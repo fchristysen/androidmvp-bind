@@ -1,6 +1,9 @@
 package org.greenfroyo.androidmvp_bind.app.twoway;
 
 import android.databinding.ObservableField;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
 
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 
@@ -9,17 +12,24 @@ import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
  */
 
 public class TwoWayViewModel extends BaseViewModel {
-    private ObservableField<String> mText;
+    public ObservableField<String> mText;
+    public TextWatcher mWatcher;
 
     public TwoWayViewModel(){
         this.mText = new ObservableField<>("Default Text");
-    }
+        this.mWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-    public String getText() {
-        return mText.get();
-    }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
-    public void setText(String text) {
-        mText.set(text);
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!s.toString().equals(mText.get())){
+                    mText.set(s.toString());
+                }
+            }
+        };
     }
 }
