@@ -42,9 +42,8 @@
             android:layout_marginRight="@dimen/space_medium"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/tv_text"
-            android:text="@{viewModel.mText}"
+            android:text="@={viewModel.mText}"
             android:textSize="@dimen/text_subheading"
-            android:addTextChangedListener="@{viewModel.mWatcher}"
             tools:text="@string/placeholder_short"/>
 
     </RelativeLayout>
