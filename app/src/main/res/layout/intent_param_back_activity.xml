@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable name="vm" type="org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontViewModel" />
+        <variable name="vm" type="org.greenfroyo.androidmvp_bind.app.intentparam.back.IntentParamBackViewModel" />
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:context="org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity">
+                    tools:context="org.greenfroyo.androidmvp_bind.app.intentparam.back.IntentParamBackActivity">
 
         <TextView
             android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/space_large"
-            android:text="@string/intent_param_desc"/>
+            android:text="@string/intent_param_result_desc"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,25 +33,7 @@
             android:layout_alignParentEnd="true"
             android:textSize="@dimen/text_subheading"
             android:text='@{""+vm.value}'
-            tools:text="0"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_add"
-            android:layout_marginTop="@dimen/space_medium"
-            android:layout_below="@+id/tv_text"
-            android:layout_centerHorizontal="true"
-            android:text="@string/common_add"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_next"
-            android:layout_marginTop="@dimen/space_small"
-            android:layout_below="@+id/btn_add"
-            android:layout_centerHorizontal="true"
-            android:text="@string/common_next"/>
+            tools:text="0" />
     </RelativeLayout>
 </layout>
 

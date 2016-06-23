@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.intentparam.IntentParamFrontActivity">
+        <activity android:name=".app.intentparam.front.IntentParamFrontActivity">
+        </activity>
+
+        <activity android:name=".app.intentparam.back.IntentParamBackActivity">
         </activity>
     </application>
 

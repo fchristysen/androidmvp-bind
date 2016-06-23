@@ -2,7 +2,7 @@ package org.greenfroyo.androidmvp_bind.provider;
 
 import android.content.Context;
 
-import org.greenfroyo.androidmvp_bind.app.intentparam.IntentParamFrontActivity;
+import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -14,14 +14,14 @@ import rx.schedulers.Schedulers;
 
 public class HomeProvider extends BaseProvider {
 
-    public static final String PAGE_INTENT_PARAM = IntentParamFrontActivity.class.getSimpleName();
+    public static final Class PAGE_INTENT_PARAM = IntentParamFrontActivity.class;
 
     public HomeProvider(Context context){
         super(context);
     }
 
-    public Observable<String> getMenuItems(){
-        return Observable.<String>create(subscriber -> {
+    public Observable<Class> getMenuItems(){
+        return Observable.<Class>create(subscriber -> {
                 for(int i=0;i<5;i++) {
                     subscriber.onNext(PAGE_INTENT_PARAM);
                     try {

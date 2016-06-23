@@ -1,7 +1,6 @@
 package org.greenfroyo.androidmvp_bind.app.home;
 
 import android.databinding.Bindable;
-import android.widget.ArrayAdapter;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
@@ -20,7 +19,6 @@ public class HomeViewModel extends BaseViewModel {
 
     public int mPageState;
     private List<HomeItemViewModel> mContent;
-    public ArrayAdapter mAdapter;
 
     public HomeViewModel(){
         mPageState = STATE_SHOW;

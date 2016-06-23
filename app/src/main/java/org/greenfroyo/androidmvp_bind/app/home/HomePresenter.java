@@ -1,5 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app.home;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -29,11 +31,6 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
         return model;
     }
 
-    @Override
-    protected void onViewAttached() {
-        super.onViewAttached();
-    }
-
     //region actionable
     public void refreshList(){
         getViewModel().setPageState(HomeViewModel.STATE_LOADING);
@@ -50,6 +47,11 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
         }else{
             getViewModel().setPageState(HomeViewModel.STATE_ERROR);
         }
+    }
+
+    public void openPage(Context context, Class pageClass){
+        Intent intent = new Intent(context, pageClass);
+        context.startActivity(intent);
     }
     //region end
 }

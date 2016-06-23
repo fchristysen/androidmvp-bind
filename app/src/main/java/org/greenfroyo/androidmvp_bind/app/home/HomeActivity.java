@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
@@ -26,9 +25,6 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
 
     //region Views
     private HomeActivityBinding mBinding;
-    private TextView vHeader;
-    private SwipeRefreshLayout vSwipe;
-    private RecyclerView vContent;
     private BindArrayAdapter mContentAdapter;
     //endregion
 
@@ -46,23 +42,20 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     protected void onInitView(HomeViewModel viewModel) {
         super.onInitView(viewModel);
         mBinding = DataBindingUtil.setContentView(this, R.layout.home_activity);
-        vSwipe = mBinding.vgSwipe;
-        vHeader = mBinding.tvHeader;
-        vContent = mBinding.lvContent;
         mBinding.setHome(viewModel);
         //configure adapter
         mContentAdapter = new BindArrayAdapter();
         mContentAdapter.setDataSet(viewModel.getContent());
-        vContent.setHasFixedSize(true);
-        vContent.setLayoutManager(new LinearLayoutManager(this));
-        vContent.setAdapter(mContentAdapter);
+        mBinding.lvContent.setHasFixedSize(true);
+        mBinding.lvContent.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.lvContent.setAdapter(mContentAdapter);
         viewModel.addOnPropertyChangedCallback(new ViewListener());
     }
 
     @Override
     protected void onInitListener() {
         super.onInitListener();
-        vSwipe.setOnRefreshListener(this);
+        mBinding.vgSwipe.setOnRefreshListener(this);
         mContentAdapter.setOnItemClickListener(this);
     }
 
@@ -73,19 +66,19 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
 
     @Override
     public void onItemClick(int position, HomeItemViewModel item) {
-
+        getPresenter().openPage(this, item.getClassObject());
     }
 
     public class ViewListener extends Observable.OnPropertyChangedCallback{
         @Override
         public void onPropertyChanged(Observable observable, int i) {
             if(i == BR.content) {
-                HomeActivity.this.vContent.getAdapter().notifyDataSetChanged();
+                HomeActivity.this.mBinding.lvContent.getAdapter().notifyDataSetChanged();
             }else if(i == BR.pageTitle) {
                 if(getPresenter().getViewModel().getPageState() == HomeViewModel.STATE_LOADING){
-                    vSwipe.setRefreshing(true);
+                    mBinding.vgSwipe.setRefreshing(true);
                 }else{
-                    vSwipe.setRefreshing(false);
+                    mBinding.vgSwipe.setRefreshing(false);
                 }
             }
         }
