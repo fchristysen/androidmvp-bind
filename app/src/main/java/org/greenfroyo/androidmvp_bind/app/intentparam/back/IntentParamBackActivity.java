@@ -31,7 +31,7 @@ public class IntentParamBackActivity extends BaseActivity<IntentParamBackPresent
     @Override
     protected void onInitView(IntentParamBackViewModel viewModel) {
         mBinding = DataBindingUtil.setContentView(this, R.layout.intent_param_back_activity);
-        mBinding.setVm(getPresenter().getViewModel());
+        mBinding.setViewModel(getPresenter().getViewModel());
     }
 
     @Override

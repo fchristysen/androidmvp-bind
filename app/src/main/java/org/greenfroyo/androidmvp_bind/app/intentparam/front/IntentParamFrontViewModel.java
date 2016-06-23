@@ -1,8 +1,6 @@
 package org.greenfroyo.androidmvp_bind.app.intentparam.front;
 
-import android.databinding.Bindable;
-
-import com.android.databinding.library.baseAdapters.BR;
+import android.databinding.ObservableField;
 
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 
@@ -11,15 +9,13 @@ import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
  */
 
 public class IntentParamFrontViewModel extends BaseViewModel{
-    private int mValue;
+    public ObservableField<Integer> mValue;
 
-    @Bindable
-    public int getValue() {
-        return mValue;
+    public IntentParamFrontViewModel(){
+        mValue = new ObservableField<>(0);
     }
 
     public void incrementValue(){
-        mValue++;
-        notifyPropertyChanged(BR.value);
+        mValue.set(mValue.get()+1);
     }
 }

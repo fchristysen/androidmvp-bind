@@ -7,4 +7,8 @@
     <string name="intent_param_desc">Press the add button to increment the number then next to send the value to next page</string>
     <string name="intent_param_result_desc">The value you send is displayed below</string>
 
+    <string name="two_way_desc">The displayed text in top is bind-ed to a field viewModel. You can try to change the value of the EditText field, which is also bind to the same field</string>
+
+    <string name="placeholder_short">Lorem Ipsum</string>
+
 </resources>

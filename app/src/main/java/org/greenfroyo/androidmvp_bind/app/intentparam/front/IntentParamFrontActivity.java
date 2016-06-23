@@ -28,7 +28,7 @@ public class IntentParamFrontActivity extends BaseActivity<IntentParamFrontPrese
     @Override
     protected void onInitView(IntentParamFrontViewModel viewModel) {
         mBinding = DataBindingUtil.setContentView(this, R.layout.intent_param_front_activity);
-        mBinding.setVm(getPresenter().getViewModel());
+        mBinding.setViewModel(getPresenter().getViewModel());
     }
 
     @Override

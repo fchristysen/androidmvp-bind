@@ -42,7 +42,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     protected void onInitView(HomeViewModel viewModel) {
         super.onInitView(viewModel);
         mBinding = DataBindingUtil.setContentView(this, R.layout.home_activity);
-        mBinding.setHome(viewModel);
+        mBinding.setViewModel(viewModel);
         //configure adapter
         mContentAdapter = new BindArrayAdapter();
         mContentAdapter.setDataSet(viewModel.getContent());
@@ -104,7 +104,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
 
         @Override
         public void onBindViewHolder(BindArrayAdapter.BindViewHolder holder, int position) {
-            holder.getBinding().setVariable(BR.item, mDataSet.get(position));
+            holder.getBinding().setVariable(BR.viewModel, mDataSet.get(position));
             holder.getBinding().executePendingBindings();
             if(mListener!=null){
                 holder.getBinding().getRoot().setOnClickListener(v -> {

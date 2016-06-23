@@ -33,7 +33,7 @@ public class IntentParamFrontPresenter extends BasePresenter<IntentParamFrontVie
     public void openIntentParamBack(Context context){
         Intent intent = Henson.with(context)
                 .gotoIntentParamBackActivity()
-                .mValue(getViewModel().getValue())
+                .mValue(getViewModel().mValue.get())
                 .build();
         context.startActivity(intent);
     }

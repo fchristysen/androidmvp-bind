@@ -22,6 +22,9 @@
 
         <activity android:name=".app.intentparam.back.IntentParamBackActivity">
         </activity>
+
+        <activity android:name=".app.twoway.TwoWayActivity">
+        </activity>
     </application>
 
 </manifest>

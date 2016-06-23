@@ -3,7 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="item" type="org.greenfroyo.androidmvp_bind.app.home.HomeItemViewModel"></variable>
+        <variable name="viewModel" type="org.greenfroyo.androidmvp_bind.app.home.HomeItemViewModel"></variable>
     </data>
 
     <RelativeLayout
@@ -22,7 +22,7 @@
             android:padding="@dimen/space_medium"
             android:layout_centerVertical="true"
             android:textSize="@dimen/text_title"
-            android:text="@{item.text}"
+            android:text="@{viewModel.text}"
             tools:text="List Item"
             />
 
