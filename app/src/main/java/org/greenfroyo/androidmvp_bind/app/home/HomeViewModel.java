@@ -3,6 +3,8 @@ package org.greenfroyo.androidmvp_bind.app.home;
 import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.BR;
+import org.greenfroyo.androidmvp_bind.R;
+import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 
 import java.util.ArrayList;
@@ -40,11 +42,11 @@ public class HomeViewModel extends BaseViewModel {
     @Bindable
     public String getPageTitle() {
         if(mPageState == STATE_SHOW){
-            return "Prototype";
+            return App.resources().getString(R.string.home_title_showing);
         }else if(mPageState == STATE_LOADING){
-            return  "Loading items...";
+            return App.resources().getString(R.string.home_title_loading);
         }else if(mPageState == STATE_ERROR){
-            return  "Error. Please try again.";
+            return App.resources().getString(R.string.home_title_error);
         }
         return "";
     }

@@ -4,6 +4,10 @@
     <string name="common_add">Add</string>
     <string name="common_next">Next</string>
 
+    <string name="home_title_showing">MVPBind Demo</string>
+    <string name="home_title_loading">Loading...</string>
+    <string name="home_title_error">Error. Please try again</string>
+
     <string name="intent_param_desc">Press the add button to increment the number then next to send the value to next page</string>
     <string name="intent_param_result_desc">The value you send is displayed below</string>
 

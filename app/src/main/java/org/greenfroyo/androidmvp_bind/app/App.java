@@ -2,6 +2,7 @@ package org.greenfroyo.androidmvp_bind.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 
 import com.facebook.stetho.Stetho;
 
@@ -26,6 +27,9 @@ public class App extends Application {
     }
     //endregion
 
+    public static Resources resources(){
+        return mContext.getResources();
+    }
 
     public static Context getContext() {
         return mContext;
