@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.content.Context;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -27,6 +28,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     protected final String WINDOW_HIERARCHY_TAG = "android:viewHierarchyState";
     protected final String WINDOW_VIEW_TAG = "android:views";
 
+    private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager= new PresenterManager(this);
 
     @Override
@@ -43,15 +45,13 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
 
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
-        onInitView(getPresenter().getViewModel());
+        mBinding = onInitView(getPresenter().getViewModel());
         onInitListener();
     }
 
     /** Inflate your layout and other initialized of view here.
      */
-    protected void onInitView(VM viewModel){
-
-    }
+    protected abstract ViewDataBinding onInitView(VM viewModel);
 
     /** Set listener for your view here
      */

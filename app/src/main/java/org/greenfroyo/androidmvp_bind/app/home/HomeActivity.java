@@ -39,17 +39,16 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     }
 
     @Override
-    protected void onInitView(HomeViewModel viewModel) {
-        super.onInitView(viewModel);
+    protected ViewDataBinding onInitView(HomeViewModel viewModel) {
         mBinding = DataBindingUtil.setContentView(this, R.layout.home_activity);
         mBinding.setViewModel(viewModel);
+        viewModel.addOnPropertyChangedCallback(new ViewListener());
         //configure adapter
         mContentAdapter = new BindArrayAdapter();
         mContentAdapter.setDataSet(viewModel.getContent());
-        mBinding.lvContent.setHasFixedSize(true);
         mBinding.lvContent.setLayoutManager(new LinearLayoutManager(this));
         mBinding.lvContent.setAdapter(mContentAdapter);
-        viewModel.addOnPropertyChangedCallback(new ViewListener());
+        return mBinding;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app.intentparam.front;
 
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,9 +27,10 @@ public class IntentParamFrontActivity extends BaseActivity<IntentParamFrontPrese
     }
 
     @Override
-    protected void onInitView(IntentParamFrontViewModel viewModel) {
+    protected ViewDataBinding onInitView(IntentParamFrontViewModel viewModel) {
         mBinding = DataBindingUtil.setContentView(this, R.layout.intent_param_front_activity);
         mBinding.setViewModel(getPresenter().getViewModel());
+        return mBinding;
     }
 
     @Override

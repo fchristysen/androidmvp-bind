@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app.intentparam.back;
 
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
 import com.f2prateek.dart.InjectExtra;
@@ -29,9 +30,10 @@ public class IntentParamBackActivity extends BaseActivity<IntentParamBackPresent
     }
 
     @Override
-    protected void onInitView(IntentParamBackViewModel viewModel) {
+    protected ViewDataBinding onInitView(IntentParamBackViewModel viewModel) {
         mBinding = DataBindingUtil.setContentView(this, R.layout.intent_param_back_activity);
         mBinding.setViewModel(getPresenter().getViewModel());
+        return mBinding;
     }
 
     @Override
