@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.greenfroyo.androidmvp_bind.domain.Home;
 import org.greenfroyo.androidmvp_bind.provider.HomeProvider;
 
@@ -41,11 +43,13 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
                 getViewModel().addContent(new HomeItemViewModel(s));
             }, error -> {
                 getViewModel().setPageState(HomeViewModel.STATE_ERROR);
+                getViewModel().getEventBus().post(new BaseViewModel.SnackbarEvent(App.resources().getString(R.string.home_title_error_message)));
             }, () -> {
                 getViewModel().setPageState(HomeViewModel.STATE_SHOW);
             });
         }else{
             getViewModel().setPageState(HomeViewModel.STATE_ERROR);
+            getViewModel().getEventBus().post(new BaseViewModel.SnackbarEvent(App.resources().getString(R.string.home_title_error_message)));
         }
     }
 

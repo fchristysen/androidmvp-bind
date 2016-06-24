@@ -4,8 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
+import android.widget.Toast;
 
 import com.f2prateek.dart.Dart;
 
@@ -14,6 +16,7 @@ import org.greenfroyo.androidmvp_bind.framework.presenter.PresenterManager;
 import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
 import org.greenfroyo.androidmvp_bind.util.AppUtil;
 import org.greenfroyo.androidmvp_bind.util.ViewServer;
+import org.greenrobot.eventbus.Subscribe;
 
 
 /**
@@ -80,6 +83,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         super.onResume();
         AppUtil.log(TAG + " : " + "onResume");
         mPresenterManager.onResume(this);
+        getPresenter().getViewModel().getEventBus().register(this);
     }
 
     @Override
@@ -87,6 +91,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         super.onPause();
         AppUtil.log(TAG + " : " + "onPause");
         mPresenterManager.onPause(isFinishing());
+        getPresenter().getViewModel().getEventBus().unregister(this);
     }
 
     @Override
@@ -104,6 +109,11 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     public final P getPresenter() {
         return mPresenterManager.getPresenter();
+    }
+
+    @Subscribe
+    public void onSnackbarEvent(BaseViewModel.SnackbarEvent event){
+        Toast.makeText(this, event.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
 }
