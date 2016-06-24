@@ -5,5 +5,5 @@ package org.greenfroyo.androidmvp_bind.app.common;
  */
 
 public interface OnRecyclerItemClickListener<T> {
-    public void onItemClick(int position, T item);
+    void onItemClick(int position, T item);
 }

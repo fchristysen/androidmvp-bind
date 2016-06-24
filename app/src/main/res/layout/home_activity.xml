@@ -25,7 +25,7 @@
             android:background="@color/colorPrimary"
             android:textSize="@dimen/text_headline"
             android:textColor="@color/textLight"
-            android:text='@{viewModel.pageTitle}'
+            android:text="@{viewModel.pageTitle}"
             tools:text="Title here"/>
 
         <android.support.v4.widget.SwipeRefreshLayout
@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:hasFixedSize="@{true}"/>
+                android:hasFixedSize="@{true}" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </RelativeLayout>
