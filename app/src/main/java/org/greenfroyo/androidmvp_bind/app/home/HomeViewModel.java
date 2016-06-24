@@ -48,12 +48,21 @@ public class HomeViewModel extends BaseViewModel {
         }
         return "";
     }
+
+    @Bindable
+    public boolean isRefreshing(){
+        if(mPageState == STATE_LOADING)
+            return true;
+        else
+            return false;
+    }
     //endregion
 
     //region mutator
     public void setPageState(int pageState) {
         mPageState = pageState;
         notifyPropertyChanged(BR.pageTitle);
+        notifyPropertyChanged(BR.refreshing);
     }
 
     public void addContent(HomeItemViewModel item){

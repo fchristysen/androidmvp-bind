@@ -74,12 +74,6 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         public void onPropertyChanged(Observable observable, int i) {
             if(i == BR.content) {
                 HomeActivity.this.mBinding.lvContent.getAdapter().notifyDataSetChanged();
-            }else if(i == BR.pageTitle) {
-                if(getPresenter().getViewModel().getPageState() == HomeViewModel.STATE_LOADING){
-                    mBinding.vgSwipe.setRefreshing(true);
-                }else{
-                    mBinding.vgSwipe.setRefreshing(false);
-                }
             }
         }
     }
