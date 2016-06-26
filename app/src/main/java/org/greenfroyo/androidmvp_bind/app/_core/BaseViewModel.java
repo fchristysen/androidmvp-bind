@@ -2,7 +2,7 @@ package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.databinding.BaseObservable;
 
-import org.greenfroyo.androidmvp_bind.framework.model.MvpViewModel;
+import org.greenfroyo.mvp_bind.model.MvpViewModel;
 import org.greenrobot.eventbus.EventBus;
 import org.parceler.Parcel;
 

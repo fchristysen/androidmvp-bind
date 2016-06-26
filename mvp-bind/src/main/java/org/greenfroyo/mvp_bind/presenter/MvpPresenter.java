@@ -1,10 +1,9 @@
-package org.greenfroyo.androidmvp_bind.framework.presenter;
+package org.greenfroyo.mvp_bind.presenter;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
-import org.greenfroyo.androidmvp_bind.framework.model.MvpViewModel;
-import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
+import org.greenfroyo.mvp_bind.model.MvpViewModel;
+import org.greenfroyo.mvp_bind.view.MvpView;
 
 /**
  * Created by fchristysen on 5/20/16.
@@ -13,7 +12,7 @@ public interface MvpPresenter<VM extends MvpViewModel> {
 
     String getID();
 
-    void attachView(@NonNull MvpView view);
+    void attachView(MvpView view);
 
     void detachView();
 

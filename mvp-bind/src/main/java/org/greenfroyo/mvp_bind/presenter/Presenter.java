@@ -1,11 +1,10 @@
-package org.greenfroyo.androidmvp_bind.framework.presenter;
+package org.greenfroyo.mvp_bind.presenter;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-import org.greenfroyo.androidmvp_bind.framework.model.MvpViewModel;
-import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
-import org.greenfroyo.androidmvp_bind.util.AppUtil;
+import org.greenfroyo.mvp_bind.model.MvpViewModel;
+import org.greenfroyo.mvp_bind.view.MvpView;
+import org.greenfroyo.mvp_bind.util.AppUtil;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -88,7 +87,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
      * Called when this presenter is created
      * @param presenterState previously saved presenter state(nullable)
      */
-    public void onCreate(@Nullable Bundle presenterState) {
+    public void onCreate(Bundle presenterState) {
         AppUtil.log(TAG + " : " + "onCreate");
     }
 

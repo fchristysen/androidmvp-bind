@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.util;
+package org.greenfroyo.mvp_bind.util;
 
 /*
  * Copyright (C) 2011 The Android Open Source Project

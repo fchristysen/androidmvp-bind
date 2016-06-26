@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.framework.model;
+package org.greenfroyo.mvp_bind.model;
 
 /**
  * Created by fchristysen on 5/20/16.

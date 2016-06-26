@@ -1,9 +1,9 @@
-package org.greenfroyo.androidmvp_bind.framework.presenter;
+package org.greenfroyo.mvp_bind.presenter;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
-import org.greenfroyo.androidmvp_bind.util.AppUtil;
+import org.greenfroyo.mvp_bind.util.AppUtil;
 
 import java.util.concurrent.TimeUnit;
 

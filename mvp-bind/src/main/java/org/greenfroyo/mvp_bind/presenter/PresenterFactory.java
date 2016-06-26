@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.framework.presenter;
+package org.greenfroyo.mvp_bind.presenter;
 
 /**
  * Created by fchristysen on 5/20/16.

@@ -3,7 +3,7 @@ package org.greenfroyo.androidmvp_bind.app._core;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import org.greenfroyo.androidmvp_bind.framework.presenter.Presenter;
+import org.greenfroyo.mvp_bind.presenter.Presenter;
 
 import icepick.Icepick;
 

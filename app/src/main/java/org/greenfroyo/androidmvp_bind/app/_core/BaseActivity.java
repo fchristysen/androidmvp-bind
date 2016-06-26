@@ -5,18 +5,17 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.f2prateek.dart.Dart;
 
-import org.greenfroyo.androidmvp_bind.framework.presenter.PresenterFactory;
-import org.greenfroyo.androidmvp_bind.framework.presenter.PresenterManager;
-import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
-import org.greenfroyo.androidmvp_bind.util.AppUtil;
-import org.greenfroyo.androidmvp_bind.util.ViewServer;
+import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
+import org.greenfroyo.mvp_bind.presenter.PresenterManager;
+import org.greenfroyo.mvp_bind.view.MvpView;
+import org.greenfroyo.mvp_bind.util.AppUtil;
+import org.greenfroyo.mvp_bind.util.ViewServer;
 import org.greenrobot.eventbus.Subscribe;
 
 

@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.util;
+package org.greenfroyo.mvp_bind.util;
 
 import android.util.Log;
 

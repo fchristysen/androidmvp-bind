@@ -1,11 +1,11 @@
-package org.greenfroyo.androidmvp_bind.framework.presenter;
+package org.greenfroyo.mvp_bind.presenter;
 
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
-import org.greenfroyo.androidmvp_bind.framework.view.MvpView;
+import org.greenfroyo.mvp_bind.view.MvpView;
 
 /**
  * Created by fchristysen on 5/20/16.
