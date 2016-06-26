@@ -1,9 +1,9 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import org.greenfroyo.mvp_bind.presenter.Presenter;
+import org.greenfroyo.mvp_bind.view.MvpView;
 
 import icepick.Icepick;
 
@@ -18,14 +18,31 @@ import icepick.Icepick;
 public abstract class BasePresenter<VM extends BaseViewModel> extends Presenter<VM> {
 
     @Override
-    public void onCreate(@Nullable Bundle presenterState) {
-        super.onCreate(presenterState);
-        Icepick.restoreInstanceState(this, presenterState);
+    public final void create(Bundle savedPresenterState) {
+        Icepick.restoreInstanceState(this, savedPresenterState);
+        super.create(savedPresenterState);
+        getViewModel().attachOnPropertyChangeCallback();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outPresenterState) {
-        super.onSaveInstanceState(outPresenterState);
+    public final void attachView(MvpView view) {
+        super.attachView(view);
+    }
+
+    @Override
+    public final void detachView() {
+        super.detachView();
+    }
+
+    @Override
+    public final void saveInstanceState(Bundle outPresenterState) {
         Icepick.saveInstanceState(this, outPresenterState);
+        super.onSaveInstanceState(outPresenterState);
+    }
+
+    @Override
+    public final void destroy() {
+        super.destroy();
+        getViewModel().detachOnPropertyChangeCallback();
     }
 }

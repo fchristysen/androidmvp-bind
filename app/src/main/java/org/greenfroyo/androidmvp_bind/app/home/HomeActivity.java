@@ -4,7 +4,6 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -18,8 +17,6 @@ import org.greenfroyo.androidmvp_bind.app.common.SimpleBindAdapter;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
-import java.util.List;
-
 public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {
 
@@ -31,11 +28,6 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     @Override
     public HomePresenter createPresenter() {
         return new HomePresenter();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override

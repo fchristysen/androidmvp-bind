@@ -27,13 +27,13 @@ public class PresenterManager<P extends MvpPresenter> {
         }
     }
 
-    public void onResume(MvpView view){
+    public void onAttachView(MvpView view){
         getPresenter();
         if (mPresenter != null)
             mPresenter.attachView(view);
     }
 
-    public void onPause(boolean isFinishing){
+    public void onDetachView(boolean isFinishing){
         if (mPresenter != null) {
             mPresenter.detachView();
             if (isFinishing) {
@@ -53,7 +53,7 @@ public class PresenterManager<P extends MvpPresenter> {
     public void onSaveInstanceState(Bundle outState){
         if(mPresenter != null){
             Bundle presenterBundle = new Bundle();
-            mPresenter.onSaveInstanceState(presenterBundle);
+            mPresenter.saveInstanceState(presenterBundle);
             presenterBundle.putString(KEY_PRESENTER_ID, mPresenter.getID());
             outState.putBundle(KEY_PRESENTER_STATE, presenterBundle);
         }

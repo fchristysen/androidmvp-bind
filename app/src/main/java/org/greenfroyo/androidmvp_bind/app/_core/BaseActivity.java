@@ -56,7 +56,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
      */
     protected void onInitListener(){
 
-    };
+    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -80,16 +80,16 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     protected void onResume() {
         super.onResume();
-        AppUtil.log(TAG + " : " + "onResume");
-        mPresenterManager.onResume(this);
+        AppUtil.log(TAG + " : " + "onAttachView");
+        mPresenterManager.onAttachView(this);
         getPresenter().getViewModel().getEventBus().register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        AppUtil.log(TAG + " : " + "onPause");
-        mPresenterManager.onPause(isFinishing());
+        AppUtil.log(TAG + " : " + "onDetachView");
+        mPresenterManager.onDetachView(isFinishing());
         getPresenter().getViewModel().getEventBus().unregister(this);
     }
 
