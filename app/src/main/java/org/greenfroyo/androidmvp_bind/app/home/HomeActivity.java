@@ -2,14 +2,12 @@ package org.greenfroyo.androidmvp_bind.app.home;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
 import org.greenfroyo.androidmvp_bind.app.common.BindAdapter;
@@ -34,6 +32,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     protected ViewDataBinding onInitView(HomeViewModel viewModel) {
         mBinding = DataBindingUtil.setContentView(this, R.layout.home_activity);
         mBinding.setViewModel(viewModel);
+
         //configure adapter
         mContentAdapter = new HomeAdapter(this);
         mBinding.lvContent.setLayoutManager(new LinearLayoutManager(this));
@@ -56,15 +55,6 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     @Override
     public void onItemClick(int position, HomeItemViewModel item) {
         getPresenter().openPage(this, item.getClassObject());
-    }
-
-    public class ViewListener extends Observable.OnPropertyChangedCallback{
-        @Override
-        public void onPropertyChanged(Observable observable, int i) {
-            if(i == BR.content) {
-                HomeActivity.this.mBinding.lvContent.getAdapter().notifyDataSetChanged();
-            }
-        }
     }
 
     public static class HomeAdapter extends BindAdapter<HomeItemViewModel, HomeListItemBinding> {
