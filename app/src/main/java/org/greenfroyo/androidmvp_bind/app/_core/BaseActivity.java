@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.widget.Toast;
 
-import com.android.databinding.library.baseAdapters.BR;
 import com.f2prateek.dart.Dart;
 
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
@@ -50,18 +49,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
         mBinding = onInitView(getPresenter().getViewModel());
-        mPropertyChangedCallback = new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable observable, int i) {
-                if(i == BR.toastMessage){
-                    Toast.makeText(BaseActivity.this, getPresenter().getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
-                    getPresenter().getViewModel().clearToastMessage();
-                }else if(i == BR.snackbarMessage){
-                    Snackbar.make(mBinding.getRoot(), getPresenter().getViewModel().getToastMessage(), Snackbar.LENGTH_SHORT).show();
-                    getPresenter().getViewModel().clearToastMessage();
-                }
-            }
-        };
+        mPropertyChangedCallback = getPropertyChangedCallback();
         onInitListener();
     }
 
@@ -73,7 +61,23 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
      */
     protected void onInitListener(){
 
-    };
+    }
+
+    public Observable.OnPropertyChangedCallback getPropertyChangedCallback(){
+        return new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if(i == 0){
+                    if(getViewModel().needToShowToast()) {
+                        Toast.makeText(BaseActivity.this, getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                    if(getViewModel().needToShowSnackbar()){
+                        Snackbar.make(mBinding.getRoot(), getViewModel().getSnackbarMessage(), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        };
+    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -99,7 +103,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         super.onResume();
         AppUtil.log(TAG + " : " + "onResume");
         mPresenterManager.onResume(this);
-        getPresenter().getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
+        getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
@@ -107,7 +111,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         super.onPause();
         AppUtil.log(TAG + " : " + "onPause");
         mPresenterManager.onPause(isFinishing());
-        getPresenter().getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
+        getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
@@ -125,5 +129,9 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     public final P getPresenter() {
         return mPresenterManager.getPresenter();
+    }
+
+    public VM getViewModel(){
+        return getPresenter().getViewModel();
     }
 }

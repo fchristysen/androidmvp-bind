@@ -18,8 +18,6 @@ import org.greenfroyo.androidmvp_bind.app.common.SimpleBindAdapter;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
-import java.util.List;
-
 public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {
 

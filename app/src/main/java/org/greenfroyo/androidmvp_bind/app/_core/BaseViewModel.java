@@ -1,10 +1,8 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.databinding.BaseObservable;
-import android.databinding.Bindable;
 
-import com.android.databinding.library.baseAdapters.BR;
-
+import org.greenfroyo.androidmvp_bind.lang.TransientField;
 import org.greenfroyo.mvp_bind.model.MvpViewModel;
 import org.parceler.Parcel;
 
@@ -14,34 +12,32 @@ import org.parceler.Parcel;
 
 @Parcel
 public abstract class BaseViewModel extends BaseObservable implements MvpViewModel {
-    private String mToastMessage;
-    private String mSnackbarMessage;
+    private final TransientField<String> mToastMessage = new TransientField<>();
+    private final TransientField<String> mSnackbarMessage = new TransientField<>();
 
-    @Bindable
     public String getToastMessage() {
-        return mToastMessage;
+        return mToastMessage.get();
     }
 
     public void setToastMessage(String toastMessage) {
-        mToastMessage = toastMessage;
-        notifyPropertyChanged(BR.toastMessage);
+        mToastMessage.set(toastMessage);
     }
 
-    public void clearToastMessage(){
-        mToastMessage = "";
+    public boolean needToShowToast(){
+        return mToastMessage.containValue();
     }
 
-    @Bindable
     public String getSnackbarMessage() {
-        return mSnackbarMessage;
+        return mSnackbarMessage.get();
     }
 
     public void setSnackbarMessage(String snackbarMessage) {
-        mSnackbarMessage = snackbarMessage;
-        notifyPropertyChanged(BR.snackbarMessage);
+        mSnackbarMessage.set(snackbarMessage);
     }
 
-    public void clearSnackbarMessage(){
-        mSnackbarMessage = "";
+    public boolean needToShowSnackbar(){
+        return mSnackbarMessage.containValue();
     }
+
+
 }

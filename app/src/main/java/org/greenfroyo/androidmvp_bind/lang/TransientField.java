@@ -38,6 +38,13 @@ public class TransientField<T> extends BaseObservable implements Serializable {
     }
 
     /**
+     * @return check if value is not null.
+     */
+    public boolean containValue() {
+        return mValue!=null;
+    }
+
+    /**
      * @return the stored value.
      */
     public T get() {
