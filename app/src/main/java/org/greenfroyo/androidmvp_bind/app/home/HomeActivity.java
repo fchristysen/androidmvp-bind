@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
+import org.greenfroyo.androidmvp_bind.app.common.BindAdapter;
 import org.greenfroyo.androidmvp_bind.app.common.OnRecyclerItemClickListener;
-import org.greenfroyo.androidmvp_bind.app.common.SimpleBindAdapter;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
@@ -34,10 +34,8 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
     protected ViewDataBinding onInitView(HomeViewModel viewModel) {
         mBinding = DataBindingUtil.setContentView(this, R.layout.home_activity);
         mBinding.setViewModel(viewModel);
-        viewModel.addOnPropertyChangedCallback(new ViewListener());
         //configure adapter
         mContentAdapter = new HomeAdapter(this);
-        mContentAdapter.setDataSet(viewModel.getContent());
         mBinding.lvContent.setLayoutManager(new LinearLayoutManager(this));
         mBinding.lvContent.setAdapter(mContentAdapter);
         return mBinding;
@@ -69,7 +67,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         }
     }
 
-    public static class HomeAdapter extends SimpleBindAdapter<HomeItemViewModel, HomeListItemBinding>{
+    public static class HomeAdapter extends BindAdapter<HomeItemViewModel, HomeListItemBinding> {
 
         public HomeAdapter(Context context) {
             super(context);
