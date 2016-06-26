@@ -6,6 +6,7 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -54,6 +55,9 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
             public void onPropertyChanged(Observable observable, int i) {
                 if(i == BR.toastMessage){
                     Toast.makeText(BaseActivity.this, getPresenter().getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
+                    getPresenter().getViewModel().clearToastMessage();
+                }else if(i == BR.snackbarMessage){
+                    Snackbar.make(mBinding.getRoot(), getPresenter().getViewModel().getToastMessage(), Snackbar.LENGTH_SHORT).show();
                     getPresenter().getViewModel().clearToastMessage();
                 }
             }

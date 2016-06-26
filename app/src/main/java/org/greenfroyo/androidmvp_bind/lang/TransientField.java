@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.app.util;
+package org.greenfroyo.androidmvp_bind.lang;
 
 import android.databinding.BaseObservable;
 
