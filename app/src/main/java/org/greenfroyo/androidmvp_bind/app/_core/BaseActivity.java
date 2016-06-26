@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.content.Context;
+import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -9,26 +10,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.widget.Toast;
 
+import com.android.databinding.library.baseAdapters.BR;
 import com.f2prateek.dart.Dart;
 
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
-import org.greenfroyo.mvp_bind.view.MvpView;
 import org.greenfroyo.mvp_bind.util.AppUtil;
 import org.greenfroyo.mvp_bind.util.ViewServer;
-import org.greenrobot.eventbus.Subscribe;
+import org.greenfroyo.mvp_bind.view.MvpView;
 
 
 /**
  * Created by fchristysen on 1/21/16.
  */
-public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseViewModel> extends AppCompatActivity implements MvpView<P, VM>, PresenterFactory<P> {
+public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseViewModel>
+        extends AppCompatActivity
+        implements MvpView<P, VM>, PresenterFactory<P> {
     private String TAG;
     protected final String WINDOW_HIERARCHY_TAG = "android:viewHierarchyState";
     protected final String WINDOW_VIEW_TAG = "android:views";
 
     private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager= new PresenterManager(this);
+    private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
 
     @Override
     public abstract P createPresenter();
@@ -45,6 +49,15 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
         mBinding = onInitView(getPresenter().getViewModel());
+        mPropertyChangedCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if(i == BR.toastMessage){
+                    Toast.makeText(BaseActivity.this, getPresenter().getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
+                    getPresenter().getViewModel().clearToastMessage();
+                }
+            }
+        };
         onInitListener();
     }
 
@@ -82,7 +95,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         super.onResume();
         AppUtil.log(TAG + " : " + "onResume");
         mPresenterManager.onResume(this);
-        getPresenter().getViewModel().getEventBus().register(this);
+        getPresenter().getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
@@ -90,7 +103,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         super.onPause();
         AppUtil.log(TAG + " : " + "onPause");
         mPresenterManager.onPause(isFinishing());
-        getPresenter().getViewModel().getEventBus().unregister(this);
+        getPresenter().getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
@@ -109,10 +122,4 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     public final P getPresenter() {
         return mPresenterManager.getPresenter();
     }
-
-    @Subscribe
-    public void onSnackbarEvent(BaseViewModel.SnackbarEvent event){
-        Toast.makeText(this, event.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-
 }

@@ -1,9 +1,11 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import com.android.databinding.library.baseAdapters.BR;
 
 import org.greenfroyo.mvp_bind.model.MvpViewModel;
-import org.greenrobot.eventbus.EventBus;
 import org.parceler.Parcel;
 
 /**
@@ -12,25 +14,34 @@ import org.parceler.Parcel;
 
 @Parcel
 public abstract class BaseViewModel extends BaseObservable implements MvpViewModel {
-    private EventBus mEvent = new EventBus();
+    private String mToastMessage;
+    private String mSnackbarMessage;
 
-    public EventBus getEventBus() {
-        return mEvent;
+    @Bindable
+    public String getToastMessage() {
+        return mToastMessage;
     }
 
-    public void subscribe(Object subscriber){
-        mEvent.register(subscriber);
+    public void setToastMessage(String toastMessage) {
+        mToastMessage = toastMessage;
+        notifyPropertyChanged(BR.toastMessage);
     }
 
-    public static class SnackbarEvent{
-        private String mMessage;
+    public void clearToastMessage(){
+        mToastMessage = "";
+    }
 
-        public SnackbarEvent(String message) {
-            mMessage = message;
-        }
+    @Bindable
+    public String getSnackbarMessage() {
+        return mSnackbarMessage;
+    }
 
-        public String getMessage() {
-            return mMessage;
-        }
+    public void setSnackbarMessage(String snackbarMessage) {
+        mSnackbarMessage = snackbarMessage;
+        notifyPropertyChanged(BR.snackbarMessage);
+    }
+
+    public void clearSnackbarMessage(){
+        mSnackbarMessage = "";
     }
 }
