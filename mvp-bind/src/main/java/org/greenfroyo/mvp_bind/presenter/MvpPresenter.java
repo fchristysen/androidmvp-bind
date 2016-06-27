@@ -20,7 +20,7 @@ public interface MvpPresenter<VM extends MvpViewModel> {
 
     void create(Bundle savedPresenterState);
 
-    void onSaveInstanceState(Bundle outPresenterState);
+    void saveInstanceState(Bundle outPresenterState);
 
     void destroy();
 

@@ -31,13 +31,13 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     @Override
-    public final void create(Bundle savedPresenterState){
+    public void create(Bundle savedPresenterState){
         onCreate(savedPresenterState);
         mViewModel = onInitViewModel();
     }
 
     @Override
-    public final void attachView(MvpView view){
+    public void attachView(MvpView view){
         this.mView = new WeakReference<>(view);
         onViewAttached();
     }
@@ -47,7 +47,12 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     @Override
-    public final void detachView(){
+    public void saveInstanceState(Bundle outPresenterState) {
+        onSaveInstanceState(outPresenterState);
+    }
+
+    @Override
+    public void detachView(){
         onDetachView();
         this.mView = null;
 
@@ -63,7 +68,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     @Override
-    public final void destroy() {
+    public void destroy() {
         onDestroy();
         for(OnDestroyListener listener:mListeners){
             listener.onDestroy(getID());
@@ -101,7 +106,6 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
      * Called when activity's onSaveInstanceState is called
      * @param outPresenterState instanceState specifically for presenter object
      */
-    @Override
     public void onSaveInstanceState(Bundle outPresenterState) {
         AppUtil.log(TAG + " : " + "onSaveInstanceState");
     }

@@ -22,7 +22,6 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
 
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
-        super.onCreate(presenterState);
         mHomeProvider = new HomeProvider(App.getContext());
     }
 
