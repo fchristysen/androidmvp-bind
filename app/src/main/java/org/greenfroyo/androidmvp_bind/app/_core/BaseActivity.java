@@ -47,7 +47,8 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         mBinding = onInitView(getPresenter().getViewModel());
     }
 
-    /** Inflate your layout and other initialization of view here.
+    /** Initialize your ViewDataBinding, view initialization, and view model binding here
+     *  @param viewModel the object to be bind into binding class
      */
     protected abstract ViewDataBinding onInitView(VM viewModel);
 

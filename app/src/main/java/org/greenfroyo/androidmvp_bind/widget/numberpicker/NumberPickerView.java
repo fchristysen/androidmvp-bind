@@ -21,27 +21,22 @@ public class NumberPickerView extends MVPLinearLayout<NumberPickerPresenter, Num
 
     public NumberPickerView(Context context) {
         super(context);
-        initView();
     }
 
     public NumberPickerView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView();
     }
 
     public NumberPickerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView();
     }
 
-    public final void initView(){
+    public final void onInitView(){
         mBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.number_picker_view, null, false);
         addView(mBinding.getRoot());
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    public final void onBindView(NumberPickerViewModel viewModel) {
         mBinding.setViewModel(getPresenter().getViewModel());
         mBinding.setListener(this);
     }

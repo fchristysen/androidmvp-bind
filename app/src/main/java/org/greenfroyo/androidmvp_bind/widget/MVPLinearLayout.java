@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.widget.LinearLayout;
 
+import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.greenfroyo.mvp_bind.model.MvpViewModel;
 import org.greenfroyo.mvp_bind.presenter.CompoundPresenterManager;
 import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
@@ -20,34 +22,36 @@ import org.greenfroyo.mvp_bind.view.MvpView;
  * There is no need to use this view in xml.
  */
 
-public abstract class MVPLinearLayout<P extends MvpPresenter, VM extends MvpViewModel>
+public abstract class MVPLinearLayout<P extends BasePresenter<VM>, VM extends BaseViewModel>
         extends LinearLayout
         implements MvpView<P, VM>, PresenterFactory<P> {
     private CompoundPresenterManager<P> mPresenterManager;
 
     public MVPLinearLayout(Context context) {
         super(context);
-        init();
+        initView();
     }
 
     public MVPLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        initView();
     }
 
     public MVPLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        initView();
     }
 
-    public void init(){
+    public void initView(){
         mPresenterManager = new CompoundPresenterManager(this);
+        onInitView();
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mPresenterManager.onAttachedView(this);
+        onBindView(getPresenter().getViewModel());
     }
 
     @Override
@@ -94,4 +98,16 @@ public abstract class MVPLinearLayout<P extends MvpPresenter, VM extends MvpView
             throw new IllegalStateException("Expected an activity context, got " + context.getClass().getSimpleName());
         return (Activity)context;
     }
+
+    /** Initialize your ViewDataBinding and other view initialization  here
+     */
+    public abstract void onInitView();
+
+    /** Bind the view model into the ViewDataBinding here
+     * Notes : This is called inside onAttachedView method, which ensure that the onRestoreState
+     * is already called(if there's a state to be restored). This is required, as getting presenter
+     * before onRestoreState will create another new presenter object even if old one exists
+     * @param viewModel the object to be bind into binding class
+     */
+    public abstract void onBindView(VM viewModel);
 }
