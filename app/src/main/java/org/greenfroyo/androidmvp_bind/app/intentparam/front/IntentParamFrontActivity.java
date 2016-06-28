@@ -35,10 +35,6 @@ public class IntentParamFrontActivity extends BaseActivity<IntentParamFrontPrese
     }
 
     @Override
-    protected void onInitListener() {
-    }
-
-    @Override
     public void onClick(View v) {
         if(v.equals(mBinding.btnAdd)){
             getPresenter().onIncrementValue();

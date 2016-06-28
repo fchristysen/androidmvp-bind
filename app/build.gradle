@@ -45,13 +45,14 @@ dependencies {
     //EventBus
     compile 'org.greenrobot:eventbus:3.0.0'
 
-    //Rx, subscriber and observer pattern
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'io.reactivex:rxjava:1.1.0'
-
     //Parcel annotation
     //https://github.com/johncarl81/parceler
     compile 'org.parceler:parceler-api:1.1.5'
+    apt 'org.parceler:parceler:1.1.5'
+
+    //Rx, subscriber and observer pattern
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
 
     //Dart Henson
     compile 'com.f2prateek.dart:dart:2.0.0'

@@ -27,7 +27,7 @@ public class PresenterStorage {
 
     public static PresenterStorage getInstance(){
         if(instance == null){
-            instance = new PresenterStorage(100, Integer.MAX_VALUE);
+            instance = new PresenterStorage(100000, Integer.MAX_VALUE);
         }
         AppUtil.log(TAG + " : Count" + instance.mPresenters.size());
         return instance;

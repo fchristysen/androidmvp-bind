@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.NumberPicker;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
@@ -37,14 +38,11 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
         mContentAdapter = new HomeAdapter(this);
         mBinding.lvContent.setLayoutManager(new LinearLayoutManager(this));
         mBinding.lvContent.setAdapter(mContentAdapter);
-        return mBinding;
-    }
 
-    @Override
-    protected void onInitListener() {
-        super.onInitListener();
         mBinding.vgSwipe.setOnRefreshListener(this);
         mContentAdapter.setOnItemClickListener(this);
+
+        return mBinding;
     }
 
     @Override

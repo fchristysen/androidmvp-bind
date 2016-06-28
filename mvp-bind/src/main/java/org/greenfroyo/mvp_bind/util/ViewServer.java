@@ -73,8 +73,8 @@ import android.view.ViewDebug;
  *         ViewServer.get(this).removeWindow(this);
  *     }
  *
- *     public void onAttachView() {
- *         super.onAttachView();
+ *     public void onAttachedView() {
+ *         super.onAttachedView();
  *         ViewServer.get(this).setFocusedWindow(this);
  *     }
  * }

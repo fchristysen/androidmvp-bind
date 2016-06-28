@@ -6,6 +6,7 @@ import android.databinding.Observable;
 import org.greenfroyo.mvp_bind.model.MvpViewModel;
 import org.greenrobot.eventbus.EventBus;
 import org.parceler.Parcel;
+import org.parceler.Transient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +14,16 @@ import java.util.List;
 /**
  * Created by fchristysen on 6/7/16.
  *
- * This class expands the number of OnPropertyChangeCallbacks
+ * !IMPORTANT, subclass of this view model required to use @Parcel annotation for enabling
+ *  automatic save and restore of view model
+ * This class expands the number of attachable OnPropertyChangeCallbacks
  */
 
-@Parcel
 public abstract class BaseViewModel extends BaseObservable implements MvpViewModel {
-    private OnPropertyChangedCallback mOnPropertyChangedCallback;
-    private List<OnPropertyChangedCallback> mOnPropertyChangedCallbackList;
+    @Transient private OnPropertyChangedCallback mOnPropertyChangedCallback;
+    @Transient private List<OnPropertyChangedCallback> mOnPropertyChangedCallbackList;
 
-    private EventBus mEvent = new EventBus();
+    @Transient private EventBus mEvent = new EventBus();
 
     public BaseViewModel(){
         mOnPropertyChangedCallback = new OnPropertyChangedCallback() {

@@ -4,15 +4,21 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.BR;
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+import org.parceler.ParcelProperty;
 
 /**
  * Created by fchristysen on 6/21/16.
  */
 
+@Parcel
 public class HomeItemViewModel extends BaseObservable{
+    @ParcelProperty("class")
     private Class mClass;
 
-    public HomeItemViewModel(Class pageClass) {
+    @ParcelConstructor
+    public HomeItemViewModel(@ParcelProperty("class") Class pageClass) {
         mClass = pageClass;
     }
 

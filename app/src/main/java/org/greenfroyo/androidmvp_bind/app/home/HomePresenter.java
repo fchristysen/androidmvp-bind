@@ -33,10 +33,10 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
     }
 
     //region actionable
-    public void refreshList(){
+    public void refreshList() {
         getViewModel().setPageState(HomeViewModel.STATE_LOADING);
 
-        if(Home.isAllowedToShow()){
+        if (Home.isAllowedToShow()) {
             getViewModel().clearContent();
             mHomeProvider.getMenuItems().subscribe(s -> {
                 getViewModel().addContent(new HomeItemViewModel(s));
@@ -46,13 +46,13 @@ public class HomePresenter extends BasePresenter<HomeViewModel> {
             }, () -> {
                 getViewModel().setPageState(HomeViewModel.STATE_SHOW);
             });
-        }else{
+        } else {
             getViewModel().setPageState(HomeViewModel.STATE_ERROR);
             getViewModel().getEventBus().post(new BaseViewModel.SnackbarEvent(App.resources().getString(R.string.home_title_error_message)));
         }
     }
 
-    public void openPage(Context context, Class pageClass){
+    public void openPage(Context context, Class pageClass) {
         Intent intent = new Intent(context, pageClass);
         context.startActivity(intent);
     }

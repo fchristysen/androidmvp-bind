@@ -45,18 +45,11 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
 
         mBinding = onInitView(getPresenter().getViewModel());
-        onInitListener();
     }
 
-    /** Inflate your layout and other initialized of view here.
+    /** Inflate your layout and other initialization of view here.
      */
     protected abstract ViewDataBinding onInitView(VM viewModel);
-
-    /** Set listener for your view here
-     */
-    protected void onInitListener(){
-
-    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -80,16 +73,16 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     protected void onResume() {
         super.onResume();
-        AppUtil.log(TAG + " : " + "onAttachView");
-        mPresenterManager.onAttachView(this);
+        AppUtil.log(TAG + " : " + "onAttachedView");
+        mPresenterManager.onAttachedView(this);
         getPresenter().getViewModel().getEventBus().register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        AppUtil.log(TAG + " : " + "onDetachView");
-        mPresenterManager.onDetachView(isFinishing());
+        AppUtil.log(TAG + " : " + "onDetachedView");
+        mPresenterManager.onDetachedView(isFinishing());
         getPresenter().getViewModel().getEventBus().unregister(this);
     }
 

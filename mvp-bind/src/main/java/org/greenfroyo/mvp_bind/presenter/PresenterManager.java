@@ -27,13 +27,13 @@ public class PresenterManager<P extends MvpPresenter> {
         }
     }
 
-    public void onAttachView(MvpView view){
+    public void onAttachedView(MvpView view){
         getPresenter();
         if (mPresenter != null)
             mPresenter.attachView(view);
     }
 
-    public void onDetachView(boolean isFinishing){
+    public void onDetachedView(boolean isFinishing){
         if (mPresenter != null) {
             mPresenter.detachView();
             if (isFinishing) {

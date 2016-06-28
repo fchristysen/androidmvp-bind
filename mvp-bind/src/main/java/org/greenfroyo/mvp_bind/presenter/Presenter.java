@@ -14,6 +14,7 @@ import java.util.Random;
  * Created by fchristysen on 5/20/16.
  */
 public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter<VM> {
+    public static final String KEY_VIEW_MODEL="view_model";
     private final String TAG;
     private final String ID;
     private VM mViewModel;
@@ -33,7 +34,10 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     @Override
     public void create(Bundle savedPresenterState){
         onCreate(savedPresenterState);
-        mViewModel = onInitViewModel();
+        mViewModel = onRestoredViewModel();
+        if(mViewModel == null){
+            mViewModel = onInitViewModel();
+        }
     }
 
     @Override
@@ -97,6 +101,12 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     /**
+     * Return the restored view model here, or return null if not available
+     * @return Restored value of the view model
+     */
+    protected abstract VM onRestoredViewModel();
+
+    /**
      * Initialize the View Model here
      * @return Initial value of the view model
      */
@@ -121,7 +131,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
      * Called before view is detached to this presenter
      */
     protected void onDetachView(){
-        AppUtil.log(TAG + " : " + "onDetachView");
+        AppUtil.log(TAG + " : " + "onDetachedView");
     }
 
     /**

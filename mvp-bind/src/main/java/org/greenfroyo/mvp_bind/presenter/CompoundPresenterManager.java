@@ -5,33 +5,38 @@ import android.os.Parcelable;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
+import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
+import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
+import org.greenfroyo.mvp_bind.presenter.PresenterManager;
 import org.greenfroyo.mvp_bind.view.MvpView;
 
+
 /**
- * Created by fchristysen on 5/20/16.
- * This class encapsulate additional presenter management specifically for android view
+ * Created by fchristysen on 1/25/16.
+ * This class encapsulate additional presenter management specifically for android compound view
+ * Each compound view must pass lifecycle events to this presenter manager
  */
-public class ViewPresenterManager<P extends MvpPresenter>{
+public class CompoundPresenterManager<P extends MvpPresenter>{
     public static final String KEY_PARENT_STATE = "parent_state";
     public static final String KEY_CHILDREN_STATE = "children_state";
 
     private PresenterManager<P> mPresenterManager;
 
-    public ViewPresenterManager(PresenterFactory<P> presenterFactory){
+    public CompoundPresenterManager(PresenterFactory<P> presenterFactory){
         mPresenterManager = new PresenterManager<>(presenterFactory);
     }
 
     /**
-     * @see PresenterManager#onAttachedView(MvpView view)
+     * @see PresenterManager#onAttachedView(MvpView)
      */
-    public void onResume(MvpView view){
+    public void onAttachedView(MvpView view){
         mPresenterManager.onAttachedView(view);
     }
 
     /**
      * @see PresenterManager#onDetachedView(boolean isFinishing)
      */
-    public void onPause(boolean isFinishing){
+    public void onDetachedView(boolean isFinishing){
         mPresenterManager.onDetachedView(isFinishing);
     }
 
@@ -66,3 +71,4 @@ public class ViewPresenterManager<P extends MvpPresenter>{
         return mPresenterManager.getPresenter();
     }
 }
+
