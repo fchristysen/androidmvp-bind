@@ -21,7 +21,7 @@ public class HomeViewModel extends BaseViewModel {
     public static final int STATE_LOADING = 1;
     public static final int STATE_ERROR = 2;
 
-    int mPageState;
+    private int mPageState;
     List<HomeItemViewModel> mContent;
 
     public HomeViewModel(){

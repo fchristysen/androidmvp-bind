@@ -28,6 +28,9 @@
 
         <activity android:name=".app.compoundview.CompoundViewActivity">
         </activity>
+
+        <activity android:name=".app.login.LoginActivity">
+        </activity>
     </application>
 
 </manifest>

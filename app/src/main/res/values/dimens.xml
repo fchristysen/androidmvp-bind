@@ -18,5 +18,7 @@
     <dimen name="text_caption">12sp</dimen>
 
     <dimen name="list_item_min">48dp</dimen>
+    <dimen name="avatar_small">56dp</dimen>
+    <dimen name="avatar_large">128dp</dimen>
 
 </resources>

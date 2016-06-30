@@ -1,9 +1,19 @@
 <resources>
     <string name="app_name">MVPBind</string>
 
+    <!-- COMMON -->
     <string name="common_add">Add</string>
     <string name="common_next">Next</string>
+    <string name="common_username">Username</string>
+    <string name="common_password">Password</string>
+    <string name="common_login">Login</string>
 
+    <string name="common_unknown_error">There is an unknown problem</string>
+
+    <!-- PLACEHOLDER -->
+    <string name="placeholder_short">Lorem Ipsum</string>
+
+    <!-- FEATURE SPECIFIC -->
     <string name="home_title_showing">MVPBind Demo</string>
     <string name="home_title_loading">Loading...</string>
     <string name="home_title_error">Error. Please try again</string>
@@ -14,6 +24,17 @@
 
     <string name="two_way_desc">The displayed text in top is bind-ed to a field viewModel. You can try to change the value of the EditText field, which is also bind to the same field</string>
 
-    <string name="placeholder_short">Lorem Ipsum</string>
+    <string name="login_field_empty">This fields cannot be empty</string>
+    <string name="login_username_too_short">Username cannot be shorter than %i</string>
+    <string name="login_username_too_long">Username cannot be longer that %i</string>
+    <string name="login_password_too_short">Password cannot be shorter than %i</string>
+    <string name="login_password_too_long">Password cannot be longer that %i</string>
+
+    <string name="login_result">Login Successful</string>
+    <string name="login_no_account">There is no account with that username and password</string>
+    <string name="login_no_network">There is a problem in network connection. Please try again</string>
+
+
+
 
 </resources>

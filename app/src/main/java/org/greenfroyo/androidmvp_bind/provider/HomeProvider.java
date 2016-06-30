@@ -5,6 +5,7 @@ import android.content.Context;
 import org.greenfroyo.androidmvp_bind.app.common.CommonTransformer;
 import org.greenfroyo.androidmvp_bind.app.compoundview.CompoundViewActivity;
 import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity;
+import org.greenfroyo.androidmvp_bind.app.login.LoginActivity;
 import org.greenfroyo.androidmvp_bind.app.twoway.TwoWayActivity;
 
 import rx.Observable;
@@ -15,17 +16,19 @@ import rx.Observable;
 
 public class HomeProvider extends BaseProvider {
 
-    public static final Class PAGE_INTENT_PARAM = IntentParamFrontActivity.class;
-    public static final Class PAGE_TWO_WAY = TwoWayActivity.class;
-    public static final Class PAGE_COMPOUND_VIEW = CompoundViewActivity.class;
+    public static final Class[] PAGES = new Class[]{
+            IntentParamFrontActivity.class
+            , TwoWayActivity.class
+            , CompoundViewActivity.class
+            , LoginActivity.class
+    };
 
     public HomeProvider(Context context){
         super(context);
     }
 
     public Observable<Class> getMenuItems(){
-        Class[] mPages = new Class[]{PAGE_INTENT_PARAM, PAGE_TWO_WAY, PAGE_COMPOUND_VIEW};
-        return Observable.from(mPages)
+        return Observable.from(PAGES)
                 .map(next -> {
                     try{
                         Thread.sleep(1000);

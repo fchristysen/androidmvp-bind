@@ -1,5 +1,6 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
+import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
