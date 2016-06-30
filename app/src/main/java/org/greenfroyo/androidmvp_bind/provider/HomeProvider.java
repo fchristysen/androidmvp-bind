@@ -6,6 +6,7 @@ import org.greenfroyo.androidmvp_bind.app.common.CommonTransformer;
 import org.greenfroyo.androidmvp_bind.app.compoundview.CompoundViewActivity;
 import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity;
 import org.greenfroyo.androidmvp_bind.app.login.LoginActivity;
+import org.greenfroyo.androidmvp_bind.app.multitab.MultiTabActivity;
 import org.greenfroyo.androidmvp_bind.app.twoway.TwoWayActivity;
 
 import rx.Observable;
@@ -21,6 +22,7 @@ public class HomeProvider extends BaseProvider {
             , TwoWayActivity.class
             , CompoundViewActivity.class
             , LoginActivity.class
+            , MultiTabActivity.class
     };
 
     public HomeProvider(Context context){
