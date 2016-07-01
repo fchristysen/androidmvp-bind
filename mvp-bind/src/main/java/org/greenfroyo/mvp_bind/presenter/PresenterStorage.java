@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class PresenterStorage {
     private static final String TAG = PresenterStorage.class.getSimpleName();
     private static final TimeUnit EXPIRATION_UNIT = TimeUnit.SECONDS;
+    private static final long EXPIRATION = Long.MAX_VALUE;
+    private static final long MAX_ENTRY = 100;
 
     private static PresenterStorage instance;
 
@@ -27,7 +29,7 @@ public class PresenterStorage {
 
     public static PresenterStorage getInstance(){
         if(instance == null){
-            instance = new PresenterStorage(100000, Integer.MAX_VALUE);
+            instance = new PresenterStorage(MAX_ENTRY, EXPIRATION);
         }
         AppUtil.log(TAG + " : Count" + instance.mPresenters.size());
         return instance;
