@@ -14,12 +14,13 @@ import org.parceler.ParcelProperty;
 
 @Parcel
 public class HomeItemViewModel extends BaseObservable{
-    @ParcelProperty("class")
-    private Class mClass;
+    @ParcelProperty("class") private Class mClass;
+    @ParcelProperty("displayName") private String mDisplayName;
 
     @ParcelConstructor
-    public HomeItemViewModel(@ParcelProperty("class") Class pageClass) {
+    public HomeItemViewModel(@ParcelProperty("class") Class pageClass, @ParcelProperty("displayName") String displayName) {
         mClass = pageClass;
+        mDisplayName = displayName;
     }
 
     public Class getClassObject() {
@@ -28,11 +29,15 @@ public class HomeItemViewModel extends BaseObservable{
 
     public void setClass(Class aClass) {
         mClass = aClass;
-        notifyPropertyChanged(BR.text);
+        notifyPropertyChanged(BR.displayName);
     }
 
     @Bindable
-    public String getText() {
-        return mClass.getSimpleName();
+    public String getDisplayName() {
+        return mDisplayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        mDisplayName = displayName;
     }
 }

@@ -8,12 +8,9 @@ import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.greenfroyo.androidmvp_bind.domain.UserLogin;
-import org.greenfroyo.androidmvp_bind.provider.UserProvider;
+import org.greenfroyo.androidmvp_bind.provider.user.UserProvider;
 
-import rx.functions.Action0;
 import rx.functions.Action1;
-
-import static android.R.id.message;
 
 /**
  * Created by fchristysen on 6/29/16.

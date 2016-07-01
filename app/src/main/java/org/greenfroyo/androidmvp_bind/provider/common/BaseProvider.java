@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.provider;
+package org.greenfroyo.androidmvp_bind.provider.common;
 
 import android.content.Context;
 

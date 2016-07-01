@@ -1,10 +1,9 @@
-package org.greenfroyo.androidmvp_bind.provider;
+package org.greenfroyo.androidmvp_bind.provider.user;
 
-import android.accounts.NetworkErrorException;
 import android.content.Context;
-import android.databinding.ObservableField;
 
 import org.greenfroyo.androidmvp_bind.app.common.CommonTransformer;
+import org.greenfroyo.androidmvp_bind.provider.common.BaseProvider;
 
 import java.util.Random;
 
@@ -14,7 +13,7 @@ import rx.Observable;
  * Created by fchristysen on 6/30/16.
  */
 
-public class UserProvider extends BaseProvider{
+public class UserProvider extends BaseProvider {
 
     public static final int LOGIN_SUCCESS = 0;
     public static final int LOGIN_ERROR_NO_ACCOUNT = 1;

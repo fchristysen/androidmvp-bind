@@ -1,5 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app.multitab.lorem;
 
+import android.databinding.Bindable;
+
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.App;
@@ -17,6 +19,7 @@ public class LoremViewModel extends BaseViewModel{
         mText = App.resources().getString(R.string.placeholder_page_long);
     }
 
+    @Bindable
     public String getText() {
         return mText;
     }

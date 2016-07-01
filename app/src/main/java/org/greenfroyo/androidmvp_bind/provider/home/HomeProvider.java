@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.provider;
+package org.greenfroyo.androidmvp_bind.provider.home;
 
 import android.content.Context;
 
@@ -8,6 +8,7 @@ import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActi
 import org.greenfroyo.androidmvp_bind.app.login.LoginActivity;
 import org.greenfroyo.androidmvp_bind.app.multitab.MultiTabActivity;
 import org.greenfroyo.androidmvp_bind.app.twoway.TwoWayActivity;
+import org.greenfroyo.androidmvp_bind.provider.common.BaseProvider;
 
 import rx.Observable;
 
@@ -29,13 +30,13 @@ public class HomeProvider extends BaseProvider {
         super(context);
     }
 
-    public Observable<Class> getMenuItems(){
+    public Observable<MainMenuDataModel> getMenuItems(){
         return Observable.from(PAGES)
                 .map(next -> {
                     try{
                         Thread.sleep(1000);
-                    }catch (InterruptedException e){};
-                    return next;
+                    }catch (InterruptedException e){}
+                    return new MainMenuDataModel(next);
                 })
                 .compose(CommonTransformer.toIOThread());
     }
