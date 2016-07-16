@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.content.Context;
+import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -12,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.databinding.library.baseAdapters.BR;
+
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
 import org.greenfroyo.mvp_bind.util.AppUtil;
 import org.greenfroyo.mvp_bind.view.MvpView;
-import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Created by fchristysen on 6/30/16.
@@ -32,6 +34,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
 
     private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager= new PresenterManager(this);
+    private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
 
     @Override
     public abstract P createPresenter();
@@ -43,6 +46,21 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         AppUtil.log(TAG + " : " + "onCreate");
 
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
+
+        mPropertyChangedCallback = getPropertyChangedCallback();
+    }
+
+    public Observable.OnPropertyChangedCallback getPropertyChangedCallback(){
+        return new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if(i == BR.toastMessage){
+                    if(getViewModel().needToShowToast()) {
+                        Toast.makeText(getActivity(), getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        };
     }
 
     /** Initialize your ViewDataBinding, view initialization, and view model binding here
@@ -56,6 +74,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         mBinding = onInitView(inflater, getPresenter().getViewModel());
         return mBinding.getRoot();
     }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -81,7 +100,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         super.onResume();
         AppUtil.log(TAG + " : " + "onAttachedView");
         mPresenterManager.onAttachedView(this);
-        getPresenter().getViewModel().getEventBus().register(this);
+        getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
@@ -89,7 +108,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         super.onPause();
         AppUtil.log(TAG + " : " + "onDetachedView");
         mPresenterManager.onDetachedView(getActivity().isFinishing());
-        getPresenter().getViewModel().getEventBus().unregister(this);
+        getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
@@ -109,8 +128,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         return mPresenterManager.getPresenter();
     }
 
-    @Subscribe
-    public void onSnackbarEvent(BaseViewModel.SnackbarEvent event){
-        Toast.makeText(getActivity(), event.getMessage(), Toast.LENGTH_SHORT).show();
+    public VM getViewModel(){
+        return getPresenter().getViewModel();
     }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
-import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.greenfroyo.androidmvp_bind.domain.UserLogin;
 import org.greenfroyo.androidmvp_bind.provider.user.UserProvider;
 
@@ -67,7 +66,7 @@ public class LoginPresenter extends BasePresenter<LoginViewModel> {
                 }else if(next == UserProvider.LOGIN_ERROR_NO_ACCOUNT){
                     message = App.resources().getString(R.string.login_no_account);
                 }
-                getViewModel().getEventBus().post(new BaseViewModel.SnackbarEvent(message));
+                getViewModel().setToastMessage(message);
             };
             Action1<Throwable> onError = error -> {
                 String message = null;
@@ -79,7 +78,7 @@ public class LoginPresenter extends BasePresenter<LoginViewModel> {
                 if(message == null){
                     message = App.resources().getString(R.string.common_unknown_error);
                 }
-                getViewModel().getEventBus().post(new BaseViewModel.SnackbarEvent(message));
+                getViewModel().setToastMessage(message);
             };
             mUserProvider.login(getViewModel().getUsername(), getViewModel().getPassword()).subscribe(
                     onNext, onError

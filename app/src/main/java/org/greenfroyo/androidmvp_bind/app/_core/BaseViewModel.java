@@ -1,11 +1,11 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.databinding.Observable;
 
+import com.android.databinding.library.baseAdapters.BR;
 import org.greenfroyo.mvp_bind.model.MvpViewModel;
-import org.greenrobot.eventbus.EventBus;
-import org.parceler.Parcel;
 import org.parceler.Transient;
 
 import java.util.ArrayList;
@@ -20,10 +20,10 @@ import java.util.List;
  */
 
 public abstract class BaseViewModel extends BaseObservable implements MvpViewModel {
+    private String mToastMessage;
+
     @Transient private OnPropertyChangedCallback mOnPropertyChangedCallback;
     @Transient private List<OnPropertyChangedCallback> mOnPropertyChangedCallbackList;
-
-    @Transient private EventBus mEvent = new EventBus();
 
     public BaseViewModel(){
         mOnPropertyChangedCallback = new OnPropertyChangedCallback() {
@@ -62,23 +62,19 @@ public abstract class BaseViewModel extends BaseObservable implements MvpViewMod
         mOnPropertyChangedCallbackList.remove(callback);
     }
 
-    public EventBus getEventBus() {
-        return mEvent;
+    @Bindable
+    public String getToastMessage(){
+        String r = mToastMessage;
+        mToastMessage = null;
+        return r;
     }
 
-    public void subscribe(Object subscriber){
-        mEvent.register(subscriber);
+    public void setToastMessage(String toastMessage) {
+        mToastMessage = toastMessage;
+        notifyPropertyChanged(BR.toastMessage);
     }
 
-    public static class SnackbarEvent{
-        private String mMessage;
-
-        public SnackbarEvent(String message) {
-            mMessage = message;
-        }
-
-        public String getMessage() {
-            return mMessage;
-        }
+    public boolean needToShowToast(){
+        return mToastMessage != null;
     }
 }
