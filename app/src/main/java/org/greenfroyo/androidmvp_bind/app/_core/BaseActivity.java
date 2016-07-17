@@ -94,15 +94,13 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     }
 
     /**
-     * This will be called if activity's savedInstanceState is not null
-     * Some child view that's not attached yet will need viewState to call onRestoreViewState manually
-     *
+     * This will be called if there is previously saved savedInstanceState
+     * Some child view may not be attached yet to its activity during onRestoreInstanceState
+     * therefore the viewState must be passed manually.
      * @param viewState SparseArray containing all view state in current screen
      */
     protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState) {
     }
-
-    ;
 
     @Override
     protected void onResume() {
