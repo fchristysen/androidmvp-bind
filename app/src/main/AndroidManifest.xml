@@ -25,6 +25,13 @@
 
         <activity android:name=".app.twoway.TwoWayActivity">
         </activity>
+
+        <activity android:name=".app.compoundview.CompoundViewActivity">
+        </activity>
+
+        <activity android:name=".app.login.LoginActivity">
+        </activity>
+        <activity android:name=".app.multitab.MultiTabActivity"/>
     </application>
 
 </manifest>

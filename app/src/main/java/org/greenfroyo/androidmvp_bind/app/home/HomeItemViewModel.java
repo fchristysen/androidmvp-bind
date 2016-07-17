@@ -4,16 +4,23 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.BR;
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+import org.parceler.ParcelProperty;
 
 /**
  * Created by fchristysen on 6/21/16.
  */
 
+@Parcel
 public class HomeItemViewModel extends BaseObservable{
-    private Class mClass;
+    @ParcelProperty("class") private Class mClass;
+    @ParcelProperty("displayName") private String mDisplayName;
 
-    public HomeItemViewModel(Class pageClass) {
+    @ParcelConstructor
+    public HomeItemViewModel(@ParcelProperty("class") Class pageClass, @ParcelProperty("displayName") String displayName) {
         mClass = pageClass;
+        mDisplayName = displayName;
     }
 
     public Class getClassObject() {
@@ -22,11 +29,15 @@ public class HomeItemViewModel extends BaseObservable{
 
     public void setClass(Class aClass) {
         mClass = aClass;
-        notifyPropertyChanged(BR.text);
+        notifyPropertyChanged(BR.displayName);
     }
 
     @Bindable
-    public String getText() {
-        return mClass.getSimpleName();
+    public String getDisplayName() {
+        return mDisplayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        mDisplayName = displayName;
     }
 }

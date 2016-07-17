@@ -22,7 +22,7 @@
             android:padding="@dimen/space_medium"
             android:layout_centerVertical="true"
             android:textSize="@dimen/text_title"
-            android:text="@{viewModel.text}"
+            android:text="@{viewModel.displayName}"
             tools:text="List Item"
             />
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="viewModel" type="org.greenfroyo.androidmvp_bind.widget.numberpicker.NumberPickerViewModel" />
+        <variable name="listener" type="android.view.View.OnClickListener" />
+    </data>
+    <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_sub"
+            android:layout_width="@dimen/list_item_min"
+            android:layout_height="@dimen/list_item_min"
+            android:padding="@dimen/space_small"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="@{listener::onClick}"
+            android:src="@drawable/ic_sub" />
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="@dimen/list_item_min"
+            android:layout_height="@dimen/list_item_min"
+            android:padding="@dimen/space_small"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="@{listener::onClick}"
+            android:src="@drawable/ic_add" />
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textSize="@dimen/text_headline"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/iv_sub"
+            android:layout_toLeftOf="@+id/iv_add"
+            android:text='@{"" + viewModel.value, default=0}'/>
+
+    </RelativeLayout>
+</layout>

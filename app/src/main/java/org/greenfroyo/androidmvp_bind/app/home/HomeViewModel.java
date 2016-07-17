@@ -6,6 +6,7 @@ import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +15,14 @@ import java.util.List;
  * Created by fchristysen on 6/7/16.
  */
 
+@Parcel
 public class HomeViewModel extends BaseViewModel {
     public static final int STATE_SHOW = 0;
     public static final int STATE_LOADING = 1;
     public static final int STATE_ERROR = 2;
 
-    public int mPageState;
-    private List<HomeItemViewModel> mContent;
+    private int mPageState;
+    List<HomeItemViewModel> mContent;
 
     public HomeViewModel(){
         mPageState = STATE_SHOW;
@@ -65,6 +67,10 @@ public class HomeViewModel extends BaseViewModel {
         mPageState = pageState;
         notifyPropertyChanged(BR.pageTitle);
         notifyPropertyChanged(BR.refreshing);
+    }
+
+    public void setContent(List<HomeItemViewModel> content) {
+        mContent = content;
     }
 
     public void addContent(HomeItemViewModel item){

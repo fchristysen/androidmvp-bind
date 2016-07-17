@@ -36,9 +36,5 @@ public class IntentParamBackActivity extends BaseActivity<IntentParamBackPresent
         return mBinding;
     }
 
-    @Override
-    protected void onInitListener() {
-    }
-
 
 }

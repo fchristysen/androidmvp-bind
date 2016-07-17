@@ -18,7 +18,6 @@ public class IntentParamBackPresenter extends BasePresenter<IntentParamBackViewM
 
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
-        super.onCreate(presenterState);
     }
 
     @Override

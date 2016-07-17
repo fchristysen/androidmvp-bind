@@ -21,7 +21,7 @@ public interface MvpView<P extends MvpPresenter, VM extends MvpViewModel> {
     /**
      * Returns a current attached presenter.
      * This method is guaranteed to return a non-null value between
-     * onCreate/onPause and onAttachedToWindow/onDetachedFromWindow calls
+     * onCreate/onDetachedView and onAttachedToWindow/onDetachedFromWindow calls
      *
      * @return a currently attached presenter or null.
      */

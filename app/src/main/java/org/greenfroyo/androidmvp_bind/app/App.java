@@ -31,7 +31,7 @@ public class App extends Application {
         return mContext.getResources();
     }
 
-    public static Context getContext() {
+    public static Context context() {
         return mContext;
     }
 }

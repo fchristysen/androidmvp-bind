@@ -1,36 +1,39 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
-import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 
-import org.greenfroyo.mvp_bind.model.MvpViewModel;
-import org.greenrobot.eventbus.EventBus;
-import org.parceler.Parcel;
+import com.android.databinding.library.baseAdapters.BR;
+
+import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
 
 /**
  * Created by fchristysen on 6/7/16.
+ * <p>
+ * !IMPORTANT, subclass of this view model required to use @Parcel annotation for enabling
+ * automatic save and restore of view model
+ * This class expands the number of attachable OnPropertyChangeCallbacks
  */
 
-@Parcel
-public abstract class BaseViewModel extends BaseObservable implements MvpViewModel {
-    private EventBus mEvent = new EventBus();
+public abstract class BaseViewModel extends BaseMvpViewModel {
+    private String mToastMessage;
 
-    public EventBus getEventBus() {
-        return mEvent;
+    public BaseViewModel() {
+
     }
 
-    public void subscribe(Object subscriber){
-        mEvent.register(subscriber);
+    @Bindable
+    public String getToastMessage() {
+        String r = mToastMessage;
+        mToastMessage = null;
+        return r;
     }
 
-    public static class SnackbarEvent{
-        private String mMessage;
+    public void setToastMessage(String toastMessage) {
+        mToastMessage = toastMessage;
+        notifyPropertyChanged(BR.toastMessage);
+    }
 
-        public SnackbarEvent(String message) {
-            mMessage = message;
-        }
-
-        public String getMessage() {
-            return mMessage;
-        }
+    public boolean needToShowToast() {
+        return mToastMessage != null;
     }
 }

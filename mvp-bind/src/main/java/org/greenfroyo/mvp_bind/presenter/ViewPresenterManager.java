@@ -22,17 +22,17 @@ public class ViewPresenterManager<P extends MvpPresenter>{
     }
 
     /**
-     * @see PresenterManager#onResume(MvpView view)
+     * @see PresenterManager#onAttachedView(MvpView view)
      */
     public void onResume(MvpView view){
-        mPresenterManager.onResume(view);
+        mPresenterManager.onAttachedView(view);
     }
 
     /**
-     * @see PresenterManager#onPause(boolean isFinishing)
+     * @see PresenterManager#onDetachedView(boolean isFinishing)
      */
     public void onPause(boolean isFinishing){
-        mPresenterManager.onPause(isFinishing);
+        mPresenterManager.onDetachedView(isFinishing);
     }
 
     public Parcelable onRestoreInstanceState(ViewGroup viewGroup, Parcelable state){

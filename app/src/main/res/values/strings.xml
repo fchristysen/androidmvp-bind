@@ -1,9 +1,22 @@
 <resources>
     <string name="app_name">MVPBind</string>
 
+    <!-- COMMON -->
     <string name="common_add">Add</string>
     <string name="common_next">Next</string>
+    <string name="common_username">Username</string>
+    <string name="common_password">Password</string>
+    <string name="common_login">Login</string>
 
+    <string name="common_unknown_error">There is an unknown problem</string>
+
+    <!-- PLACEHOLDER -->
+    <string name="placeholder_short">Lorem Ipsum</string>
+    <string name="placeholder_page_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut blandit tortor, vel venenatis augue. Sed tempor pulvinar turpis, at finibus justo blandit vitae. Suspendisse id eleifend odio. Vivamus eu magna mauris. Aliquam posuere imperdiet erat sit amet blandit. Aliquam erat volutpat. Sed dolor eros, volutpat vitae purus id, pharetra interdum ligula. Suspendisse blandit sit amet eros eget scelerisque. Aliquam erat volutpat. Nulla lobortis aliquet lorem, et viverra magna dapibus vitae. Donec elementum orci sed pellentesque iaculis. Ut aliquet at sem non tincidunt. Morbi egestas dictum tincidunt. Nunc gravida lectus at accumsan ornare. Nullam dignissim luctus viverra.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper, risus ut dapibus finibus, nunc mauris pretium mauris, eget maximus dui orci at arcu. Quisque non nulla vitae lacus facilisis pretium sed quis felis. Aliquam erat volutpat. Vivamus vel elit commodo tortor placerat sagittis. Sed felis libero, tincidunt rutrum interdum eu, euismod vitae risus. Morbi vel hendrerit nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam et leo mauris. Phasellus vitae odio eros.
+    Nullam dictum dignissim neque, vel blandit lorem porta sed. Maecenas cursus mauris ut accumsan convallis. Duis in tortor id dolor mollis placerat. Curabitur euismod lectus id tortor porta suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus porta eget nibh sit amet dictum. Ut tincidunt mollis rhoncus. Aliquam erat volutpat. Integer a odio convallis, fringilla justo et, mattis felis.</string>
+
+    <!-- FEATURE SPECIFIC -->
     <string name="home_title_showing">MVPBind Demo</string>
     <string name="home_title_loading">Loading...</string>
     <string name="home_title_error">Error. Please try again</string>
@@ -14,6 +27,17 @@
 
     <string name="two_way_desc">The displayed text in top is bind-ed to a field viewModel. You can try to change the value of the EditText field, which is also bind to the same field</string>
 
-    <string name="placeholder_short">Lorem Ipsum</string>
+    <string name="login_field_empty">This fields cannot be empty</string>
+    <string name="login_username_too_short">Username cannot be shorter than %i</string>
+    <string name="login_username_too_long">Username cannot be longer that %i</string>
+    <string name="login_password_too_short">Password cannot be shorter than %i</string>
+    <string name="login_password_too_long">Password cannot be longer that %i</string>
+
+    <string name="login_result">Login Successful</string>
+    <string name="login_no_account">There is no account with that username and password</string>
+    <string name="login_no_network">There is a problem in network connection. Please try again</string>
+
+
+
 
 </resources>

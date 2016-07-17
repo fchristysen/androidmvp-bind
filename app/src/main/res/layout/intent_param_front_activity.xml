@@ -2,6 +2,7 @@
 <layout>
     <data>
         <variable name="viewModel" type="org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontViewModel" />
+        <variable name="onClickListener" type="android.view.View.OnClickListener" />
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
@@ -42,7 +43,8 @@
             android:layout_marginTop="@dimen/space_medium"
             android:layout_below="@+id/tv_text"
             android:layout_centerHorizontal="true"
-            android:text="@string/common_add"/>
+            android:text="@string/common_add"
+            android:onClick="@{onClickListener::onClick}" />
 
         <Button
             android:layout_width="wrap_content"
@@ -51,7 +53,8 @@
             android:layout_marginTop="@dimen/space_small"
             android:layout_below="@+id/btn_add"
             android:layout_centerHorizontal="true"
-            android:text="@string/common_next"/>
+            android:text="@string/common_next"
+            android:onClick="@{onClickListener::onClick}" />
     </RelativeLayout>
 </layout>
 

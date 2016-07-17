@@ -14,6 +14,7 @@ import java.util.Random;
  * Created by fchristysen on 5/20/16.
  */
 public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter<VM> {
+    public static final String KEY_VIEW_MODEL="view_model";
     private final String TAG;
     private final String ID;
     private VM mViewModel;
@@ -31,13 +32,16 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     @Override
-    public final void create(Bundle savedPresenterState){
+    public void create(Bundle savedPresenterState){
         onCreate(savedPresenterState);
-        mViewModel = onInitViewModel();
+        mViewModel = onRestoredViewModel();
+        if(mViewModel == null){
+            mViewModel = onInitViewModel();
+        }
     }
 
     @Override
-    public final void attachView(MvpView view){
+    public void attachView(MvpView view){
         this.mView = new WeakReference<>(view);
         onViewAttached();
     }
@@ -47,7 +51,12 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     @Override
-    public final void detachView(){
+    public void saveInstanceState(Bundle outPresenterState) {
+        onSaveInstanceState(outPresenterState);
+    }
+
+    @Override
+    public void detachView(){
         onDetachView();
         this.mView = null;
 
@@ -63,7 +72,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     @Override
-    public final void destroy() {
+    public void destroy() {
         onDestroy();
         for(OnDestroyListener listener:mListeners){
             listener.onDestroy(getID());
@@ -92,6 +101,12 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     /**
+     * Return the restored view model here, or return null if not available
+     * @return Restored value of the view model
+     */
+    protected abstract VM onRestoredViewModel();
+
+    /**
      * Initialize the View Model here
      * @return Initial value of the view model
      */
@@ -101,7 +116,6 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
      * Called when activity's onSaveInstanceState is called
      * @param outPresenterState instanceState specifically for presenter object
      */
-    @Override
     public void onSaveInstanceState(Bundle outPresenterState) {
         AppUtil.log(TAG + " : " + "onSaveInstanceState");
     }
@@ -117,7 +131,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
      * Called before view is detached to this presenter
      */
     protected void onDetachView(){
-        AppUtil.log(TAG + " : " + "onDetachView");
+        AppUtil.log(TAG + " : " + "onDetachedView");
     }
 
     /**
