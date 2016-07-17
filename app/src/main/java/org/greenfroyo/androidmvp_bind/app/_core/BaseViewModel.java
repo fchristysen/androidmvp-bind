@@ -8,21 +8,21 @@ import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
 
 /**
  * Created by fchristysen on 6/7/16.
- *
+ * <p>
  * !IMPORTANT, subclass of this view model required to use @Parcel annotation for enabling
- *  automatic save and restore of view model
+ * automatic save and restore of view model
  * This class expands the number of attachable OnPropertyChangeCallbacks
  */
 
 public abstract class BaseViewModel extends BaseMvpViewModel {
     private String mToastMessage;
 
-    public BaseViewModel(){
+    public BaseViewModel() {
 
     }
 
     @Bindable
-    public String getToastMessage(){
+    public String getToastMessage() {
         String r = mToastMessage;
         mToastMessage = null;
         return r;
@@ -33,7 +33,7 @@ public abstract class BaseViewModel extends BaseMvpViewModel {
         notifyPropertyChanged(BR.toastMessage);
     }
 
-    public boolean needToShowToast(){
+    public boolean needToShowToast() {
         return mToastMessage != null;
     }
 }

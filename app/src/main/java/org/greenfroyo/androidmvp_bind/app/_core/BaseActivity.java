@@ -1,13 +1,11 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
-import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -33,7 +31,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     protected final String WINDOW_VIEW_TAG = "android:views";
 
     private ViewDataBinding mBinding;
-    private PresenterManager<P> mPresenterManager= new PresenterManager(this);
+    private PresenterManager<P> mPresenterManager = new PresenterManager(this);
     private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
 
     @Override
@@ -56,23 +54,26 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         onInitListener();
     }
 
-    /** Initialize your ViewDataBinding, view initialization, and view model binding here
-     *  @param viewModel the object to be bind into binding class
+    /**
+     * Initialize your ViewDataBinding, view initialization, and view model binding here
+     *
+     * @param viewModel the object to be bind into binding class
      */
     protected abstract ViewDataBinding onInitView(VM viewModel);
 
-    /** Set listener for your view here
+    /**
+     * Set listener for your view here
      */
-    protected void onInitListener(){
+    protected void onInitListener() {
 
     }
 
-    public Observable.OnPropertyChangedCallback getPropertyChangedCallback(){
+    public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
         return new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                if(i == BR.toastMessage){
-                    if(getViewModel().needToShowToast()) {
+                if (i == BR.toastMessage) {
+                    if (getViewModel().needToShowToast()) {
                         Toast.makeText(BaseActivity.this, getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -83,9 +84,9 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if(savedInstanceState!=null){
+        if (savedInstanceState != null) {
             Bundle hierarchyState = savedInstanceState.getBundle(WINDOW_HIERARCHY_TAG);
-            if(hierarchyState!=null){
+            if (hierarchyState != null) {
                 SparseArray screenState = hierarchyState.getSparseParcelableArray(WINDOW_VIEW_TAG);
                 onRestoreViewState(screenState);
             }
@@ -95,9 +96,13 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     /**
      * This will be called if activity's savedInstanceState is not null
      * Some child view that's not attached yet will need viewState to call onRestoreViewState manually
+     *
      * @param viewState SparseArray containing all view state in current screen
      */
-    protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState){};
+    protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState) {
+    }
+
+    ;
 
     @Override
     protected void onResume() {
@@ -132,7 +137,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         return mPresenterManager.getPresenter();
     }
 
-    public VM getViewModel(){
+    public VM getViewModel() {
         return getPresenter().getViewModel();
     }
 }

@@ -14,14 +14,16 @@ import java.util.List;
  * Created by fchristysen on 7/17/16.
  */
 public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
-    @Transient private OnPropertyChangedCallback mOnPropertyChangedCallback;
-    @Transient private List<OnPropertyChangedCallback> mOnPropertyChangedCallbackList;
+    @Transient
+    private OnPropertyChangedCallback mOnPropertyChangedCallback;
+    @Transient
+    private List<OnPropertyChangedCallback> mOnPropertyChangedCallbackList;
 
-    public BaseMvpViewModel(){
+    public BaseMvpViewModel() {
         mOnPropertyChangedCallback = new OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                for (OnPropertyChangedCallback callback:mOnPropertyChangedCallbackList) {
+                for (OnPropertyChangedCallback callback : mOnPropertyChangedCallbackList) {
                     callback.onPropertyChanged(observable, i);
                 }
             }
@@ -29,18 +31,20 @@ public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
         mOnPropertyChangedCallbackList = new ArrayList<>();
     }
 
-    /** This methods is used to subscribes the main callbacks to the BaseObservable
-     *  There's no need to call this method manually, as it is called through BasePresenter
-     *  see @addOnPropertyChangeCallback
+    /**
+     * This methods is used to subscribes the main callbacks to the BaseObservable
+     * There's no need to call this method manually, as it is called through BasePresenter
+     * see @addOnPropertyChangeCallback
      */
-    protected final void attachOnPropertyChangeCallback(){
+    protected final void attachOnPropertyChangeCallback() {
         super.addOnPropertyChangedCallback(mOnPropertyChangedCallback);
     }
 
-    /** This methods is used to un-subscribes the main callbacks from the BaseObservable
-     *  There's no need to call this method manually, as it is called through BasePresenter
+    /**
+     * This methods is used to un-subscribes the main callbacks from the BaseObservable
+     * There's no need to call this method manually, as it is called through BasePresenter
      */
-    protected final void detachOnPropertyChangeCallback(){
+    protected final void detachOnPropertyChangeCallback() {
         super.removeOnPropertyChangedCallback(mOnPropertyChangedCallback);
     }
 

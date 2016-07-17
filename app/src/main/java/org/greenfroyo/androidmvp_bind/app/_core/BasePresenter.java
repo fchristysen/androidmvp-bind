@@ -12,8 +12,8 @@ import icepick.Icepick;
  * Created by fchristysen on 1/28/16.
  * BasePresenter features :
  * # Icepick Support
- *      > Subclass doesn't have to manually save and restore isntance state
- *        just add @State annotation before variable declaration
+ * > Subclass doesn't have to manually save and restore instance state
+ * just add @State annotation before variable declaration
  */
 public abstract class BasePresenter<VM extends BaseMvpViewModel> extends BaseMvpPresenter<VM> {
 

@@ -33,7 +33,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     protected final String WINDOW_VIEW_TAG = "android:views";
 
     private ViewDataBinding mBinding;
-    private PresenterManager<P> mPresenterManager= new PresenterManager(this);
+    private PresenterManager<P> mPresenterManager = new PresenterManager(this);
     private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
 
     @Override
@@ -50,12 +50,12 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         mPropertyChangedCallback = getPropertyChangedCallback();
     }
 
-    public Observable.OnPropertyChangedCallback getPropertyChangedCallback(){
+    public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
         return new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                if(i == BR.toastMessage){
-                    if(getViewModel().needToShowToast()) {
+                if (i == BR.toastMessage) {
+                    if (getViewModel().needToShowToast()) {
                         Toast.makeText(getActivity(), getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -63,8 +63,10 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         };
     }
 
-    /** Initialize your ViewDataBinding, view initialization, and view model binding here
-     *  @param viewModel the object to be bind into binding class
+    /**
+     * Initialize your ViewDataBinding, view initialization, and view model binding here
+     *
+     * @param viewModel the object to be bind into binding class
      */
     protected abstract ViewDataBinding onInitView(LayoutInflater inflater, VM viewModel);
 
@@ -79,9 +81,9 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(savedInstanceState!=null){
+        if (savedInstanceState != null) {
             Bundle hierarchyState = savedInstanceState.getBundle(WINDOW_HIERARCHY_TAG);
-            if(hierarchyState!=null){
+            if (hierarchyState != null) {
                 SparseArray screenState = hierarchyState.getSparseParcelableArray(WINDOW_VIEW_TAG);
                 onRestoreViewState(screenState);
             }
@@ -91,9 +93,13 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     /**
      * This will be called if activity's savedInstanceState is not null
      * Some child view that's not attached yet will need viewState to call onRestoreViewState manually
+     *
      * @param viewState SparseArray containing all view state in current screen
      */
-    protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState){};
+    protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState) {
+    }
+
+    ;
 
     @Override
     public void onResume() {
@@ -128,7 +134,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         return mPresenterManager.getPresenter();
     }
 
-    public VM getViewModel(){
+    public VM getViewModel() {
         return getPresenter().getViewModel();
     }
 }
