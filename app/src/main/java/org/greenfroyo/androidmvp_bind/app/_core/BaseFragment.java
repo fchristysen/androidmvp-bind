@@ -77,7 +77,6 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         return mBinding.getRoot();
     }
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -98,8 +97,6 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
      */
     protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState) {
     }
-
-    ;
 
     @Override
     public void onResume() {
