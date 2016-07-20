@@ -1,13 +1,9 @@
 package org.greenfroyo.androidmvp_bind.app.compoundview;
 
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
-import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
-import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
-import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.CompoundViewActivityBinding;
 
 /**

@@ -3,13 +3,13 @@ package org.greenfroyo.androidmvp_bind.app.login;
 import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.BR;
-import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 
 /**
  * Created by fchristysen on 6/29/16.
  */
 
-public class LoginViewModel extends BaseViewModel {
+public class LoginViewModel extends BaseToolbarViewModel {
 
     private String mUsername;
     private String mUsernameError;

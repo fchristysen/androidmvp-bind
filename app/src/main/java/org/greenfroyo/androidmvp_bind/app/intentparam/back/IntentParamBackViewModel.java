@@ -3,12 +3,13 @@ package org.greenfroyo.androidmvp_bind.app.intentparam.back;
 import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 
 /**
  * Created by fchristysen on 6/7/16.
  */
 
-public class IntentParamBackViewModel extends BaseViewModel{
+public class IntentParamBackViewModel extends BaseToolbarViewModel {
     private int mValue;
 
     @Bindable

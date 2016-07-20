@@ -1,12 +1,10 @@
 package org.greenfroyo.androidmvp_bind.app.login;
 
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
-import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.LoginActivityBinding;
 
 /**

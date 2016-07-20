@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app.compoundview;
 
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 import org.parceler.Parcel;
 
 /**
@@ -8,5 +9,5 @@ import org.parceler.Parcel;
  */
 
 @Parcel
-public class CompoundViewViewModel extends BaseViewModel {
+public class CompoundViewViewModel extends BaseToolbarViewModel {
 }

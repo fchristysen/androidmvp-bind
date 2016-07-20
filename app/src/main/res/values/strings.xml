@@ -16,6 +16,15 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper, risus ut dapibus finibus, nunc mauris pretium mauris, eget maximus dui orci at arcu. Quisque non nulla vitae lacus facilisis pretium sed quis felis. Aliquam erat volutpat. Vivamus vel elit commodo tortor placerat sagittis. Sed felis libero, tincidunt rutrum interdum eu, euismod vitae risus. Morbi vel hendrerit nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam et leo mauris. Phasellus vitae odio eros.
     Nullam dictum dignissim neque, vel blandit lorem porta sed. Maecenas cursus mauris ut accumsan convallis. Duis in tortor id dolor mollis placerat. Curabitur euismod lectus id tortor porta suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus porta eget nibh sit amet dictum. Ut tincidunt mollis rhoncus. Aliquam erat volutpat. Integer a odio convallis, fringilla justo et, mattis felis.</string>
 
+    <string name="error_300_title">Error 300 : Multiple Choice</string>
+    <string name="error_300_desc">Indicates multiple options for the resource from which the client may choose. For example, this code could be used to present multiple video format options, to list files with different extensions, or to suggest word sense disambiguation.</string>
+    <string name="error_400_title">Error 400 : Bad Request</string>
+    <string name="error_400_desc">The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).</string>
+    <string name="error_404_title">Error 404 : Not Found</string>
+    <string name="error_404_desc">The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible</string>
+    <string name="error_500_title">Error 500 : Server Error</string>
+    <string name="error_500_desc">A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.</string>
+
     <!-- FEATURE SPECIFIC -->
     <string name="home_title_showing">MVPBind Demo</string>
     <string name="home_title_loading">Loading...</string>

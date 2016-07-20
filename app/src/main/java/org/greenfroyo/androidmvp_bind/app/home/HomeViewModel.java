@@ -6,6 +6,7 @@ import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorViewModel;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 
 @Parcel
-public class HomeViewModel extends BaseViewModel {
+public class HomeViewModel extends BaseErrorViewModel {
     public static final int STATE_SHOW = 0;
     public static final int STATE_LOADING = 1;
     public static final int STATE_ERROR = 2;

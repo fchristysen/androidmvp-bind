@@ -1,11 +1,9 @@
 package org.greenfroyo.androidmvp_bind.app.twoway;
 
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
-import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.TwoWayActivityBinding;
 
 /**

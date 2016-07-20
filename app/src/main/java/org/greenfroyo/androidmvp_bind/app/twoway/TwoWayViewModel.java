@@ -6,12 +6,13 @@ import android.text.TextWatcher;
 import android.widget.TextView;
 
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 
 /**
  * Created by fchristysen on 6/23/16.
  */
 
-public class TwoWayViewModel extends BaseViewModel {
+public class TwoWayViewModel extends BaseToolbarViewModel {
     public ObservableField<String> mText;
 
     public TwoWayViewModel(){

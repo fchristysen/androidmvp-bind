@@ -7,17 +7,16 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.NumberPicker;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
-import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
+import org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorActivity;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.app.common.BindAdapter;
 import org.greenfroyo.androidmvp_bind.app.common.OnRecyclerItemClickListener;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
-public class HomeActivity extends BaseToolbarActivity<HomePresenter, HomeViewModel>
+public class HomeActivity extends BaseErrorActivity<HomePresenter, HomeViewModel>
         implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {
 
     //region Views

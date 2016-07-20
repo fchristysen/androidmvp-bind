@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 import org.greenfroyo.androidmvp_bind.app.intentparam.back.Henson;
 
 /**
  * Created by fchristysen on 6/7/16.
  */
 
-public class IntentParamFrontPresenter extends BasePresenter<IntentParamFrontViewModel>{
+public class IntentParamFrontPresenter extends BaseToolbarPresenter<IntentParamFrontViewModel> {
 
     @Override
     public void onCreate(@Nullable Bundle presenterState) {

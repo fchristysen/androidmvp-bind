@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable name="viewModel" type="org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorViewModel" />
+    </data>
+    <FrameLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/error_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.error?View.GONE:View.VISIBLE}"/>
+        <RelativeLayout
+            android:id="@+id/error_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.error?View.VISIBLE:View.GONE}">
+            <TextView
+                android:id="@+id/error_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_headline"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@{viewModel.errorTitle}"/>
+            <TextView
+                android:id="@+id/error_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_large"
+                android:layout_marginRight="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_small"
+                android:layout_below="@+id/error_title"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/text_subheading"
+                android:text="@{viewModel.errorDescription}"/>
+        </RelativeLayout>
+    </FrameLayout>
+</layout>

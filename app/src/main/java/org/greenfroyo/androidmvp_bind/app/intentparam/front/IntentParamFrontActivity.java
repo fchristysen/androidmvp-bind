@@ -1,13 +1,11 @@
 package org.greenfroyo.androidmvp_bind.app.intentparam.front;
 
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
-import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.IntentParamFrontActivityBinding;
 
 /**

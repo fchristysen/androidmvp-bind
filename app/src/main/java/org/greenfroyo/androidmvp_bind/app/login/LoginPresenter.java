@@ -6,6 +6,7 @@ import android.os.Bundle;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.App;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 import org.greenfroyo.androidmvp_bind.domain.UserLogin;
 import org.greenfroyo.androidmvp_bind.provider.user.UserProvider;
 
@@ -15,7 +16,7 @@ import rx.functions.Action1;
  * Created by fchristysen on 6/29/16.
  */
 
-public class LoginPresenter extends BasePresenter<LoginViewModel> {
+public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
 
     private UserProvider mUserProvider;
 

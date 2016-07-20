@@ -3,12 +3,13 @@ package org.greenfroyo.androidmvp_bind.app.intentparam.front;
 import android.databinding.ObservableField;
 
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 
 /**
  * Created by fchristysen on 6/7/16.
  */
 
-public class IntentParamFrontViewModel extends BaseViewModel{
+public class IntentParamFrontViewModel extends BaseToolbarViewModel {
     public ObservableField<Integer> mValue;
 
     public IntentParamFrontViewModel(){
