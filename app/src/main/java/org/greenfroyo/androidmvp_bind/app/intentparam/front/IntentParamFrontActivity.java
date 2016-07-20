@@ -29,7 +29,7 @@ public class IntentParamFrontActivity extends BaseToolbarActivity<IntentParamFro
 
     @Override
     protected ViewDataBinding onInitView(IntentParamFrontViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.intent_param_front_activity);
+        mBinding = setBindView(R.layout.intent_param_front_activity);
         mBinding.setViewModel(getPresenter().getViewModel());
         mBinding.setOnClickListener(this);
         return mBinding;

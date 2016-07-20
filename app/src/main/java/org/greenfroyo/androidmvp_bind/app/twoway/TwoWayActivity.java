@@ -17,7 +17,7 @@ public class TwoWayActivity extends BaseToolbarActivity<TwoWayPresenter, TwoWayV
 
     @Override
     protected ViewDataBinding onInitView(TwoWayViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.two_way_activity);
+        mBinding = setBindView(R.layout.two_way_activity);
         mBinding.setViewModel(viewModel);
         return mBinding;
     }

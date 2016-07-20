@@ -34,7 +34,7 @@ public class MultiTabActivity extends BaseActivity<MultiTabPresenter, MultiTabVi
 
     @Override
     protected ViewDataBinding onInitView(MultiTabViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.multitab_activity);
+        mBinding = setBindView(R.layout.multitab_activity);
         mBinding.setViewModel(viewModel);
         viewModel.setAdapter(new MultiTabAdapter(getSupportFragmentManager(), mPages));
         return mBinding;

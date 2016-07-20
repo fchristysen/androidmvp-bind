@@ -19,7 +19,7 @@ public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresen
 
     @Override
     protected ViewDataBinding onInitView(CompoundViewViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.compound_view_activity);
+        mBinding = setBindView(R.layout.compound_view_activity);
         mBinding.setViewModel(viewModel);
         return mBinding;
     }

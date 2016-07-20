@@ -25,7 +25,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter, LoginView
 
     @Override
     protected ViewDataBinding onInitView(LoginViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.login_activity);
+        mBinding = setBindView(R.layout.login_activity);
         mBinding.setViewModel(viewModel);
         mBinding.setOnClickListener(this);
         return mBinding;

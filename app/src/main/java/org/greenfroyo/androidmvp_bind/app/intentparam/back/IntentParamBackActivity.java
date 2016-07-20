@@ -32,7 +32,7 @@ public class IntentParamBackActivity extends BaseToolbarActivity<IntentParamBack
 
     @Override
     protected ViewDataBinding onInitView(IntentParamBackViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.intent_param_back_activity);
+        mBinding = setBindView(R.layout.intent_param_back_activity);
         mBinding.setViewModel(getPresenter().getViewModel());
         return mBinding;
     }
