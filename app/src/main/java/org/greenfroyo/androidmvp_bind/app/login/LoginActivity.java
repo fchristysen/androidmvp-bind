@@ -6,13 +6,14 @@ import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
+import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.LoginActivityBinding;
 
 /**
  * Created by fchristysen on 6/29/16.
  */
 
-public class LoginActivity extends BaseActivity<LoginPresenter, LoginViewModel>
+public class LoginActivity extends BaseToolbarActivity<LoginPresenter, LoginViewModel>
     implements View.OnClickListener{
 
     private LoginActivityBinding mBinding;

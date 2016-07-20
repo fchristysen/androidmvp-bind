@@ -16,6 +16,14 @@ public class LoginViewModel extends BaseViewModel {
     private String mPassword;
     private String mPasswordError;
 
+    public LoginViewModel(){
+        super();
+        this.mUsername = "";
+        this.mUsernameError = "";
+        this.mPassword = "";
+        this.mPasswordError = "";
+    }
+
     @Bindable
     public String getUsername() {
         return mUsername;

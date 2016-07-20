@@ -11,12 +11,13 @@ import android.widget.NumberPicker;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
+import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.app.common.BindAdapter;
 import org.greenfroyo.androidmvp_bind.app.common.OnRecyclerItemClickListener;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
-public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
+public class HomeActivity extends BaseToolbarActivity<HomePresenter, HomeViewModel>
         implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {
 
     //region Views
@@ -31,7 +32,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeViewModel>
 
     @Override
     protected ViewDataBinding onInitView(HomeViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.home_activity);
+        mBinding = setBindView(R.layout.home_activity);
         mBinding.setViewModel(viewModel);
 
         //configure adapter

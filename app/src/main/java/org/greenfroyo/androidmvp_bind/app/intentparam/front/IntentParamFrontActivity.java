@@ -7,13 +7,14 @@ import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
+import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.IntentParamFrontActivityBinding;
 
 /**
  * Created by fchristysen on 6/7/16.
  */
 
-public class IntentParamFrontActivity extends BaseActivity<IntentParamFrontPresenter, IntentParamFrontViewModel> implements View.OnClickListener {
+public class IntentParamFrontActivity extends BaseToolbarActivity<IntentParamFrontPresenter, IntentParamFrontViewModel> implements View.OnClickListener {
     private IntentParamFrontActivityBinding mBinding;
 
     @Override

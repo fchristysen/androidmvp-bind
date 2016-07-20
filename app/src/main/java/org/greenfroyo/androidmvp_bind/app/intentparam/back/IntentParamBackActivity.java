@@ -8,13 +8,14 @@ import com.f2prateek.dart.InjectExtra;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
+import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.IntentParamBackActivityBinding;
 
 /**
  * Created by fchristysen on 6/7/16.
  */
 
-public class IntentParamBackActivity extends BaseActivity<IntentParamBackPresenter, IntentParamBackViewModel> {
+public class IntentParamBackActivity extends BaseToolbarActivity<IntentParamBackPresenter, IntentParamBackViewModel> {
     @InjectExtra int mValue;
 
     private IntentParamBackActivityBinding mBinding;

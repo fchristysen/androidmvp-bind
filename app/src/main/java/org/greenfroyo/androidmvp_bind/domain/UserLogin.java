@@ -1,7 +1,5 @@
 package org.greenfroyo.androidmvp_bind.domain;
 
-import static android.provider.Telephony.Carriers.PASSWORD;
-
 /**
  * Created by fchristysen on 6/29/16.
  */

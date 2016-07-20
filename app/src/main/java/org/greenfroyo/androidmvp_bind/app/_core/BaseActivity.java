@@ -1,6 +1,8 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
+import android.app.Activity;
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -26,7 +28,8 @@ import org.greenfroyo.mvp_bind.view.MvpView;
 public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseViewModel>
         extends AppCompatActivity
         implements MvpView<P, VM>, PresenterFactory<P> {
-    private String TAG;
+
+    private String TAG = this.getClass().getSimpleName();
     protected final String WINDOW_HIERARCHY_TAG = "android:viewHierarchyState";
     protected final String WINDOW_VIEW_TAG = "android:views";
 
@@ -41,16 +44,13 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = this.getClass().getSimpleName();
-        AppUtil.log(TAG + " : " + "onCreate");
+        mPresenterManager.onRestoreInstanceState(savedInstanceState);
+        mPropertyChangedCallback = getPropertyChangedCallback();
 
         ViewServer.get(this).addWindow(this);
         Dart.inject(this);
 
-        mPresenterManager.onRestoreInstanceState(savedInstanceState);
-
         mBinding = onInitView(getPresenter().getViewModel());
-
-        mPropertyChangedCallback = getPropertyChangedCallback();
         onInitListener();
     }
 
@@ -105,7 +105,6 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     protected void onResume() {
         super.onResume();
-        AppUtil.log(TAG + " : " + "onResume");
         mPresenterManager.onAttachedView(this);
         getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
@@ -113,7 +112,6 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     protected void onPause() {
         super.onPause();
-        AppUtil.log(TAG + " : " + "onPause");
         mPresenterManager.onDetachedView(isFinishing());
         getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
     }
@@ -122,7 +120,6 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mPresenterManager.onSaveInstanceState(outState);
-        AppUtil.log(TAG + " : " + "onSaveInstanceState");
     }
 
     @Override
@@ -137,5 +134,9 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
 
     public VM getViewModel() {
         return getPresenter().getViewModel();
+    }
+
+    public <T extends ViewDataBinding> T setBindView(int layoutId) {
+        return DataBindingUtil.setContentView(this, layoutId, DataBindingUtil.getDefaultComponent());
     }
 }

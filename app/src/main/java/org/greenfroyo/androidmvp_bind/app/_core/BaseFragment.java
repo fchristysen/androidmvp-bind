@@ -28,7 +28,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
         extends Fragment
         implements MvpView<P, VM>, PresenterFactory<P> {
 
-    private String TAG;
+    private String TAG = this.getClass().getSimpleName();
     protected final String WINDOW_HIERARCHY_TAG = "android:viewHierarchyState";
     protected final String WINDOW_VIEW_TAG = "android:views";
 
@@ -42,11 +42,7 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.TAG = this.getClass().getSimpleName();
-        AppUtil.log(TAG + " : " + "onCreate");
-
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
-
         mPropertyChangedCallback = getPropertyChangedCallback();
     }
 
@@ -101,7 +97,6 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     public void onResume() {
         super.onResume();
-        AppUtil.log(TAG + " : " + "onAttachedView");
         mPresenterManager.onAttachedView(this);
         getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
@@ -109,7 +104,6 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     public void onPause() {
         super.onPause();
-        AppUtil.log(TAG + " : " + "onDetachedView");
         mPresenterManager.onDetachedView(getActivity().isFinishing());
         getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
     }
@@ -118,7 +112,6 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mPresenterManager.onSaveInstanceState(outState);
-        AppUtil.log(TAG + " : " + "onSaveInstanceState");
     }
 
     @Override

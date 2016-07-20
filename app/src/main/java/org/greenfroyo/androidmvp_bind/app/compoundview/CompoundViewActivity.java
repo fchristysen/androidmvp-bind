@@ -6,6 +6,7 @@ import android.databinding.ViewDataBinding;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app._core.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.greenfroyo.androidmvp_bind.databinding.CompoundViewActivityBinding;
 
@@ -13,7 +14,7 @@ import org.greenfroyo.androidmvp_bind.databinding.CompoundViewActivityBinding;
  * Created by fchristysen on 6/27/16.
  */
 
-public class CompoundViewActivity extends BaseActivity<CompoundViewPresenter, CompoundViewViewModel> {
+public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresenter, CompoundViewViewModel> {
     private CompoundViewActivityBinding mBinding;
 
     @Override
