@@ -17,7 +17,6 @@ import com.f2prateek.dart.Dart;
 
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
-import org.greenfroyo.mvp_bind.util.AppUtil;
 import org.greenfroyo.mvp_bind.util.ViewServer;
 import org.greenfroyo.mvp_bind.view.MvpView;
 

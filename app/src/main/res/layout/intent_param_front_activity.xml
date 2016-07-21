@@ -43,7 +43,7 @@
             android:layout_marginTop="@dimen/space_medium"
             android:layout_below="@+id/tv_text"
             android:layout_centerHorizontal="true"
-            android:text="@string/common_add"
+            android:text="@string/action_add"
             android:onClick="@{onClickListener::onClick}" />
 
         <Button
@@ -53,7 +53,7 @@
             android:layout_marginTop="@dimen/space_small"
             android:layout_below="@+id/btn_add"
             android:layout_centerHorizontal="true"
-            android:text="@string/common_next"
+            android:text="@string/action_next"
             android:onClick="@{onClickListener::onClick}" />
     </RelativeLayout>
 </layout>

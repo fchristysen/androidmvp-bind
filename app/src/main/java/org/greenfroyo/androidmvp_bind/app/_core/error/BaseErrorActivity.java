@@ -3,6 +3,7 @@ package org.greenfroyo.androidmvp_bind.app._core.error;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
@@ -27,8 +28,21 @@ public abstract class BaseErrorActivity<P extends BaseErrorPresenter<VM>, VM ext
         mErrorBinding.setViewModel(getViewModel());
         T binding = DataBindingUtil.inflate(getLayoutInflater(), layoutId, null, false);
         mErrorBinding.errorContent.addView(binding.getRoot());
+
+        setupButton();
         return binding;
     }
 
+    private void setupButton(){
+        mErrorBinding.errorButton.setOnClickListener(v -> onErrorButtonClicked());
+    }
 
+    /**
+     * This method will be called when button in error screen is pressed
+     * The default parent implementation will set error to false, if this behaviour is not desired
+     * , child implementation could omit calling super method
+     */
+    protected void onErrorButtonClicked(){
+        getViewModel().hideError();
+    }
 }

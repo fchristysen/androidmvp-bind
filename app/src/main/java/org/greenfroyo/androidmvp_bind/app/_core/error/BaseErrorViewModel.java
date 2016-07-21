@@ -20,12 +20,21 @@ public class BaseErrorViewModel extends BaseToolbarViewModel {
     protected boolean mIsError;
     protected int mErrorCode;
 
+    protected String mButtonText;
+
     public void showError() {
         mIsError = true;
+        notifyPropertyChanged(BR.error);
     }
 
     public void hideError() {
         mIsError = false;
+        notifyPropertyChanged(BR.error);
+    }
+
+    @Bindable
+    public boolean isError() {
+        return mIsError;
     }
 
     public void setErrorCode(int errorCode) {
@@ -33,11 +42,6 @@ public class BaseErrorViewModel extends BaseToolbarViewModel {
         notifyPropertyChanged(BR.error);
         notifyPropertyChanged(BR.errorTitle);
         notifyPropertyChanged(BR.errorDescription);
-    }
-
-    @Bindable
-    public boolean isError() {
-        return mIsError;
     }
 
     @Bindable
@@ -68,5 +72,15 @@ public class BaseErrorViewModel extends BaseToolbarViewModel {
                 return App.resources().getString(R.string.error_500_desc);
         }
         return "";
+    }
+
+    @Bindable
+    public String getErrorButtonText() {
+        return mButtonText != null ? mButtonText : App.resources().getString(R.string.action_retry);
+    }
+
+    public void setErrorButtonText(String buttonText) {
+        mButtonText = buttonText;
+        notifyPropertyChanged(BR.errorButtonText);
     }
 }

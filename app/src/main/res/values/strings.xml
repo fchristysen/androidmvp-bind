@@ -2,11 +2,13 @@
     <string name="app_name">MVPBind</string>
 
     <!-- COMMON -->
-    <string name="common_add">Add</string>
-    <string name="common_next">Next</string>
+    <string name="action_add">Add</string>
+    <string name="action_next">Next</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_login">Login</string>
+
     <string name="common_username">Username</string>
     <string name="common_password">Password</string>
-    <string name="common_login">Login</string>
 
     <string name="common_unknown_error">There is an unknown problem</string>
 

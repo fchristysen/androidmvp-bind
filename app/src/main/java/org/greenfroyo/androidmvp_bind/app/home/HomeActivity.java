@@ -50,9 +50,16 @@ public class HomeActivity extends BaseErrorActivity<HomePresenter, HomeViewModel
         getPresenter().refreshList();
     }
 
+
     @Override
     public void onItemClick(int position, HomeItemViewModel item) {
         getPresenter().openPage(this, item.getClassObject());
+    }
+
+    @Override
+    protected void onErrorButtonClicked() {
+        super.onErrorButtonClicked();
+        getPresenter().refreshList();
     }
 
     public static class HomeAdapter extends BindAdapter<HomeItemViewModel, HomeListItemBinding> {
