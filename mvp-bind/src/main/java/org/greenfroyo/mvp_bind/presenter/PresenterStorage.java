@@ -2,6 +2,7 @@ package org.greenfroyo.mvp_bind.presenter;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.repacked.antlr.v4.runtime.misc.Nullable;
 
 import org.greenfroyo.mvp_bind.util.AppUtil;
 
@@ -35,6 +36,7 @@ public class PresenterStorage {
         return instance;
     }
 
+    @Nullable
     public <P extends MvpPresenter<?>> P get(String presenterId){
         P presenter = null;
         try {
