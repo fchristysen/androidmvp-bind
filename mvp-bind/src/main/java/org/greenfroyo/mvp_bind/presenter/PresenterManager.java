@@ -44,7 +44,6 @@ public class PresenterManager<P extends MvpPresenter> {
 
     public void destroyPresenter(){
         mPresenter.destroy();
-        mPresenter = null;
     }
 
     /**
