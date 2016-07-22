@@ -16,6 +16,9 @@ import org.greenfroyo.androidmvp_bind.app.common.OnRecyclerItemClickListener;
 import org.greenfroyo.androidmvp_bind.databinding.HomeActivityBinding;
 import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
+/**
+ * This activity displays all page in this prototype app
+ */
 public class HomeActivity extends BaseErrorActivity<HomePresenter, HomeViewModel>
         implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {
 
