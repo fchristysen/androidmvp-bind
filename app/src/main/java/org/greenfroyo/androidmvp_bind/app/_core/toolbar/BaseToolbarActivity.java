@@ -41,6 +41,7 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(R.string.menu_show_activity_count);
+        menu.add(R.string.menu_restart_activity_count);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -48,6 +49,8 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getTitle().toString().equals(getContext().getString(R.string.menu_show_activity_count))){
             getPresenter().showActivityCount();
+        }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_restart_activity_count))){
+            getPresenter().resetActivityCount();
         }
         return super.onOptionsItemSelected(item);
     }
