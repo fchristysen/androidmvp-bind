@@ -33,7 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:textSize="@dimen/text_subheading"
-            android:text='@{""+viewModel.mValue}'
+            android:text='@{""+viewModel.value}'
             tools:text="0"/>
 
         <Button
