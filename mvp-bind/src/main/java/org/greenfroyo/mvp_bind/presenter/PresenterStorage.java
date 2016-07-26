@@ -15,7 +15,7 @@ public class PresenterStorage {
     private static final String TAG = PresenterStorage.class.getSimpleName();
     private static final TimeUnit EXPIRATION_UNIT = TimeUnit.SECONDS;
     private static final long EXPIRATION = Long.MAX_VALUE;
-    private static final long MAX_ENTRY = 0;
+    private static final long MAX_ENTRY = 100;
 
     private static PresenterStorage instance;
 
