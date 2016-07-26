@@ -40,10 +40,10 @@
     <string name="two_way_desc">The displayed text in top is bind-ed to a field viewModel. You can try to change the value of the EditText field, which is also bind to the same field</string>
 
     <string name="login_field_empty">This fields cannot be empty</string>
-    <string name="login_username_too_short">Username cannot be shorter than %i</string>
-    <string name="login_username_too_long">Username cannot be longer that %i</string>
-    <string name="login_password_too_short">Password cannot be shorter than %i</string>
-    <string name="login_password_too_long">Password cannot be longer that %i</string>
+    <string name="login_username_too_short">Username cannot be shorter than %d</string>
+    <string name="login_username_too_long">Username cannot be longer that %d</string>
+    <string name="login_password_too_short">Password cannot be shorter than %d</string>
+    <string name="login_password_too_long">Password cannot be longer that %d</string>
 
     <string name="login_result">Login Successful</string>
     <string name="login_no_account">There is no account with that username and password</string>

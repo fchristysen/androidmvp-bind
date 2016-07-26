@@ -26,8 +26,6 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
         implements MvpView<P, VM>, PresenterFactory<P> {
 
     private String TAG = this.getClass().getSimpleName();
-    protected final String WINDOW_HIERARCHY_TAG = "android:viewHierarchyState";
-    protected final String WINDOW_VIEW_TAG = "android:views";
 
     private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager = new PresenterManager(this);
@@ -78,28 +76,6 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
     }
 
     @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState != null) {
-            Bundle hierarchyState = savedInstanceState.getBundle(WINDOW_HIERARCHY_TAG);
-            if (hierarchyState != null) {
-                SparseArray screenState = hierarchyState.getSparseParcelableArray(WINDOW_VIEW_TAG);
-                onRestoreViewState(screenState);
-            }
-        }
-    }
-
-    /**
-     * This will be called if there is previously saved savedInstanceState
-     * Some child view may not be attached yet to its activity during onRestoreInstanceState
-     * therefore the viewState must be passed manually.
-     *
-     * @param viewState SparseArray containing all view state in current screen
-     */
-    protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState) {
-    }
-
-    @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         mPresenterManager.onAttachedView(this);
@@ -111,13 +87,6 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
         super.onDetachedFromWindow();
         mPresenterManager.onDetachedView(getOwnerActivity().isFinishing());
         getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
-    }
-
-    @Override
-    public Bundle onSaveInstanceState() {
-        Bundle outState = super.onSaveInstanceState();
-        mPresenterManager.onSaveInstanceState(outState);
-        return outState;
     }
 
     @Override

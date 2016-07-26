@@ -44,6 +44,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_body"
                         android:hint="@string/common_username"
+                        android:error="@{viewModel.usernameError}"
                         android:text="@={viewModel.username}"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -58,6 +59,7 @@
                         android:textSize="@dimen/text_body"
                         android:inputType="textPassword"
                         android:hint="@string/common_password"
+                        android:error="@{viewModel.passwordError}"
                         android:text="@={viewModel.password}"/>
                 </android.support.design.widget.TextInputLayout>
 

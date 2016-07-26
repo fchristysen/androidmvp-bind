@@ -19,9 +19,9 @@ public class LoginViewModel extends BaseToolbarViewModel {
     public LoginViewModel(){
         super();
         this.mUsername = "";
-        this.mUsernameError = "";
+        this.mUsernameError = null;
         this.mPassword = "";
-        this.mPasswordError = "";
+        this.mPasswordError = null;
     }
 
     @Bindable
