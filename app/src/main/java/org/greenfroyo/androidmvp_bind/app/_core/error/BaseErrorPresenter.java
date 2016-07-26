@@ -14,7 +14,6 @@ public abstract class BaseErrorPresenter<VM extends BaseErrorViewModel> extends 
     @Override
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
-        hideError();
     }
 
     public void showError(int errorCode) {

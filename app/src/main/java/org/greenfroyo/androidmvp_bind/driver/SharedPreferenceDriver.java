@@ -23,8 +23,8 @@ public class SharedPreferenceDriver {
     }
 
     private SharedPreferences getPreferences() {
-        if (mPreferences.get() == null) {
-            mPreferences = new WeakReference<SharedPreferences>(mContext.getSharedPreferences(mName, Context.MODE_PRIVATE));
+        if (mPreferences == null || mPreferences.get() == null) {
+            mPreferences = new WeakReference<>(mContext.getSharedPreferences(mName, Context.MODE_PRIVATE));
         }
         return mPreferences.get();
     }
@@ -33,8 +33,8 @@ public class SharedPreferenceDriver {
     // Write
     //================================================================================
 
-    private void write(String key, Object value) {
-        SharedPreferences.Editor editor = mPreferences.get().edit();
+    public void write(String key, Object value) {
+        SharedPreferences.Editor editor = getPreferences().edit();
         if (editor != null) {
             if (value instanceof Integer) {
                 editor.putInt(key, (Integer) value);
@@ -58,23 +58,23 @@ public class SharedPreferenceDriver {
     //================================================================================
 
     public Boolean getBoolean(String key, Boolean defaultValue) {
-        return mPreferences.get() != null && mPreferences.get().getBoolean(key, defaultValue);
+        return getPreferences() != null && getPreferences().getBoolean(key, defaultValue);
     }
 
     public String getString(String key, String defaultValue) {
-        return mPreferences.get() != null ? mPreferences.get().getString(key, defaultValue) : defaultValue;
+        return getPreferences() != null ? getPreferences().getString(key, defaultValue) : defaultValue;
     }
 
     public Integer getInteger(String key, Integer defaultValue) {
-        return mPreferences.get() != null ? mPreferences.get().getInt(key, defaultValue) : defaultValue;
+        return getPreferences() != null ? getPreferences().getInt(key, defaultValue) : defaultValue;
     }
 
     public Float getFloat(String key, Float defaultValue) {
-        return mPreferences.get() != null ? mPreferences.get().getFloat(key, defaultValue) : defaultValue;
+        return getPreferences() != null ? getPreferences().getFloat(key, defaultValue) : defaultValue;
     }
 
     public Long getLong(String key, Long defaultValue) {
-        return mPreferences.get() != null ? mPreferences.get().getLong(key, defaultValue) : defaultValue;
+        return getPreferences() != null ? getPreferences().getLong(key, defaultValue) : defaultValue;
     }
 
     public Map<String, Object> get(Map<String, Object> keyAndDefault) {
@@ -104,13 +104,13 @@ public class SharedPreferenceDriver {
     //================================================================================
 
     public boolean delete(String key) {
-        SharedPreferences.Editor editor = mPreferences.get().edit();
+        SharedPreferences.Editor editor = getPreferences().edit();
         editor.remove(key);
         return editor.commit();
     }
 
     public boolean delete(List<String> keys) {
-        SharedPreferences.Editor editor = mPreferences.get().edit();
+        SharedPreferences.Editor editor = getPreferences().edit();
         for (String key : keys) {
             editor.remove(key);
         }

@@ -3,6 +3,7 @@ package org.greenfroyo.androidmvp_bind.app.home;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -26,6 +27,11 @@ public class HomeActivity extends BaseErrorActivity<HomePresenter, HomeViewModel
     private HomeActivityBinding mBinding;
     private HomeAdapter mContentAdapter;
     //endregion
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public HomePresenter createPresenter() {

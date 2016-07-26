@@ -19,6 +19,7 @@ public class IntentParamBackPresenter extends BaseToolbarPresenter<IntentParamBa
 
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
+        super.onCreate(presenterState);
     }
 
     @Override
