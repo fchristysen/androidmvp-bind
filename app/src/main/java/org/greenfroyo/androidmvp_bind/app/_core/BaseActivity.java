@@ -1,6 +1,5 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
-import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -42,7 +41,6 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.TAG = this.getClass().getSimpleName();
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
         mPropertyChangedCallback = getPropertyChangedCallback();
 
@@ -96,6 +94,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
      * This will be called if there is previously saved savedInstanceState
      * Some child view may not be attached yet to its activity during onRestoreInstanceState
      * therefore the viewState must be passed manually.
+     *
      * @param viewState SparseArray containing all view state in current screen
      */
     protected void onRestoreViewState(@Nullable SparseArray<Parcelable> viewState) {

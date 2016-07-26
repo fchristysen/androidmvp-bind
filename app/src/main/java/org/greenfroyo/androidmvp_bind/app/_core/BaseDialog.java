@@ -1,16 +1,14 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.Dialog;
+import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.SparseArray;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
@@ -20,11 +18,11 @@ import org.greenfroyo.mvp_bind.presenter.PresenterManager;
 import org.greenfroyo.mvp_bind.view.MvpView;
 
 /**
- * Created by fchristysen on 6/30/16.
+ * Created by fchristysen on 7/26/16.
  */
 
-public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseViewModel>
-        extends Fragment
+public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseViewModel>
+        extends Dialog
         implements MvpView<P, VM>, PresenterFactory<P> {
 
     private String TAG = this.getClass().getSimpleName();
@@ -38,11 +36,32 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     @Override
     public abstract P createPresenter();
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public BaseDialog(Activity activity) {
+        super(activity);
+        setOwnerActivity(activity);
+    }
+
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
         mPropertyChangedCallback = getPropertyChangedCallback();
+
+        mBinding = onInitView(getPresenter().getViewModel());
+        onInitListener();
+    }
+
+    /**
+     * Initialize your ViewDataBinding, view initialization, and view model binding here
+     *
+     * @param viewModel the object to be bind into binding class
+     */
+    protected abstract ViewDataBinding onInitView(VM viewModel);
+
+    /**
+     * Set listener for your view here
+     */
+    protected void onInitListener() {
+
     }
 
     public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
@@ -51,30 +70,16 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
             public void onPropertyChanged(Observable observable, int i) {
                 if (i == BR.toastMessage) {
                     if (getViewModel().needToShowToast()) {
-                        Toast.makeText(getActivity(), getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getOwnerActivity(), getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         };
     }
 
-    /**
-     * Initialize your ViewDataBinding, view initialization, and view model binding here
-     *
-     * @param viewModel the object to be bind into binding class
-     */
-    protected abstract ViewDataBinding onInitView(LayoutInflater inflater, VM viewModel);
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = onInitView(inflater, getPresenter().getViewModel());
-        return mBinding.getRoot();
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             Bundle hierarchyState = savedInstanceState.getBundle(WINDOW_HIERARCHY_TAG);
             if (hierarchyState != null) {
@@ -85,8 +90,9 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     }
 
     /**
-     * This will be called if activity's savedInstanceState is not null
-     * Some child view that's not attached yet will need viewState to call onRestoreViewState manually
+     * This will be called if there is previously saved savedInstanceState
+     * Some child view may not be attached yet to its activity during onRestoreInstanceState
+     * therefore the viewState must be passed manually.
      *
      * @param viewState SparseArray containing all view state in current screen
      */
@@ -94,28 +100,24 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
         mPresenterManager.onAttachedView(this);
         getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        mPresenterManager.onDetachedView(getActivity().isFinishing());
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mPresenterManager.onDetachedView(getOwnerActivity().isFinishing());
         getViewModel().removeOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    public Bundle onSaveInstanceState() {
+        Bundle outState = super.onSaveInstanceState();
         mPresenterManager.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public Context getContext() {
-        return getActivity();
+        return outState;
     }
 
     @Override
@@ -125,5 +127,11 @@ public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseV
 
     public VM getViewModel() {
         return getPresenter().getViewModel();
+    }
+
+    public <T extends ViewDataBinding> T setBindView(int layoutId) {
+        T viewDataBinding = DataBindingUtil.inflate(getLayoutInflater(), layoutId, null, false);
+        setContentView(viewDataBinding.getRoot());
+        return viewDataBinding;
     }
 }

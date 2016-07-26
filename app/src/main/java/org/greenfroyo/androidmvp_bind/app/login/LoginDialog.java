@@ -1,17 +1,18 @@
 package org.greenfroyo.androidmvp_bind.app.login;
 
+import android.app.Activity;
 import android.databinding.ViewDataBinding;
 import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
+import org.greenfroyo.androidmvp_bind.app._core.BaseDialog;
 import org.greenfroyo.androidmvp_bind.databinding.LoginActivityBinding;
 
 /**
- * Created by fchristysen on 6/29/16.
+ * Created by fchristysen on 7/26/16.
  */
 
-public class LoginActivity extends BaseToolbarActivity<LoginPresenter, LoginViewModel>
+public class LoginDialog extends BaseDialog<LoginPresenter, LoginViewModel>
         implements View.OnClickListener {
 
     private LoginActivityBinding mBinding;
@@ -21,10 +22,15 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter, LoginView
         return new LoginPresenter();
     }
 
+    public LoginDialog(Activity activity) {
+        super(activity);
+    }
+
     @Override
     protected ViewDataBinding onInitView(LoginViewModel viewModel) {
         mBinding = setBindView(R.layout.login_activity);
         mBinding.setViewModel(viewModel);
+        mBinding.btnLoginDialog.setVisibility(View.GONE);
         mBinding.setOnClickListener(this);
         return mBinding;
     }
@@ -33,8 +39,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter, LoginView
     public void onClick(View v) {
         if (v.equals(mBinding.btnLogin)) {
             getPresenter().onLogin();
-        } else if (v.equals(mBinding.btnLoginDialog)) {
-            getPresenter().actionOpenLoadingDialog(this);
         }
     }
 }

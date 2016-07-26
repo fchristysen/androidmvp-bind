@@ -6,6 +6,7 @@
     <string name="action_next">Next</string>
     <string name="action_retry">Retry</string>
     <string name="action_login">Login</string>
+    <string name="action_login_dialog">Login Dialog</string>
 
     <string name="common_username">Username</string>
     <string name="common_password">Password</string>

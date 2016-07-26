@@ -1,6 +1,8 @@
 package org.greenfroyo.androidmvp_bind.app.login;
 
 import android.accounts.NetworkErrorException;
+import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 
 import org.greenfroyo.androidmvp_bind.R;
@@ -85,5 +87,10 @@ public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
                     onNext, onError
             );
         }
+    }
+
+    public void actionOpenLoadingDialog(Activity activity){
+        LoginDialog dialog = new LoginDialog(activity);
+        dialog.show();
     }
 }

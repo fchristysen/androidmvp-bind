@@ -69,6 +69,15 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/action_login"
                     android:onClick="@{onClickListener::onClick}"/>
+
+                <Button
+                    android:id="@+id/btn_loginDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_large"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/action_login_dialog"
+                    android:onClick="@{onClickListener::onClick}"/>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
