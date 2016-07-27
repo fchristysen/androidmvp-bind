@@ -27,21 +27,11 @@ public class MVPBApp extends Application{
 
         BaseProvider.init(this
                 , new MVPBPreference(this)
-                , new ResolverDatabase(this));
+                , new ResolverDatabase(this)
+                , new RxVolleyAPI(this));
 
         RequestManager.init(this);
         initStetho();
-
-        ApiDriver api = new RxVolleyAPI(this);
-        api.get("https://api-staging19.traveloka.com/en-id/v2/currencies", String.class).subscribe(
-            next -> {
-
-            }, error -> {
-
-            }, () -> {
-
-            }
-        );
     }
 
     //region init tools
