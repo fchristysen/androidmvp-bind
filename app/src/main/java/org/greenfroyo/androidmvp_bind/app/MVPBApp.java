@@ -10,13 +10,13 @@ import com.facebook.stetho.Stetho;
  * Created by fchristysen on 6/7/16.
  */
 
-public class App extends Application {
-    private static Context mContext;
+public class MVPBApp extends Application{
+    private static Context sContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = this;
+        sContext = this;
 
         initStetho();
     }
@@ -28,10 +28,10 @@ public class App extends Application {
     //endregion
 
     public static Resources resources(){
-        return mContext.getResources();
+        return sContext.getResources();
     }
 
     public static Context context() {
-        return mContext;
+        return sContext;
     }
 }

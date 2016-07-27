@@ -15,7 +15,7 @@ import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
  */
 
 public abstract class BaseViewModel extends BaseMvpViewModel {
-    private String mToastMessage;
+    protected String mToastMessage;
 
     public BaseViewModel() {
 

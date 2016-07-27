@@ -4,7 +4,7 @@ import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app.App;
+import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 
 /**
@@ -48,13 +48,13 @@ public class BaseErrorViewModel extends BaseToolbarViewModel {
     public String getErrorTitle() {
         switch (mErrorCode) {
             case ERROR_300:
-                return App.resources().getString(R.string.error_300_title);
+                return MVPBApp.resources().getString(R.string.error_300_title);
             case ERROR_400:
-                return App.resources().getString(R.string.error_400_title);
+                return MVPBApp.resources().getString(R.string.error_400_title);
             case ERROR_404:
-                return App.resources().getString(R.string.error_404_title);
+                return MVPBApp.resources().getString(R.string.error_404_title);
             case ERROR_500:
-                return App.resources().getString(R.string.error_500_title);
+                return MVPBApp.resources().getString(R.string.error_500_title);
         }
         return "";
     }
@@ -63,20 +63,20 @@ public class BaseErrorViewModel extends BaseToolbarViewModel {
     public String getErrorDescription() {
         switch (mErrorCode) {
             case ERROR_300:
-                return App.resources().getString(R.string.error_300_desc);
+                return MVPBApp.resources().getString(R.string.error_300_desc);
             case ERROR_400:
-                return App.resources().getString(R.string.error_400_desc);
+                return MVPBApp.resources().getString(R.string.error_400_desc);
             case ERROR_404:
-                return App.resources().getString(R.string.error_404_desc);
+                return MVPBApp.resources().getString(R.string.error_404_desc);
             case ERROR_500:
-                return App.resources().getString(R.string.error_500_desc);
+                return MVPBApp.resources().getString(R.string.error_500_desc);
         }
         return "";
     }
 
     @Bindable
     public String getErrorButtonText() {
-        return mButtonText != null ? mButtonText : App.resources().getString(R.string.action_retry);
+        return mButtonText != null ? mButtonText : MVPBApp.resources().getString(R.string.action_retry);
     }
 
     public void setErrorButtonText(String buttonText) {

@@ -4,8 +4,7 @@ import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app.App;
-import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
+import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorViewModel;
 import org.parceler.Parcel;
 
@@ -22,8 +21,8 @@ public class HomeViewModel extends BaseErrorViewModel {
     public static final int STATE_LOADING = 1;
     public static final int STATE_ERROR = 2;
 
-    private int mPageState;
-    List<HomeItemViewModel> mContent;
+    protected int mPageState;
+    protected List<HomeItemViewModel> mContent;
 
     public HomeViewModel(){
         mPageState = STATE_SHOW;
@@ -45,11 +44,11 @@ public class HomeViewModel extends BaseErrorViewModel {
     @Bindable
     public String getPageTitle() {
         if(mPageState == STATE_SHOW){
-            return App.resources().getString(R.string.home_title_showing);
+            return MVPBApp.resources().getString(R.string.home_title_showing);
         }else if(mPageState == STATE_LOADING){
-            return App.resources().getString(R.string.home_title_loading);
+            return MVPBApp.resources().getString(R.string.home_title_loading);
         }else if(mPageState == STATE_ERROR){
-            return App.resources().getString(R.string.home_title_error);
+            return MVPBApp.resources().getString(R.string.home_title_error);
         }
         return "";
     }

@@ -3,7 +3,7 @@
     package="org.greenfroyo.androidmvp_bind">
 
     <application
-        android:name=".app.App"
+        android:name=".app.MVPBApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

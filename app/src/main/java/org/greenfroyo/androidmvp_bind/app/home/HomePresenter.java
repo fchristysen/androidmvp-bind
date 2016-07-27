@@ -6,8 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app.App;
-import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorPresenter;
 import org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorViewModel;
 import org.greenfroyo.androidmvp_bind.bridge.HomeBridge;
@@ -26,7 +25,7 @@ public class HomePresenter extends BaseErrorPresenter<HomeViewModel> {
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
         super.onCreate(presenterState);
-        mHomeProvider = new HomeProvider(App.context());
+        mHomeProvider = new HomeProvider(MVPBApp.context());
     }
 
     @Override
@@ -45,14 +44,14 @@ public class HomePresenter extends BaseErrorPresenter<HomeViewModel> {
                 getViewModel().addContent(next);
             }, error -> {
                 showError(BaseErrorViewModel.ERROR_500);
-                getViewModel().setToastMessage(App.resources().getString(R.string.home_title_error_message));
+                getViewModel().setToastMessage(MVPBApp.resources().getString(R.string.home_title_error_message));
             }, () -> {
                 hideError();
                 getViewModel().setPageState(HomeViewModel.STATE_SHOW);
             });
         } else {
             showError(BaseErrorViewModel.ERROR_500);
-            getViewModel().setToastMessage(App.resources().getString(R.string.home_title_error_message));
+            getViewModel().setToastMessage(MVPBApp.resources().getString(R.string.home_title_error_message));
         }
     }
 
