@@ -30,7 +30,6 @@ public class MVPBApp extends Application{
                 , new ResolverDatabase(this)
                 , new RxVolleyAPI(this));
 
-        RequestManager.init(this);
         initStetho();
     }
 

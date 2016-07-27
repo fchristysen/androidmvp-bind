@@ -33,6 +33,7 @@ public class RxVolleyAPI implements ApiDriver {
 
     public RxVolleyAPI(Context context) {
         this.mContext = context;
+        RequestManager.init(context);
         mRequestQueue = RequestManager.getRequestQueue();
     }
 
