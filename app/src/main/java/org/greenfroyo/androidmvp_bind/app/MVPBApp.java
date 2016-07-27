@@ -6,6 +6,10 @@ import android.content.res.Resources;
 
 import com.facebook.stetho.Stetho;
 
+import org.greenfroyo.androidmvp_bind.driver.database.ResolverDatabase;
+import org.greenfroyo.androidmvp_bind.driver.preferences.MVPBPreference;
+import org.greenfroyo.androidmvp_bind.provider.common.BaseProvider;
+
 /**
  * Created by fchristysen on 6/7/16.
  */
@@ -18,6 +22,9 @@ public class MVPBApp extends Application{
         super.onCreate();
         sContext = this;
 
+        BaseProvider.init(this
+                , new MVPBPreference(this)
+                , new ResolverDatabase(this));
         initStetho();
     }
 

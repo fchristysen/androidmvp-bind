@@ -15,19 +15,25 @@ import rx.Observable;
 
 public class UserProvider extends BaseProvider {
 
+    private static final String PREF_LOGIN = "pref.login";
+    private static final String PREF_LOGIN_IS_LOGIN = "islogin";
+
     public static final int LOGIN_SUCCESS = 0;
     public static final int LOGIN_ERROR_NO_ACCOUNT = 1;
 
-    public UserProvider(Context context) {
-        super(context);
+    public Boolean isLogin;
+
+    public UserProvider() {
     }
 
     public Observable<Integer> login(String username, String password){
         Integer results;
         if(username.equals(password)) {
             results = new Integer(LOGIN_SUCCESS);
+            setLogin(true);
         }else{
             results = new Integer(LOGIN_ERROR_NO_ACCOUNT);
+            setLogin(false);
         }
         return Observable.just(results).map(next -> {
             try{
@@ -35,5 +41,17 @@ public class UserProvider extends BaseProvider {
             }catch (InterruptedException e){}
             return next;
         }).compose(CommonTransformer.toIOThread());
+    }
+
+    public Boolean getLogin() {
+        if(isLogin == null){
+            isLogin = getPreferenceDriver().getBoolean(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, false);
+        }
+        return isLogin;
+    }
+
+    public void setLogin(Boolean login) {
+        isLogin = login;
+        getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, login);
     }
 }

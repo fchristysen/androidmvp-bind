@@ -1,30 +1,23 @@
 package org.greenfroyo.androidmvp_bind.provider.log;
 
-import android.content.Context;
-
-import org.greenfroyo.androidmvp_bind.driver.SharedPreferenceDriver;
 import org.greenfroyo.androidmvp_bind.provider.common.BaseProvider;
 
 /**
  * Created by fchristysen on 7/26/16.
  */
 
-public class LogProvider extends BaseProvider{
-    public static final String PREF_USAGE = "pref.usage";
-    public static final String PREF_USAGE_ACTIVITY_COUNT = "activity_count";
+public class LogProvider extends BaseProvider {
+    private static final String PREF_USAGE = "pref.usage";
+    private static final String PREF_USAGE_ACTIVITY_COUNT = "activity_count";
 
     private static Integer mActivityCount;
     private static Integer mStoredActivityCount;
 
-    private SharedPreferenceDriver mPreferenceDriver;
-
-    public LogProvider(Context context) {
-        super(context);
-        mPreferenceDriver = new SharedPreferenceDriver(mContext, PREF_USAGE);
+    public LogProvider() {
     }
 
     public Integer getActivityCount() {
-        if(mActivityCount==null){
+        if (mActivityCount == null) {
             mActivityCount = new Integer(0);
         }
         return mActivityCount;
@@ -35,14 +28,14 @@ public class LogProvider extends BaseProvider{
     }
 
     public Integer getStoredActivityCount() {
-        if(mStoredActivityCount == null){
-            mStoredActivityCount = mPreferenceDriver.getInteger(PREF_USAGE_ACTIVITY_COUNT, 0);
+        if (mStoredActivityCount == null) {
+            mStoredActivityCount = getPreferenceDriver().getInteger(PREF_USAGE, PREF_USAGE_ACTIVITY_COUNT, 0);
         }
         return mStoredActivityCount;
     }
 
     public void setStoredActivityCount(Integer storedActivityCount) {
         mStoredActivityCount = storedActivityCount;
-        mPreferenceDriver.write(PREF_USAGE_ACTIVITY_COUNT, mStoredActivityCount);
+        getPreferenceDriver().put(PREF_USAGE, PREF_USAGE_ACTIVITY_COUNT, mStoredActivityCount);
     }
 }

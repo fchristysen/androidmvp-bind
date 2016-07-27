@@ -25,7 +25,7 @@ public class HomePresenter extends BaseErrorPresenter<HomeViewModel> {
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
         super.onCreate(presenterState);
-        mHomeProvider = new HomeProvider(MVPBApp.context());
+        mHomeProvider = new HomeProvider();
     }
 
     @Override

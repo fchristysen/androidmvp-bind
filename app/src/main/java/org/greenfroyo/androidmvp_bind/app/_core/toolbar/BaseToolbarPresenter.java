@@ -17,7 +17,7 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel> exte
     @Override
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
-        mLogProvider = new LogProvider(MVPBApp.context());
+        mLogProvider = new LogProvider();
     }
 
     public void showActivityCount(){

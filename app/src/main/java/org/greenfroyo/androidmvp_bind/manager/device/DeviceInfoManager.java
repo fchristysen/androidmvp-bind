@@ -13,8 +13,7 @@ import rx.Observable;
 
 public class DeviceInfoManager extends BaseProvider {
 
-    public DeviceInfoManager(Context context) {
-        super(context);
+    public DeviceInfoManager() {
     }
 
     public Observable<DeviceInfoDataModel> getDeviceInfo() {

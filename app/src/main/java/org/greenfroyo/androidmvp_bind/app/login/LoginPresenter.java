@@ -23,7 +23,7 @@ public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
     @Override
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
-        mUserProvider = new UserProvider(MVPBApp.context());
+        mUserProvider = new UserProvider();
     }
 
     @Override

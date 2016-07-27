@@ -26,15 +26,14 @@ public class HomeProvider extends BaseProvider {
             , MultiTabActivity.class
     };
 
-    public HomeProvider(Context context){
-        super(context);
+    public HomeProvider(){
     }
 
     public Observable<MainMenuDataModel> getMenuItems(){
         return Observable.from(PAGES)
                 .map(next -> {
                     try{
-                        Thread.sleep(1000);
+                        Thread.sleep(3000/PAGES.length);
                     }catch (InterruptedException e){}
                     return new MainMenuDataModel(next);
                 })
