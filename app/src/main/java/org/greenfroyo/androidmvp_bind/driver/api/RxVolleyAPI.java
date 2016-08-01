@@ -110,7 +110,7 @@ public class RxVolleyAPI implements ApiDriver {
 
         public GetRequest(String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
             super(Request.Method.GET, url, listener, errorListener);
-            mHeader = new HashMap<>();
+            this.mHeader = new HashMap<>();
         }
 
         @Override
@@ -133,6 +133,7 @@ public class RxVolleyAPI implements ApiDriver {
         public PostRequest(String url, String body, Response.Listener<String> listener, Response.ErrorListener errorListener) {
             super(Method.POST, url, listener, errorListener);
             this.mRequestBody = body;
+            this.mHeader = new HashMap<>();
         }
 
         @Override
