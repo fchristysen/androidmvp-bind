@@ -15,6 +15,7 @@
 
     <string name="menu_show_activity_count">Show Activity Count</string>
     <string name="menu_restart_activity_count">Restart Activity Count</string>
+    <string name="menu_switch_locale">Switch Locale</string>
 
     <!-- PLACEHOLDER -->
     <string name="placeholder_short">Lorem Ipsum</string>

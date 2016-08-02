@@ -1,4 +1,4 @@
-package org.greenfroyo.androidmvp_bind.manager.device;
+package org.greenfroyo.androidmvp_bind.provider.manager;
 
 import java.util.Locale;
 

@@ -42,6 +42,7 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(R.string.menu_show_activity_count);
         menu.add(R.string.menu_restart_activity_count);
+        menu.add(R.string.menu_switch_locale);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -51,6 +52,8 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
             getPresenter().showActivityCount();
         }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_restart_activity_count))){
             getPresenter().resetActivityCount();
+        }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_switch_locale))){
+            getPresenter().switchLocale();
         }
         return super.onOptionsItemSelected(item);
     }

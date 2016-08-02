@@ -1,8 +1,6 @@
 package org.greenfroyo.androidmvp_bind.provider.home;
 
-import android.content.Context;
-
-import org.greenfroyo.androidmvp_bind.app.common.CommonTransformer;
+import org.greenfroyo.androidmvp_bind.provider.common.CommonTransformer;
 import org.greenfroyo.androidmvp_bind.app.compoundview.CompoundViewActivity;
 import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity;
 import org.greenfroyo.androidmvp_bind.app.login.LoginActivity;
@@ -37,6 +35,6 @@ public class HomeProvider extends BaseProvider {
                     }catch (InterruptedException e){}
                     return new MainMenuDataModel(next);
                 })
-                .compose(CommonTransformer.toIOThread());
+                .compose(CommonTransformer.doOnIOThread());
     }
 }

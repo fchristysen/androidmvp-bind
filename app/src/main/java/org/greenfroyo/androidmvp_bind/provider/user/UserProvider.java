@@ -1,8 +1,6 @@
 package org.greenfroyo.androidmvp_bind.provider.user;
 
-import android.content.Context;
-
-import org.greenfroyo.androidmvp_bind.app.common.CommonTransformer;
+import org.greenfroyo.androidmvp_bind.provider.common.CommonTransformer;
 import org.greenfroyo.androidmvp_bind.provider.common.BaseProvider;
 
 import java.util.Random;
@@ -40,10 +38,10 @@ public class UserProvider extends BaseProvider {
                 Thread.sleep(new Random().nextInt(2000) + 1000);
             }catch (InterruptedException e){}
             return next;
-        }).compose(CommonTransformer.toIOThread());
+        }).compose(CommonTransformer.doOnIOThread());
     }
 
-    public Boolean getLogin() {
+    public Boolean isLogin() {
         if(isLogin == null){
             isLogin = getPreferenceDriver().getBoolean(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, false);
         }
