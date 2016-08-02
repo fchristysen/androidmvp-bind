@@ -44,7 +44,6 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
         mPropertyChangedCallback = getPropertyChangedCallback();
 
-        ViewServer.get(this).addWindow(this);
         Dart.inject(this);
 
         mBinding = onInitView(getPresenter().getViewModel());
