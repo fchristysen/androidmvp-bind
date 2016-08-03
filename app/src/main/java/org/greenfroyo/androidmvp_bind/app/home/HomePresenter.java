@@ -1,5 +1,6 @@
 package org.greenfroyo.androidmvp_bind.app.home;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorPresenter;
 import org.greenfroyo.androidmvp_bind.app._core.error.BaseErrorViewModel;
+import org.greenfroyo.androidmvp_bind.app.intentparam.back.IntentParamBackActivity;
+import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity;
+import org.greenfroyo.androidmvp_bind.app.login.LoginDialog;
 import org.greenfroyo.androidmvp_bind.bridge.HomeBridge;
 import org.greenfroyo.androidmvp_bind.domain.Home;
 import org.greenfroyo.androidmvp_bind.provider.home.HomeProvider;

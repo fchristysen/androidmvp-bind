@@ -73,7 +73,7 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel>
     }
 
     public void openLoginDialog(Activity activity){
-        LoginDialog dialog = new LoginDialog(activity);
+        final LoginDialog dialog = new LoginDialog(activity);
         dialog.setDialogListener(new BaseDialog.DialogListener() {
             @Override
             public void onComplete(Dialog dialog) {

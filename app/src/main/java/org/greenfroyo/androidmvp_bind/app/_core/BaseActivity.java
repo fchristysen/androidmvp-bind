@@ -16,7 +16,6 @@ import com.f2prateek.dart.Dart;
 
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
-import org.greenfroyo.mvp_bind.util.ViewServer;
 import org.greenfroyo.mvp_bind.view.MvpView;
 
 
@@ -115,7 +114,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         mPresenterManager.onSaveInstanceState(outState);
     }
 
-    protected void onViewModelChanged(Observable observable, int i){
+    protected void onViewModelChanged(Observable observable, int i) {
         if (i == BR.toastMessage) {
             if (getViewModel().needToShowToast()) {
                 Toast.makeText(BaseActivity.this, getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();

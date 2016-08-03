@@ -5,6 +5,7 @@ import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.greenfroyo.androidmvp_bind.BR;
@@ -74,7 +75,9 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
             getPresenter().openLoginDialog(this);
         }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_out))){
             getPresenter().signOut();
+        }else{
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }

@@ -22,4 +22,5 @@ public class CommonTransformer{
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 }

@@ -19,6 +19,7 @@
     <string name="menu_switch_locale">Switch Locale</string>
     <string name="menu_sign_out">Sign Out</string>
     <string name="menu_sign_in">Sign In</string>
+    <string name="menu_to_home">To Home</string>
 
     <!-- PLACEHOLDER -->
     <string name="placeholder_short">Lorem Ipsum</string>
