@@ -75,7 +75,7 @@
                     android:enabled="@{viewModel.state==viewModel.STATE_DEFAULT}"
                     android:onClick="@{onClickListener::onClick}"/>
             </LinearLayout>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
@@ -84,11 +84,11 @@
                 android:layout_marginRight="64dp"
                 android:padding="@dimen/space_medium"
                 android:orientation="vertical"
+                android:gravity="center"
                 android:visibility="@{viewModel.state==viewModel.STATE_LOGGEDIN?View.VISIBLE:View.GONE}">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:textSize="@dimen/text_title"
                     android:text="@string/login_success"/>
                 <Button
@@ -96,10 +96,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_large"
-                    android:layout_gravity="center_horizontal"
                     android:text="@string/action_logout"
                     android:onClick="@{onClickListener::onClick}"/>
-            </RelativeLayout>
+            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 </layout>
