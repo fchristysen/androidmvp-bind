@@ -29,7 +29,7 @@ public class HomePresenter extends BaseErrorPresenter<HomeViewModel> {
     }
 
     @Override
-    public HomeViewModel onInitViewModel() {
+    public HomeViewModel onCreateViewModel() {
         HomeViewModel model = new HomeViewModel();
         return model;
     }

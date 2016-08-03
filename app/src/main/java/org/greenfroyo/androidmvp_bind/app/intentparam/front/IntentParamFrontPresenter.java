@@ -21,7 +21,7 @@ public class IntentParamFrontPresenter extends BaseToolbarPresenter<IntentParamF
     }
 
     @Override
-    public IntentParamFrontViewModel onInitViewModel() {
+    public IntentParamFrontViewModel onCreateViewModel() {
         IntentParamFrontViewModel model = new IntentParamFrontViewModel();
         return model;
     }

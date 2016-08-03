@@ -1,5 +1,8 @@
 package org.greenfroyo.androidmvp_bind.app._core.toolbar;
 
+import android.databinding.Bindable;
+
+import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.parceler.Parcel;
 
@@ -9,5 +12,15 @@ import org.parceler.Parcel;
 
 @Parcel
 public class BaseToolbarViewModel extends BaseViewModel {
+    protected boolean isLogin;
 
+    @Bindable
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+        notifyPropertyChanged(BR.login);
+    }
 }

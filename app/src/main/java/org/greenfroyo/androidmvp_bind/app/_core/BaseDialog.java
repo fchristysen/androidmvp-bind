@@ -30,6 +30,7 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
     private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager = new PresenterManager(this);
     private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
+    private DialogListener mDialogListener;
 
     @Override
     public abstract P createPresenter();
@@ -66,11 +67,7 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
         return new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                if (i == BR.toastMessage) {
-                    if (getViewModel().needToShowToast()) {
-                        Toast.makeText(getOwnerActivity(), getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                onViewModelChanged(observable, i);
             }
         };
     }
@@ -102,5 +99,46 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
         T viewDataBinding = DataBindingUtil.inflate(getLayoutInflater(), layoutId, null, false);
         setContentView(viewDataBinding.getRoot());
         return viewDataBinding;
+    }
+
+    protected void onViewModelChanged(Observable observable, int i){
+        if (i == BR.toastMessage) {
+            if (getViewModel().needToShowToast()) {
+                Toast.makeText(getOwnerActivity(), getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void setDialogListener(DialogListener dialogListener) {
+        mDialogListener = dialogListener;
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        if(mDialogListener!=null){
+            mDialogListener.onDismiss(this);
+        }
+    }
+
+    public void complete() {
+        this.dismiss();
+        if(mDialogListener!=null){
+            mDialogListener.onComplete(this);
+        }
+    }
+
+    public void cancel() {
+        super.cancel();
+        //mDialogListener.onDismiss(this);  //dismiss is already called from super.cancel();
+        if(mDialogListener!=null){
+            mDialogListener.onCancel(this);
+        }
+    }
+
+    public interface DialogListener{
+        void onComplete(Dialog dialog);
+        void onCancel(Dialog dialog);
+        void onDismiss(Dialog dialog);
     }
 }

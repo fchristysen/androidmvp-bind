@@ -1,12 +1,15 @@
 package org.greenfroyo.androidmvp_bind.app.login;
 
 import android.app.Activity;
+import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.view.View;
 
+import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseDialog;
 import org.greenfroyo.androidmvp_bind.databinding.LoginActivityBinding;
+import org.greenfroyo.androidmvp_bind.databinding.LoginDialogBinding;
 
 /**
  * Created by fchristysen on 7/26/16.
@@ -15,7 +18,7 @@ import org.greenfroyo.androidmvp_bind.databinding.LoginActivityBinding;
 public class LoginDialog extends BaseDialog<LoginPresenter, LoginViewModel>
         implements View.OnClickListener {
 
-    private LoginActivityBinding mBinding;
+    private LoginDialogBinding mBinding;
 
     @Override
     public LoginPresenter createPresenter() {
@@ -28,9 +31,8 @@ public class LoginDialog extends BaseDialog<LoginPresenter, LoginViewModel>
 
     @Override
     protected ViewDataBinding onInitView(LoginViewModel viewModel) {
-        mBinding = setBindView(R.layout.login_activity);
+        mBinding = setBindView(R.layout.login_dialog);
         mBinding.setViewModel(viewModel);
-        mBinding.btnLoginDialog.setVisibility(View.GONE);
         mBinding.setOnClickListener(this);
         return mBinding;
     }
@@ -39,6 +41,16 @@ public class LoginDialog extends BaseDialog<LoginPresenter, LoginViewModel>
     public void onClick(View v) {
         if (v.equals(mBinding.btnLogin)) {
             getPresenter().onLogin();
+        }
+    }
+
+    @Override
+    protected void onViewModelChanged(Observable observable, int i) {
+        super.onViewModelChanged(observable, i);
+        if(i == BR.state) {
+            if(getViewModel().getState() == LoginViewModel.STATE_LOGGEDIN){
+                complete();
+            }
         }
     }
 }

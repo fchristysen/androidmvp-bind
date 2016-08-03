@@ -4,6 +4,7 @@ import android.databinding.Bindable;
 
 import com.android.databinding.library.baseAdapters.BR;
 
+import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
 
 /**
@@ -26,6 +27,11 @@ public abstract class BaseViewModel extends BaseMvpViewModel {
         String r = mToastMessage;
         mToastMessage = null;
         return r;
+    }
+
+    public void setToastMessage(int toastMessage) {
+        mToastMessage = MVPBApp.resources().getString(toastMessage);
+        notifyPropertyChanged(BR.toastMessage);
     }
 
     public void setToastMessage(String toastMessage) {

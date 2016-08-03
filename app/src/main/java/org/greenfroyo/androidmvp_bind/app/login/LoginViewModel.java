@@ -11,6 +11,11 @@ import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 
 public class LoginViewModel extends BaseToolbarViewModel {
 
+    public static final int STATE_DEFAULT = 0;
+    public static final int STATE_LOGIN = 1;
+    public static final int STATE_LOGGEDIN = 2;
+
+    private int mState;
     private String mUsername;
     private String mUsernameError;
     private String mPassword;
@@ -22,6 +27,7 @@ public class LoginViewModel extends BaseToolbarViewModel {
         this.mUsernameError = null;
         this.mPassword = "";
         this.mPasswordError = null;
+        this.mState = 0;
     }
 
     @Bindable
@@ -62,5 +68,15 @@ public class LoginViewModel extends BaseToolbarViewModel {
     public void setPasswordError(String passwordError) {
         mPasswordError = passwordError;
         notifyPropertyChanged(BR.passwordError);
+    }
+
+    @Bindable
+    public int getState() {
+        return mState;
+    }
+
+    public void setState(int state) {
+        mState = state;
+        notifyPropertyChanged(BR.state);
     }
 }

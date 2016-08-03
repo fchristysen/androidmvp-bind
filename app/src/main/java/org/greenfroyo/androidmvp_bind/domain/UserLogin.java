@@ -1,5 +1,8 @@
 package org.greenfroyo.androidmvp_bind.domain;
 
+import org.greenfroyo.androidmvp_bind.R;
+import org.greenfroyo.androidmvp_bind.app.MVPBApp;
+
 /**
  * Created by fchristysen on 6/29/16.
  */
@@ -26,6 +29,22 @@ public class UserLogin {
         }
     }
 
+    /**
+     * @param validity error state
+     * @return null if the error state is unknown
+     */
+    public static String getUsernameErrorString(int validity){
+        switch (validity){
+            case UserLogin.ERROR_USERNAME_EMPTY:
+                return MVPBApp.resources().getString(R.string.login_field_empty);
+            case UserLogin.ERROR_USERNAME_TOO_SHORT:
+                return MVPBApp.resources().getString(R.string.login_password_too_short, UserLogin.MIN_LENGTH_USERNAME);
+            case UserLogin.ERROR_USERNAME_TOO_LONG:
+                return MVPBApp.resources().getString(R.string.login_password_too_long, UserLogin.MAX_LENGTH_USERNAME);
+        }
+        return null;
+    }
+
     public static final int VALID_PASSWORD = 100;
     public static final int ERROR_PASSWORD_EMPTY = 101;
     public static final int ERROR_PASSWORD_TOO_SHORT = 102;
@@ -44,6 +63,22 @@ public class UserLogin {
         }else{
             return VALID_PASSWORD;
         }
+    }
+
+    /**
+     * @param validity error state
+     * @return null if the error state is unknown
+     */
+    public static String getPasswordErrorString(int validity){
+        switch (validity){
+            case UserLogin.ERROR_PASSWORD_EMPTY:
+                return MVPBApp.resources().getString(R.string.login_field_empty);
+            case UserLogin.ERROR_PASSWORD_TOO_SHORT:
+                return MVPBApp.resources().getString(R.string.login_password_too_short, UserLogin.MIN_LENGTH_PASSWORD);
+            case UserLogin.ERROR_PASSWORD_TOO_LONG:
+                return MVPBApp.resources().getString(R.string.login_password_too_long, UserLogin.MAX_LENGTH_PASSWORD);
+        }
+        return null;
     }
 
 }

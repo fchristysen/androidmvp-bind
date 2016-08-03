@@ -54,4 +54,12 @@ public class NumberPickerView extends MVPLinearLayout<NumberPickerPresenter, Num
             getPresenter().substractValue();
         }
     }
+
+    public void setValue(int value){
+        getPresenter().setValue(value);
+    }
+
+    public void getValue(){
+        getPresenter().getValue();
+    }
 }

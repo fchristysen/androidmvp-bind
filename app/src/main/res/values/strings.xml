@@ -6,7 +6,8 @@
     <string name="action_next">Next</string>
     <string name="action_retry">Retry</string>
     <string name="action_login">Login</string>
-    <string name="action_login_dialog">Login Dialog</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_sum">Sum</string>
 
     <string name="common_username">Username</string>
     <string name="common_password">Password</string>
@@ -16,6 +17,8 @@
     <string name="menu_show_activity_count">Show Activity Count</string>
     <string name="menu_restart_activity_count">Restart Activity Count</string>
     <string name="menu_switch_locale">Switch Locale</string>
+    <string name="menu_sign_out">Sign Out</string>
+    <string name="menu_sign_in">Sign In</string>
 
     <!-- PLACEHOLDER -->
     <string name="placeholder_short">Lorem Ipsum</string>
@@ -49,9 +52,9 @@
     <string name="login_password_too_short">Password cannot be shorter than %d</string>
     <string name="login_password_too_long">Password cannot be longer that %d</string>
 
-    <string name="login_result">Login Successful</string>
+    <string name="login_success">Login Successful</string>
     <string name="login_no_account">There is no account with that username and password</string>
     <string name="login_no_network">There is a problem in network connection. Please try again</string>
-
+    <string name="logout_success">You have sign out</string>
 
 </resources>

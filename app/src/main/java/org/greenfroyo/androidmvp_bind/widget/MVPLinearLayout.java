@@ -110,4 +110,8 @@ public abstract class MVPLinearLayout<P extends BasePresenter<VM>, VM extends Ba
      * @param viewModel the object to be bind into binding class
      */
     public abstract void onBindView(VM viewModel);
+
+    public VM getViewModel(){
+        return getPresenter().getViewModel();
+    }
 }

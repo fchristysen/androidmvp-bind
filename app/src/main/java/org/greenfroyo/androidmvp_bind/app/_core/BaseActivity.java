@@ -68,11 +68,7 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
         return new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                if (i == BR.toastMessage) {
-                    if (getViewModel().needToShowToast()) {
-                        Toast.makeText(BaseActivity.this, getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                onViewModelChanged(observable, i);
             }
         };
     }
@@ -117,6 +113,14 @@ public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseV
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mPresenterManager.onSaveInstanceState(outState);
+    }
+
+    protected void onViewModelChanged(Observable observable, int i){
+        if (i == BR.toastMessage) {
+            if (getViewModel().needToShowToast()) {
+                Toast.makeText(BaseActivity.this, getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override

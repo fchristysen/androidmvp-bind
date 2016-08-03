@@ -23,7 +23,7 @@ public class IntentParamBackPresenter extends BaseToolbarPresenter<IntentParamBa
     }
 
     @Override
-    public IntentParamBackViewModel onInitViewModel() {
+    public IntentParamBackViewModel onCreateViewModel() {
         IntentParamBackViewModel model = new IntentParamBackViewModel();
         model.setValue(mValue);
         return model;

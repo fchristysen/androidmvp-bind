@@ -9,7 +9,7 @@ import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 public class MultiTabPresenter extends BasePresenter<MultiTabViewModel> {
 
     @Override
-    public MultiTabViewModel onInitViewModel() {
+    public MultiTabViewModel onCreateViewModel() {
         return new MultiTabViewModel();
     }
 }

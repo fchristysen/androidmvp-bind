@@ -33,11 +33,11 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
 
     @Override
     public void create(Bundle savedPresenterState){
-        onCreate(savedPresenterState);
         mViewModel = onRestoredViewModel(savedPresenterState);
         if(mViewModel == null){
-            mViewModel = onInitViewModel();
+            mViewModel = onCreateViewModel();
         }
+        onCreate(savedPresenterState);
     }
 
     @Override
@@ -110,7 +110,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
      * Initialize the View Model here
      * @return Initial value of the view model
      */
-    public abstract VM onInitViewModel();
+    public abstract VM onCreateViewModel();
 
     /**
      * Called when activity's onSaveInstanceState is called

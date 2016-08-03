@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app.compoundview;
 
 import android.databinding.ViewDataBinding;
+import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
@@ -8,9 +9,12 @@ import org.greenfroyo.androidmvp_bind.databinding.CompoundViewActivityBinding;
 
 /**
  * Created by fchristysen on 6/27/16.
+ * This page demonstrate :
+ *      - Capability of a compound view to have its own presenter and view model
+ *      - Capability of retaining the compound view model through save and restore instance state
  */
 
-public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresenter, CompoundViewViewModel> {
+public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresenter, CompoundViewViewModel>{
     private CompoundViewActivityBinding mBinding;
 
     @Override
@@ -24,4 +28,5 @@ public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresen
     public CompoundViewPresenter createPresenter() {
         return new CompoundViewPresenter();
     }
+
 }

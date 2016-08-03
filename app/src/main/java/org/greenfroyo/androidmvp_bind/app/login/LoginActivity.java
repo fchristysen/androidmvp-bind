@@ -31,10 +31,10 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter, LoginView
 
     @Override
     public void onClick(View v) {
-        if (v.equals(mBinding.btnLogin)) {
+        if(v.equals(mBinding.btnLogin)) {
             getPresenter().onLogin();
-        } else if (v.equals(mBinding.btnLoginDialog)) {
-            getPresenter().actionOpenLoadingDialog(this);
+        }else if(v.equals(mBinding.btnLogout)) {
+            getPresenter().onLogout();
         }
     }
 }

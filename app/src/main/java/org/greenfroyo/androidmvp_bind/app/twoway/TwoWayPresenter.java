@@ -11,7 +11,7 @@ public class TwoWayPresenter extends BaseToolbarPresenter<TwoWayViewModel> {
 
 
     @Override
-    public TwoWayViewModel onInitViewModel() {
+    public TwoWayViewModel onCreateViewModel() {
         return new TwoWayViewModel();
     }
 }
