@@ -19,6 +19,8 @@ import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
 
 /**
  * This activity displays all page in this prototype app
+ * this page demonstrates :
+ *      - use of list adapter in binding architectures
  */
 public class HomeActivity extends BaseErrorActivity<HomePresenter, HomeViewModel>
         implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {

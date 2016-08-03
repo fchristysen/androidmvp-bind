@@ -14,6 +14,8 @@ import org.greenfroyo.androidmvp_bind.databinding.MultitabActivityBinding;
 
 /**
  * Created by fchristysen on 6/30/16.
+ * this page demonstrate :
+ *      - view pager in mvpbind architecture
  */
 
 public class MultiTabActivity extends BaseActivity<MultiTabPresenter, MultiTabViewModel> {

@@ -10,6 +10,8 @@ import org.greenfroyo.androidmvp_bind.databinding.IntentParamFrontActivityBindin
 
 /**
  * Created by fchristysen on 6/7/16.
+ * This page demonstrates :
+ *      - Use of dart and henson library for navigation and send parameter
  */
 
 public class IntentParamFrontActivity extends BaseToolbarActivity<IntentParamFrontPresenter, IntentParamFrontViewModel> implements View.OnClickListener {
