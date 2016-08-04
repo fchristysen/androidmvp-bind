@@ -91,7 +91,12 @@ public class UserProvider extends BaseProvider {
         }).compose(CommonTransformer.doOnIOThread());
     }
 
-    public void setLogin(Boolean login) {
+    public void logout(){
+        setLogin(false);
+        clearLoginData();
+    }
+
+    private void setLogin(Boolean login) {
         isLogin = login;
         getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, login);
         Bundle bundle = new Bundle();
@@ -99,14 +104,14 @@ public class UserProvider extends BaseProvider {
         LocalBroadcastBus.get().send(PREF_LOGIN, bundle);
     }
 
-    public void setLoginData(UserLoginDataModel.UserDataModel user){
+    private void setLoginData(UserLoginDataModel.UserDataModel user){
         this.mUser = user;
         getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_USERNAME, user.username);
         getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_FULLNAME, user.fullname);
         getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_AVATAR, user.avatarUrl);
     }
 
-    public void clearLoginData(){
+    private void clearLoginData(){
         mUser = null;
         getPreferenceDriver().delete(PREF_LOGIN, PREF_LOGIN_USERNAME);
         getPreferenceDriver().delete(PREF_LOGIN, PREF_LOGIN_FULLNAME);

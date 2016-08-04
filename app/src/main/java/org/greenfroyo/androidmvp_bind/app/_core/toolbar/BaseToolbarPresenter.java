@@ -95,7 +95,7 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel>
     }
 
     public void signOut(){
-        mUserProvider.setLogin(false);
+        mUserProvider.logout();
         getViewModel().setToastMessage(R.string.logout_success);
     }
 }

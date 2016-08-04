@@ -88,7 +88,7 @@ public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
     }
 
     public void onLogout(){
-        mUserProvider.setLogin(false);
+        mUserProvider.logout();
         getViewModel().setToastMessage(MVPBApp.resources().getString(R.string.logout_success));
     }
 }
