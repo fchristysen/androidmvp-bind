@@ -73,17 +73,20 @@ public class UserProvider extends BaseProvider {
         if(username.equals(password)) {
             result.loginResult = new Integer(LOGIN_SUCCESS);
             result.user = UserMocker.mockUser(username);
-            setLogin(true);
-            setLoginData(result.user);
         }else{
             result.loginResult = new Integer(LOGIN_ERROR_NO_ACCOUNT);
-            setLogin(false);
-            cleaLoginData();
         }
         return Observable.just(result).map(next -> {
             try{
                 Thread.sleep(new Random().nextInt(2000) + 1000);
             }catch (InterruptedException e){}
+            if(next.loginResult == LOGIN_SUCCESS){
+                setLogin(true);
+                setLoginData(result.user);
+            }else if(next.loginResult == LOGIN_ERROR_NO_ACCOUNT){
+                setLogin(false);
+                clearLoginData();
+            }
             return next;
         }).compose(CommonTransformer.doOnIOThread());
     }
@@ -103,7 +106,7 @@ public class UserProvider extends BaseProvider {
         getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_AVATAR, user.avatarUrl);
     }
 
-    public void cleaLoginData(){
+    public void clearLoginData(){
         mUser = null;
         getPreferenceDriver().delete(PREF_LOGIN, PREF_LOGIN_USERNAME);
         getPreferenceDriver().delete(PREF_LOGIN, PREF_LOGIN_FULLNAME);
