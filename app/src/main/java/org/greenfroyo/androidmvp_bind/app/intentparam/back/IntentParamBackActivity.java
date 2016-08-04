@@ -1,5 +1,6 @@
 package org.greenfroyo.androidmvp_bind.app.intentparam.back;
 
+import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import com.f2prateek.dart.HensonNavigable;
 import com.f2prateek.dart.InjectExtra;
 
 import org.greenfroyo.androidmvp_bind.R;
+import org.greenfroyo.androidmvp_bind.app.Henson;
 import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
 import org.greenfroyo.androidmvp_bind.databinding.IntentParamBackActivityBinding;
@@ -49,7 +51,8 @@ public class IntentParamBackActivity extends BaseToolbarActivity<IntentParamBack
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getTitle().equals(MVPBApp.resources().getString(R.string.menu_to_home))){
-            
+            Intent intent = Henson.with(this).gotoHomeActivity().build();
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.f2prateek.dart.HensonNavigable;
 import com.f2prateek.dart.InjectExtra;
 
 import org.greenfroyo.androidmvp_bind.R;
@@ -25,6 +26,7 @@ import org.greenfroyo.androidmvp_bind.databinding.HomeListItemBinding;
  * - use of list adapter in binding architectures
  */
 
+@HensonNavigable
 public class HomeActivity extends BaseErrorActivity<HomePresenter, HomeViewModel>
         implements SwipeRefreshLayout.OnRefreshListener, OnRecyclerItemClickListener<HomeItemViewModel> {
 
