@@ -21,45 +21,17 @@ public class UserProvider extends BaseProvider {
 
     private static final String PREF_LOGIN = "pref.login";
     private static final String PREF_LOGIN_IS_LOGIN = "islogin";
+    private static final String PREF_LOGIN_USERNAME = "username";
+    private static final String PREF_LOGIN_FULLNAME = "fullname";
+    private static final String PREF_LOGIN_AVATAR = "avatar";
 
     public static final int LOGIN_SUCCESS = 0;
     public static final int LOGIN_ERROR_NO_ACCOUNT = 1;
 
     private Boolean isLogin;
+    private UserLoginDataModel.UserDataModel mUser;
 
     public UserProvider() {
-    }
-
-    public Observable<Integer> login(String username, String password){
-        Integer results;
-        if(username.equals(password)) {
-            results = new Integer(LOGIN_SUCCESS);
-            setLogin(true);
-        }else{
-            results = new Integer(LOGIN_ERROR_NO_ACCOUNT);
-            setLogin(false);
-        }
-        return Observable.just(results).map(next -> {
-            try{
-                Thread.sleep(new Random().nextInt(2000) + 1000);
-            }catch (InterruptedException e){}
-            return next;
-        }).compose(CommonTransformer.doOnIOThread());
-    }
-
-    public void setLogin(Boolean login) {
-        isLogin = login;
-        getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, login);
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(PREF_LOGIN_IS_LOGIN, login);
-        LocalBroadcastBus.get().send(PREF_LOGIN, bundle);
-    }
-
-    public Boolean isLogin() {
-        if(isLogin == null){
-            isLogin = getPreferenceDriver().getBoolean(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, false);
-        }
-        return isLogin;
     }
 
     public Observable<Boolean> getIsLoginStream(){
@@ -77,4 +49,69 @@ public class UserProvider extends BaseProvider {
     public Observable<Boolean> getIsLoginState(){
         return Observable.just(isLogin()).concatWith(getIsLoginStream());
     }
+
+    public Boolean isLogin() {
+        if(isLogin == null){
+            isLogin = getPreferenceDriver().getBoolean(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, false);
+        }
+        return isLogin;
+    }
+
+    public UserLoginDataModel.UserDataModel getUser(){
+        if(mUser==null && isLogin()){
+            mUser = new UserLoginDataModel.UserDataModel();
+            mUser.fullname = getPreferenceDriver().getString(PREF_LOGIN, PREF_LOGIN_FULLNAME, "");
+            mUser.username = getPreferenceDriver().getString(PREF_LOGIN, PREF_LOGIN_USERNAME, "");
+            mUser.avatarUrl = getPreferenceDriver().getString(PREF_LOGIN, PREF_LOGIN_AVATAR, "");
+        }
+        return mUser;
+    }
+
+    //region driver
+    public Observable<UserLoginDataModel> login(String username, String password){
+        UserLoginDataModel result = new UserLoginDataModel();
+        if(username.equals(password)) {
+            result.loginResult = new Integer(LOGIN_SUCCESS);
+            result.user = UserMocker.mockUser(username);
+            setLogin(true);
+            setLoginData(result.user);
+        }else{
+            result.loginResult = new Integer(LOGIN_ERROR_NO_ACCOUNT);
+            setLogin(false);
+            cleaLoginData();
+        }
+        return Observable.just(result).map(next -> {
+            try{
+                Thread.sleep(new Random().nextInt(2000) + 1000);
+            }catch (InterruptedException e){}
+            return next;
+        }).compose(CommonTransformer.doOnIOThread());
+    }
+
+    public void setLogin(Boolean login) {
+        isLogin = login;
+        getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_IS_LOGIN, login);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(PREF_LOGIN_IS_LOGIN, login);
+        LocalBroadcastBus.get().send(PREF_LOGIN, bundle);
+    }
+
+    public void setLoginData(UserLoginDataModel.UserDataModel user){
+        this.mUser = user;
+        getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_USERNAME, user.username);
+        getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_FULLNAME, user.fullname);
+        getPreferenceDriver().put(PREF_LOGIN, PREF_LOGIN_AVATAR, user.avatarUrl);
+    }
+
+    public void cleaLoginData(){
+        mUser = null;
+        getPreferenceDriver().delete(PREF_LOGIN, PREF_LOGIN_USERNAME);
+        getPreferenceDriver().delete(PREF_LOGIN, PREF_LOGIN_FULLNAME);
+        getPreferenceDriver().delete(PREF_LOGIN, PREF_LOGIN_AVATAR);
+    }
+    //endregion
+
+
+
+
 }

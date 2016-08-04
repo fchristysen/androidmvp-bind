@@ -1,8 +1,13 @@
 package org.greenfroyo.androidmvp_bind.app.login;
 
 import android.databinding.Bindable;
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import org.greenfroyo.androidmvp_bind.BR;
+import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarViewModel;
 
 /**
@@ -21,6 +26,9 @@ public class LoginViewModel extends BaseToolbarViewModel {
     private String mPassword;
     private String mPasswordError;
 
+    private String mFullname;
+    private String mAvatar;
+
     public LoginViewModel(){
         super();
         this.mUsername = "";
@@ -28,6 +36,16 @@ public class LoginViewModel extends BaseToolbarViewModel {
         this.mPassword = "";
         this.mPasswordError = null;
         this.mState = 0;
+    }
+
+    @Bindable
+    public int getState() {
+        return mState;
+    }
+
+    public void setState(int state) {
+        mState = state;
+        notifyPropertyChanged(BR.state);
     }
 
     @Bindable
@@ -71,12 +89,30 @@ public class LoginViewModel extends BaseToolbarViewModel {
     }
 
     @Bindable
-    public int getState() {
-        return mState;
+    public String getFullname() {
+        return mFullname==null?null:mFullname.toUpperCase();
     }
 
-    public void setState(int state) {
-        mState = state;
-        notifyPropertyChanged(BR.state);
+    public void setFullname(String fullname) {
+        mFullname = fullname;
+        notifyPropertyChanged(BR.fullname);
+    }
+
+    @Bindable
+    public String getAvatar() {
+        return mAvatar;
+    }
+
+    public void setAvatar(String avatar) {
+        mAvatar = avatar;
+        notifyPropertyChanged(BR.avatar);
+    }
+
+    @BindingAdapter({"bind:avatar"})
+    public static void loadImage(ImageView view, String avatar) {
+        Picasso.with(view.getContext())
+                .load(avatar)
+                .placeholder(R.drawable.ic_avatar)
+                .into(view);
     }
 }

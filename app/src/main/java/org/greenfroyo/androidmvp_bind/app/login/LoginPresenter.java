@@ -6,9 +6,12 @@ import android.os.Bundle;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
+import org.greenfroyo.androidmvp_bind.bridge.UserBridge;
 import org.greenfroyo.androidmvp_bind.domain.UserLogin;
+import org.greenfroyo.androidmvp_bind.provider.user.UserLoginDataModel;
 import org.greenfroyo.androidmvp_bind.provider.user.UserProvider;
 
+import rx.Observable;
 import rx.functions.Action1;
 
 import static android.R.id.message;
@@ -30,6 +33,7 @@ public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
         mUserProvider.getIsLoginState().subscribe(next->{
             if(next) {
                 getViewModel().setState(LoginViewModel.STATE_LOGGEDIN);
+                UserBridge.loginViewModel(getViewModel(), mUserProvider.getUser());
             }else{
                 getViewModel().setState(LoginViewModel.STATE_DEFAULT);
             }
@@ -57,13 +61,12 @@ public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
             return;
         }
 
-        Action1<Integer> onNext = next -> {
-            if(next == UserProvider.LOGIN_SUCCESS){
+        Action1<UserLoginDataModel> onNext = next -> {
+            if(next.loginResult == UserProvider.LOGIN_SUCCESS){
                 getViewModel().setToastMessage(MVPBApp.resources().getString(R.string.login_success));
-                getViewModel().setUsername("");
                 getViewModel().setPassword("");
                 getViewModel().setState(LoginViewModel.STATE_LOGGEDIN);
-            }else if(next == UserProvider.LOGIN_ERROR_NO_ACCOUNT){
+            }else if(next.loginResult == UserProvider.LOGIN_ERROR_NO_ACCOUNT){
                 getViewModel().setToastMessage(MVPBApp.resources().getString(R.string.login_no_account));
                 getViewModel().setState(LoginViewModel.STATE_DEFAULT);
             }

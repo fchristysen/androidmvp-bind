@@ -73,5 +73,7 @@ dependencies {
 
     compile 'com.google.code.gson:gson:2.4'
 
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
     apt 'org.parceler:parceler:1.1.5'
 }
