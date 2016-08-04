@@ -8,6 +8,7 @@ import android.util.Log;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseDialog;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app.common.DialogNavigator;
 import org.greenfroyo.androidmvp_bind.app.login.LoginDialog;
 import org.greenfroyo.androidmvp_bind.provider.manager.DeviceInfoManager;
 import org.greenfroyo.androidmvp_bind.provider.log.LogProvider;
@@ -73,7 +74,7 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel>
     }
 
     public void openLoginDialog(Activity activity){
-        final LoginDialog dialog = new LoginDialog(activity);
+        BaseDialog dialog = DialogNavigator.gotoLoginDialog(activity);
         dialog.setDialogListener(new BaseDialog.DialogListener() {
             @Override
             public void onComplete(Dialog dialog) {
