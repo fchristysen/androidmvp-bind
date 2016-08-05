@@ -34,20 +34,16 @@ public class UserProvider extends BaseProvider {
     public UserProvider() {
     }
 
-    public Observable<Boolean> getIsLoginStream(){
-        return Observable.create(subscriber -> {
+    //region accessor
+    public Observable<Boolean> isLoginState(){
+        return Observable.just(isLogin()).concatWith(Observable.create(subscriber -> {
             LocalBroadcastBus.get().register(PREF_LOGIN, new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    Bundle bundle = intent.getBundleExtra(LocalBroadcastBus.INTENT_BUNDLE);
-                    subscriber.onNext(bundle.getBoolean(PREF_LOGIN_IS_LOGIN));
+                    subscriber.onNext(isLogin());
                 }
             });
-        });
-    }
-
-    public Observable<Boolean> getIsLoginState(){
-        return Observable.just(isLogin()).concatWith(getIsLoginStream());
+        }));
     }
 
     public Boolean isLogin() {
@@ -66,8 +62,9 @@ public class UserProvider extends BaseProvider {
         }
         return mUser;
     }
+    //endregion
 
-    //region driver
+    //region mutator
     public Observable<UserLoginDataModel> login(String username, String password){
         UserLoginDataModel result = new UserLoginDataModel();
         if(username.equals(password)) {

@@ -11,10 +11,8 @@ import org.greenfroyo.androidmvp_bind.domain.UserLogin;
 import org.greenfroyo.androidmvp_bind.provider.user.UserLoginDataModel;
 import org.greenfroyo.androidmvp_bind.provider.user.UserProvider;
 
-import rx.Observable;
 import rx.functions.Action1;
 
-import static android.R.id.message;
 import static org.greenfroyo.androidmvp_bind.domain.UserLogin.getPasswordErrorString;
 import static org.greenfroyo.androidmvp_bind.domain.UserLogin.getUsernameErrorString;
 
@@ -30,7 +28,7 @@ public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
         mUserProvider = new UserProvider();
-        mUserProvider.getIsLoginState().subscribe(next->{
+        mUserProvider.isLoginState().subscribe(next->{
             if(next) {
                 getViewModel().setState(LoginViewModel.STATE_LOGGEDIN);
                 UserBridge.loginViewModel(getViewModel(), mUserProvider.getUser());
