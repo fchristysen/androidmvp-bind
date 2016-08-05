@@ -81,19 +81,16 @@ public class UserProvider extends BaseProvider {
                 Thread.sleep(new Random().nextInt(2000) + 1000);
             }catch (InterruptedException e){}
             if(next.loginResult == LOGIN_SUCCESS){
-                setLogin(true);
                 setLoginData(result.user);
-            }else if(next.loginResult == LOGIN_ERROR_NO_ACCOUNT){
-                setLogin(false);
-                clearLoginData();
+                setLogin(true);
             }
             return next;
         }).compose(CommonTransformer.doOnIOThread());
     }
 
     public void logout(){
-        setLogin(false);
         clearLoginData();
+        setLogin(false);
     }
 
     private void setLogin(Boolean login) {

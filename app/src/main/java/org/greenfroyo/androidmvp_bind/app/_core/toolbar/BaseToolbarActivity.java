@@ -1,16 +1,19 @@
 package org.greenfroyo.androidmvp_bind.app._core.toolbar;
 
+import android.app.Dialog;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
+import org.greenfroyo.androidmvp_bind.app._core.BaseDialog;
+import org.greenfroyo.androidmvp_bind.app.login.LoginDialog;
 import org.greenfroyo.androidmvp_bind.databinding.BaseToolbarActivityBinding;
 
 /**
@@ -47,6 +50,25 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
         super.onViewModelChanged(observable, i);
         if(i == BR.login){
             invalidateOptionsMenu();
+        }else if(i == BR.openLoginDialog){
+            LoginDialog dialog = new LoginDialog(this);
+            dialog.setDialogListener(new BaseDialog.DialogListener() {
+                @Override
+                public void onComplete(Dialog dialog) {
+                    Log.d("login", "complete");
+                }
+
+                @Override
+                public void onCancel(Dialog dialog) {
+                    Log.d("login", "cancel");
+                }
+
+                @Override
+                public void onDismiss(Dialog dialog) {
+                    Log.d("login", "dismiss");
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -72,7 +94,7 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
         }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_switch_locale))){
             getPresenter().switchLocale();
         }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_in))){
-            getPresenter().openLoginDialog(this);
+            getPresenter().openLoginDialog();
         }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_out))){
             getPresenter().signOut();
         }else{

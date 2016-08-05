@@ -1,15 +1,10 @@
 package org.greenfroyo.androidmvp_bind.app._core.toolbar;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.BaseDialog;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
-import org.greenfroyo.androidmvp_bind.app.common.DialogNavigator;
-import org.greenfroyo.androidmvp_bind.app.login.LoginDialog;
 import org.greenfroyo.androidmvp_bind.provider.manager.DeviceInfoManager;
 import org.greenfroyo.androidmvp_bind.provider.log.LogProvider;
 import org.greenfroyo.androidmvp_bind.provider.user.UserProvider;
@@ -73,25 +68,8 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel>
         mDeviceInfoManager.setLocale(new Locale(lang, locale.getCountry()));
     }
 
-    public void openLoginDialog(Activity activity){
-        BaseDialog dialog = DialogNavigator.gotoLoginDialog(activity);
-        dialog.setDialogListener(new BaseDialog.DialogListener() {
-            @Override
-            public void onComplete(Dialog dialog) {
-                Log.d("login", "complete");
-            }
-
-            @Override
-            public void onCancel(Dialog dialog) {
-                Log.d("login", "cancel");
-            }
-
-            @Override
-            public void onDismiss(Dialog dialog) {
-                Log.d("login", "dismiss");
-            }
-        });
-        dialog.show();
+    public void openLoginDialog(){
+        getViewModel().setOpenLoginDialog(true);
     }
 
     public void signOut(){
