@@ -17,6 +17,7 @@ import java.util.List;
 
 @Parcel
 public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
+
     @Transient
     private OnPropertyChangedCallback mOnPropertyChangedCallback;
     @Transient

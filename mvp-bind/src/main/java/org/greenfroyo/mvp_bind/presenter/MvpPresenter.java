@@ -31,4 +31,6 @@ public interface MvpPresenter<VM extends MvpViewModel> {
     interface OnDestroyListener{
         void onDestroy(String presenterId);
     }
+
+    VM getViewModel();
 }
