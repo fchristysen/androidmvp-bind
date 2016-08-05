@@ -76,7 +76,7 @@
                 android:padding="@dimen/space_medium"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:visibility="@{viewModel.state==viewModel.STATE_LOGGEDIN?View.VISIBLE:View.GONE}">
+                android:visibility="@{viewModel.state==viewModel.STATE_LOGGEDIN?View.VISIBLE:View.GONE}" >
                 <ImageView
                     android:id="@+id/iv_avatar"
                     android:layout_width="@dimen/avatar_large"

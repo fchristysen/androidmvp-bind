@@ -7,6 +7,7 @@ import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
 import org.greenfroyo.mvp_bind.model.MvpViewModel;
 
 import icepick.Icepick;
+import rx.subscriptions.CompositeSubscription;
 
 
 /**
@@ -18,6 +19,8 @@ import icepick.Icepick;
  */
 public abstract class BasePresenter<VM extends MvpViewModel> extends BaseMvpPresenter<VM> {
 
+    protected CompositeSubscription mSubscription = new CompositeSubscription();
+
     @Override
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
@@ -28,5 +31,11 @@ public abstract class BasePresenter<VM extends MvpViewModel> extends BaseMvpPres
     public void onSaveInstanceState(Bundle outPresenterState) {
         super.onSaveInstanceState(outPresenterState);
         Icepick.saveInstanceState(this, outPresenterState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSubscription.unsubscribe();
     }
 }

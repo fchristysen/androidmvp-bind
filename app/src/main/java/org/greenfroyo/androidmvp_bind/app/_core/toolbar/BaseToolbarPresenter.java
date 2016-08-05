@@ -25,7 +25,8 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel>
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
         mUserProvider = new UserProvider();
-        mUserProvider.isLoginState().subscribe(next -> {
+        getViewModel().setLogin(mUserProvider.isLogin());
+        mUserProvider.isLoginStream().subscribe(next -> {
             getViewModel().setLogin(next);
         });
         mLogProvider = new LogProvider();

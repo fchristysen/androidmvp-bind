@@ -1,6 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import com.android.databinding.library.baseAdapters.BR;
 import com.f2prateek.dart.Dart;
 
+import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
+import org.greenfroyo.mvp_bind.model.MvpViewModel;
 import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;

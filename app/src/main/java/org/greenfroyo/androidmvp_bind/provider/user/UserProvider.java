@@ -35,15 +35,20 @@ public class UserProvider extends BaseProvider {
     }
 
     //region accessor
-    public Observable<Boolean> isLoginState(){
-        return Observable.just(isLogin()).concatWith(Observable.create(subscriber -> {
+    public Observable<Boolean> isLoginStream(){
+        return Observable.create(subscriber -> {
             LocalBroadcastBus.get().register(PREF_LOGIN, new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    subscriber.onNext(isLogin());
+                    Bundle bundle = intent.getBundleExtra(LocalBroadcastBus.INTENT_BUNDLE);
+                    subscriber.onNext(bundle.getBoolean(PREF_LOGIN_IS_LOGIN));
                 }
             });
-        }));
+        });
+    }
+
+    public Observable<Boolean> isLoginState(){
+        return Observable.just(isLogin()).concatWith(isLoginStream());
     }
 
     public Boolean isLogin() {
@@ -54,7 +59,7 @@ public class UserProvider extends BaseProvider {
     }
 
     public UserLoginDataModel.UserDataModel getUser(){
-        if(mUser==null && isLogin()){
+        if(mUser==null){
             mUser = new UserLoginDataModel.UserDataModel();
             mUser.fullname = getPreferenceDriver().getString(PREF_LOGIN, PREF_LOGIN_FULLNAME, "");
             mUser.username = getPreferenceDriver().getString(PREF_LOGIN, PREF_LOGIN_USERNAME, "");
