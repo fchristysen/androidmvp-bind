@@ -3,6 +3,7 @@ package org.greenfroyo.mvp_bind.base;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.greenfroyo.mvp_bind.model.MvpViewModel;
 import org.greenfroyo.mvp_bind.presenter.Presenter;
 import org.parceler.ParcelerRuntimeException;
 import org.parceler.Parcels;
@@ -10,13 +11,13 @@ import org.parceler.Parcels;
 /**
  * Created by fchristysen on 7/17/16.
  */
-public abstract class BaseMvpPresenter<VM extends BaseMvpViewModel> extends Presenter<VM> {
+public abstract class BaseMvpPresenter<VM extends MvpViewModel> extends Presenter<VM> {
     private VM mViewModel;
 
     @Override
     public final void create(Bundle savedPresenterState) {
         super.create(savedPresenterState);
-        getViewModel().attachOnPropertyChangeCallback();
+        getViewModel().onAttached();
     }
 
     @Override
@@ -46,6 +47,6 @@ public abstract class BaseMvpPresenter<VM extends BaseMvpViewModel> extends Pres
     @Override
     public final void destroy() {
         super.destroy();
-        getViewModel().detachOnPropertyChangeCallback();
+        getViewModel().onDetached();
     }
 }

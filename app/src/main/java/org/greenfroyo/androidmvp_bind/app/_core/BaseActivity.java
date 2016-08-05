@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.databinding.library.baseAdapters.BR;
 import com.f2prateek.dart.Dart;
 
+import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
 import org.greenfroyo.mvp_bind.view.MvpView;
@@ -22,7 +23,7 @@ import org.greenfroyo.mvp_bind.view.MvpView;
 /**
  * Created by fchristysen on 1/21/16.
  */
-public abstract class BaseActivity<P extends BasePresenter<VM>, VM extends BaseViewModel>
+public abstract class BaseActivity<P extends MvpPresenter<VM>, VM extends BaseViewModel>
         extends AppCompatActivity
         implements MvpView<P, VM>, PresenterFactory<P> {
 

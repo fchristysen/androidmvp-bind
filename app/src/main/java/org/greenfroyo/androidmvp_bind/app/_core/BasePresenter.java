@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import org.greenfroyo.mvp_bind.base.BaseMvpPresenter;
 import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
+import org.greenfroyo.mvp_bind.model.MvpViewModel;
 
 import icepick.Icepick;
 
@@ -15,7 +16,7 @@ import icepick.Icepick;
  * > Subclass doesn't have to manually save and restore instance state
  * just add @State annotation before variable declaration
  */
-public abstract class BasePresenter<VM extends BaseMvpViewModel> extends BaseMvpPresenter<VM> {
+public abstract class BasePresenter<VM extends MvpViewModel> extends BaseMvpPresenter<VM> {
 
     @Override
     public void onCreate(Bundle presenterState) {

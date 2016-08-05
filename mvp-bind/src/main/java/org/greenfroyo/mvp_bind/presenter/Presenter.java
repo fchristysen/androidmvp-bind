@@ -46,6 +46,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
         onViewAttached();
     }
 
+    @Override
     public final VM getViewModel() {
         return mViewModel;
     }

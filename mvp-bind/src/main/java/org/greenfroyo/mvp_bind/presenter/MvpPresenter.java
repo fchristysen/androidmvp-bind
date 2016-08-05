@@ -18,6 +18,8 @@ public interface MvpPresenter<VM extends MvpViewModel> {
 
     MvpView getView();
 
+    VM getViewModel();
+
     void create(Bundle savedPresenterState);
 
     void saveInstanceState(Bundle outPresenterState);
@@ -31,6 +33,4 @@ public interface MvpPresenter<VM extends MvpViewModel> {
     interface OnDestroyListener{
         void onDestroy(String presenterId);
     }
-
-    VM getViewModel();
 }

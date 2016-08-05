@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
 
+import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
 import org.greenfroyo.mvp_bind.view.MvpView;
@@ -23,7 +24,7 @@ import org.greenfroyo.mvp_bind.view.MvpView;
  * Created by fchristysen on 6/30/16.
  */
 
-public abstract class BaseFragment<P extends BasePresenter<VM>, VM extends BaseViewModel>
+public abstract class BaseFragment<P extends MvpPresenter<VM>, VM extends BaseViewModel>
         extends Fragment
         implements MvpView<P, VM>, PresenterFactory<P> {
 

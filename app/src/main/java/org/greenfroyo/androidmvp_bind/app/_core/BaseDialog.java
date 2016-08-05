@@ -6,13 +6,11 @@ import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
 
+import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
 import org.greenfroyo.mvp_bind.view.MvpView;
@@ -21,7 +19,7 @@ import org.greenfroyo.mvp_bind.view.MvpView;
  * Created by fchristysen on 7/26/16.
  */
 
-public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseViewModel>
+public abstract class BaseDialog<P extends MvpPresenter<VM>, VM extends BaseViewModel>
         extends Dialog
         implements MvpView<P, VM>, PresenterFactory<P> {
 
@@ -101,7 +99,7 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
         return viewDataBinding;
     }
 
-    protected void onViewModelChanged(Observable observable, int i){
+    protected void onViewModelChanged(Observable observable, int i) {
         if (i == BR.toastMessage) {
             if (getViewModel().needToShowToast()) {
                 Toast.makeText(getOwnerActivity(), getViewModel().getToastMessage(), Toast.LENGTH_SHORT).show();
@@ -116,14 +114,14 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
     @Override
     public void dismiss() {
         super.dismiss();
-        if(mDialogListener!=null){
+        if (mDialogListener != null) {
             mDialogListener.onDismiss(this);
         }
     }
 
     public void complete() {
         this.dismiss();
-        if(mDialogListener!=null){
+        if (mDialogListener != null) {
             mDialogListener.onComplete(this);
         }
     }
@@ -131,14 +129,16 @@ public abstract class BaseDialog<P extends BasePresenter<VM>, VM extends BaseVie
     public void cancel() {
         super.cancel();
         //mDialogListener.onDismiss(this);  //dismiss is already called from super.cancel();
-        if(mDialogListener!=null){
+        if (mDialogListener != null) {
             mDialogListener.onCancel(this);
         }
     }
 
-    public interface DialogListener{
+    public interface DialogListener {
         void onComplete(Dialog dialog);
+
         void onCancel(Dialog dialog);
+
         void onDismiss(Dialog dialog);
     }
 }

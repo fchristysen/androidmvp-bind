@@ -40,7 +40,7 @@ public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
      * There's no need to call this method manually, as it is called through BasePresenter
      * see @addOnPropertyChangeCallback
      */
-    protected final void attachOnPropertyChangeCallback() {
+    public final void onAttached() {
         super.addOnPropertyChangedCallback(mOnPropertyChangedCallback);
     }
 
@@ -48,7 +48,7 @@ public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
      * This methods is used to un-subscribes the main callbacks from the BaseObservable
      * There's no need to call this method manually, as it is called through BasePresenter
      */
-    protected final void detachOnPropertyChangeCallback() {
+    public final void onDetached() {
         super.removeOnPropertyChangedCallback(mOnPropertyChangedCallback);
     }
 
