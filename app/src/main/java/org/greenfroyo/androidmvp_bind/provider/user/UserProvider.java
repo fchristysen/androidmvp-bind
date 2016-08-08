@@ -28,10 +28,19 @@ public class UserProvider extends BaseProvider {
     public static final int LOGIN_SUCCESS = 0;
     public static final int LOGIN_ERROR_NO_ACCOUNT = 1;
 
+    private static UserProvider mInstances;
+
     private Boolean isLogin;
     private UserLoginDataModel.UserDataModel mUser;
 
-    public UserProvider() {
+    private UserProvider() {
+    }
+
+    public static UserProvider get(){
+        if(mInstances == null){
+            mInstances = new UserProvider();
+        }
+        return mInstances;
     }
 
     //region accessor

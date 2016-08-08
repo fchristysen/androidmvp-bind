@@ -12,7 +12,7 @@ import org.parceler.Parcel;
 
 @Parcel
 public class IntentParamBackViewModel extends BaseToolbarViewModel {
-    private int mValue;
+    protected int mValue;
 
     @Bindable
     public int getValue() {

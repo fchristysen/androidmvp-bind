@@ -1,9 +1,11 @@
 package org.greenfroyo.androidmvp_bind.app._core.toolbar;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
+import org.greenfroyo.androidmvp_bind.app.login.LoginDialog;
 import org.greenfroyo.androidmvp_bind.provider.manager.DeviceInfoManager;
 import org.greenfroyo.androidmvp_bind.provider.log.LogProvider;
 import org.greenfroyo.androidmvp_bind.provider.user.UserProvider;
@@ -24,7 +26,7 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel>
     @Override
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
-        mUserProvider = new UserProvider();
+        mUserProvider = UserProvider.get();
         getViewModel().setLogin(mUserProvider.isLogin());
         mUserProvider.isLoginStream().subscribe(next -> {
             getViewModel().setLogin(next);

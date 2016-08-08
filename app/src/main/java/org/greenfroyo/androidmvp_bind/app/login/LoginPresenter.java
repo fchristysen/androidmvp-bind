@@ -27,7 +27,7 @@ public class LoginPresenter extends BaseToolbarPresenter<LoginViewModel> {
     @Override
     public void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
-        mUserProvider = new UserProvider();
+        mUserProvider = UserProvider.get();
         if(mUserProvider.isLogin()) {
             getViewModel().setState(LoginViewModel.STATE_LOGGEDIN);
             UserBridge.loginViewModel(getViewModel(), mUserProvider.getUser());
