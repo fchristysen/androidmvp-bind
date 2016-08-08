@@ -34,7 +34,7 @@ public abstract class BaseMvpPresenter<VM extends MvpViewModel> extends Presente
     }
 
     @Override
-    public final void saveInstanceState(Bundle outPresenterState) {
+    public final void onSaveInstanceState(Bundle outPresenterState) {
         try {
             outPresenterState.putParcelable(KEY_VIEW_MODEL, Parcels.wrap(getViewModel()));
         } catch (ParcelerRuntimeException e) {
