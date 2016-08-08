@@ -50,7 +50,6 @@ public abstract class BaseActivity<P extends MvpPresenter<VM>, VM extends BaseVi
         Dart.inject(this);
 
         mBinding = onInitView(getPresenter().getViewModel());
-        onInitListener();
     }
 
     /**
@@ -59,13 +58,6 @@ public abstract class BaseActivity<P extends MvpPresenter<VM>, VM extends BaseVi
      * @param viewModel the object to be bind into binding class
      */
     protected abstract ViewDataBinding onInitView(VM viewModel);
-
-    /**
-     * Set listener for your view here
-     */
-    protected void onInitListener() {
-
-    }
 
     public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
         return new Observable.OnPropertyChangedCallback() {

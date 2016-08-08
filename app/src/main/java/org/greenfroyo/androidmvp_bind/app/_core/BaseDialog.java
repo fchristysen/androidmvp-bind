@@ -44,7 +44,6 @@ public abstract class BaseDialog<P extends MvpPresenter<VM>, VM extends BaseView
         mPropertyChangedCallback = getPropertyChangedCallback();
 
         mBinding = onInitView(getPresenter().getViewModel());
-        onInitListener();
     }
 
     /**
@@ -53,13 +52,6 @@ public abstract class BaseDialog<P extends MvpPresenter<VM>, VM extends BaseView
      * @param viewModel the object to be bind into binding class
      */
     protected abstract ViewDataBinding onInitView(VM viewModel);
-
-    /**
-     * Set listener for your view here
-     */
-    protected void onInitListener() {
-
-    }
 
     public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
         return new Observable.OnPropertyChangedCallback() {
