@@ -65,7 +65,7 @@ public abstract class BaseDialog<P extends MvpPresenter<VM>, VM extends BaseView
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        mPresenterManager.onAttachedView(this);
+        mPresenterManager.onAttachedView();
         getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 

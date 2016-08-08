@@ -50,7 +50,7 @@ public abstract class MVPLinearLayout<P extends BasePresenter<VM>, VM extends Ba
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        mPresenterManager.onAttachedView(this);
+        mPresenterManager.onAttachedView();
         onBindView(getPresenter().getViewModel());
     }
 

@@ -12,11 +12,9 @@ public interface MvpPresenter<VM extends MvpViewModel> {
 
     String getID();
 
-    void attachView(MvpView view);
+    void attachView();
 
     void detachView();
-
-    MvpView getView();
 
     VM getViewModel();
 

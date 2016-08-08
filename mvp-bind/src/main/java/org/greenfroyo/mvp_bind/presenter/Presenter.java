@@ -18,7 +18,6 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     private final String TAG;
     private final String ID;
     private VM mViewModel;
-    private WeakReference<MvpView> mView;
     private ArrayList<MvpPresenter.OnDestroyListener> mListeners;
 
     public Presenter(){
@@ -41,8 +40,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     @Override
-    public void attachView(MvpView view){
-        this.mView = new WeakReference<>(view);
+    public void attachView(){
         onViewAttached();
     }
 
@@ -58,18 +56,7 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
 
     @Override
     public void detachView(){
-        onDetachView();
-        this.mView = null;
-
         onViewDetached();
-    }
-
-    @Override
-    public final MvpView getView(){
-        if(mView == null)
-            return null;
-        else
-            return mView.get();
     }
 
     @Override

@@ -93,7 +93,7 @@ public abstract class BaseActivity<P extends MvpPresenter<VM>, VM extends BaseVi
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenterManager.onAttachedView(this);
+        mPresenterManager.onAttachedView();
         getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 

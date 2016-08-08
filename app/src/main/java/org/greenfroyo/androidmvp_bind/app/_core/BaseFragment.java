@@ -97,7 +97,7 @@ public abstract class BaseFragment<P extends MvpPresenter<VM>, VM extends BaseVi
     @Override
     public void onResume() {
         super.onResume();
-        mPresenterManager.onAttachedView(this);
+        mPresenterManager.onAttachedView();
         getViewModel().addOnPropertyChangedCallback(mPropertyChangedCallback);
     }
 
