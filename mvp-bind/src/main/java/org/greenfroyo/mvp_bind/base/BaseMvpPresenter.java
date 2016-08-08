@@ -41,7 +41,7 @@ public abstract class BaseMvpPresenter<VM extends MvpViewModel> extends Presente
             Log.e("ParcelerRuntimeError", this.getClass() + " can not parcel the view model please check if it has @Parcel annotation.");
             Log.w("ParcelerRuntimeError", e.getMessage());
         }
-        super.saveInstanceState(outPresenterState);
+        super.onSaveInstanceState(outPresenterState);
     }
 
     @Override
