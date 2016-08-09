@@ -60,6 +60,10 @@ public class HomePresenter extends BaseErrorPresenter<HomeViewModel> {
         }
     }
 
+    /**
+     * This method doesn't represents the right flow to open page
+     * It is done this way merely to provide navigation dynamically
+     */
     public void openPage(Context context, Class pageClass) {
         Intent intent = new Intent(context, pageClass);
         context.startActivity(intent);
