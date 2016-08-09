@@ -1,10 +1,13 @@
 package org.greenfroyo.androidmvp_bind.app._core.toolbar;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +16,7 @@ import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
 import org.greenfroyo.androidmvp_bind.app._core.BaseDialog;
+import org.greenfroyo.androidmvp_bind.app._core.BaseDialogFragment;
 import org.greenfroyo.androidmvp_bind.app.login.LoginDialog;
 import org.greenfroyo.androidmvp_bind.databinding.BaseToolbarActivityBinding;
 
@@ -20,7 +24,9 @@ import org.greenfroyo.androidmvp_bind.databinding.BaseToolbarActivityBinding;
  * Created by fchristysen on 7/20/16.
  */
 
-public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM extends BaseToolbarViewModel> extends BaseActivity<P, VM> {
+public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM extends BaseToolbarViewModel>
+        extends BaseActivity<P, VM>
+        implements BaseDialogFragment.DialogFragmentListener{
 
     private BaseToolbarActivityBinding mToolbarBinding;
 
@@ -51,25 +57,14 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
         if(i == BR.login){
             invalidateOptionsMenu();
         }else if(i == BR.openLoginDialog){
-            LoginDialog dialog = new LoginDialog(this);
-            dialog.setDialogListener(new BaseDialog.DialogListener() {
-                @Override
-                public void onComplete(Dialog dialog) {
-                    Log.d("login", "complete");
-                }
-
-                @Override
-                public void onCancel(Dialog dialog) {
-                    Log.d("login", "cancel");
-                }
-
-                @Override
-                public void onDismiss(Dialog dialog) {
-                    Log.d("login", "dismiss");
-                }
-            });
-            dialog.show();
+            LoginDialog dialog = new LoginDialog();
+            dialog.setTargetActivity(45);
+            dialog.show(getSupportFragmentManager(), "");
         }
+    }
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle bundle) {
     }
 
     @Override
