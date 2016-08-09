@@ -1,13 +1,10 @@
 package org.greenfroyo.androidmvp_bind.app._core.toolbar;
 
 import android.databinding.Bindable;
-import android.databinding.ObservableField;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.parceler.Parcel;
-
-import rx.Observable;
 
 /**
  * Created by fchristysen on 7/20/16.

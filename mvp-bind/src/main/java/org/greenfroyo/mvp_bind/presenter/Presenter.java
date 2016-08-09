@@ -116,13 +116,6 @@ public abstract class Presenter<VM extends MvpViewModel> implements MvpPresenter
     }
 
     /**
-     * Called before view is detached to this presenter
-     */
-    protected void onDetachView(){
-        AppUtil.log(TAG + " : " + "onDetachedView");
-    }
-
-    /**
      * Called after view is detached to this presenter
      */
     protected void onViewDetached(){

@@ -2,7 +2,6 @@ package org.greenfroyo.androidmvp_bind.app._core.error;
 
 import android.os.Bundle;
 
-import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 
 /**
@@ -21,7 +20,7 @@ public abstract class BaseErrorPresenter<VM extends BaseErrorViewModel> extends 
         getViewModel().showError();
     }
 
-    public void hideError(){
+    public void hideError() {
         getViewModel().hideError();
     }
 }

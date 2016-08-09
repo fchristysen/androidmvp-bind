@@ -1,21 +1,15 @@
 package org.greenfroyo.androidmvp_bind.app._core.toolbar;
 
-import android.app.Dialog;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
-import org.greenfroyo.androidmvp_bind.app._core.BaseDialog;
 import org.greenfroyo.androidmvp_bind.app._core.BaseDialogFragment;
 import org.greenfroyo.androidmvp_bind.app.login.LoginDialog;
 import org.greenfroyo.androidmvp_bind.databinding.BaseToolbarActivityBinding;
@@ -26,7 +20,7 @@ import org.greenfroyo.androidmvp_bind.databinding.BaseToolbarActivityBinding;
 
 public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM extends BaseToolbarViewModel>
         extends BaseActivity<P, VM>
-        implements BaseDialogFragment.DialogFragmentListener{
+        implements BaseDialogFragment.DialogFragmentListener {
 
     private BaseToolbarActivityBinding mToolbarBinding;
 
@@ -54,9 +48,9 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
     @Override
     protected void onViewModelChanged(Observable observable, int i) {
         super.onViewModelChanged(observable, i);
-        if(i == BR.login){
+        if (i == BR.login) {
             invalidateOptionsMenu();
-        }else if(i == BR.openLoginDialog){
+        } else if (i == BR.openLoginDialog) {
             LoginDialog dialog = new LoginDialog();
             dialog.setTargetActivity(45);
             dialog.show(getSupportFragmentManager(), "");
@@ -72,9 +66,9 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
         menu.add(R.string.menu_show_activity_count);
         menu.add(R.string.menu_restart_activity_count);
         menu.add(R.string.menu_switch_locale);
-        if(getViewModel().isLogin()) {
+        if (getViewModel().isLogin()) {
             menu.add(R.string.menu_sign_out);
-        }else{
+        } else {
             menu.add(R.string.menu_sign_in);
         }
         return super.onCreateOptionsMenu(menu);
@@ -82,17 +76,17 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getTitle().toString().equals(getContext().getString(R.string.menu_show_activity_count))){
+        if (item.getTitle().toString().equals(getContext().getString(R.string.menu_show_activity_count))) {
             getPresenter().showActivityCount();
-        }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_restart_activity_count))){
+        } else if (item.getTitle().toString().equals(getContext().getString(R.string.menu_restart_activity_count))) {
             getPresenter().resetActivityCount();
-        }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_switch_locale))){
+        } else if (item.getTitle().toString().equals(getContext().getString(R.string.menu_switch_locale))) {
             getPresenter().switchLocale();
-        }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_in))){
+        } else if (item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_in))) {
             getPresenter().openLoginDialog();
-        }else if(item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_out))){
+        } else if (item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_out))) {
             getPresenter().signOut();
-        }else{
+        } else {
             return super.onOptionsItemSelected(item);
         }
         return true;
