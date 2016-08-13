@@ -79,7 +79,7 @@ public class HomeActivity extends BaseErrorActivity<HomePresenter, HomeViewModel
         getPresenter().refreshList();
     }
 
-    public static class HomeAdapter extends BindAdapter<HomeItemViewModel, HomeListItemBinding> {
+    public static class HomeAdapter extends BindAdapter<HomeItemViewModel> {
 
         public HomeAdapter(Context context) {
             super(context);
