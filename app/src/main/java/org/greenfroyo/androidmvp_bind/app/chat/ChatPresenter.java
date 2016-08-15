@@ -1,5 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app.chat;
 
+import com.android.databinding.library.baseAdapters.BR;
+
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 
 import java.util.Calendar;
@@ -12,7 +14,20 @@ public class ChatPresenter extends BaseToolbarPresenter<ChatViewModel> {
 
     @Override
     public ChatViewModel onCreateViewModel() {
-        return new ChatViewModel();
+        ChatViewModel model = new ChatViewModel();
+        ChatItemViewModel item = new ChatItemViewModel();
+        item.isMine = true;
+        item.mUsername = "Me";
+        item.mText = "Hello John";
+        item.mTime = Calendar.getInstance().getTimeInMillis();
+        model.addChat(item);
+        item = new ChatItemViewModel();
+        item.isMine = false;
+        item.mUsername = "John";
+        item.mText = "Hi!!! How are you?";
+        item.mTime = Calendar.getInstance().getTimeInMillis();
+        model.addChat(item);
+        return model;
     }
 
     public void sendChat(String text){
