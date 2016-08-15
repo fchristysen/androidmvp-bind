@@ -14,8 +14,6 @@
 
     <string name="common_unknown_error">There is an unknown problem</string>
 
-    <string name="menu_show_activity_count">Show Activity Count</string>
-    <string name="menu_restart_activity_count">Restart Activity Count</string>
     <string name="menu_switch_locale">Switch Locale</string>
     <string name="menu_sign_out">Sign Out</string>
     <string name="menu_sign_in">Sign In</string>

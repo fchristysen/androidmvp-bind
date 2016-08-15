@@ -27,13 +27,11 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getPresenter().increaseActivityCount();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getPresenter().decreaseActivityCount();
     }
 
     public <T extends ViewDataBinding> T setBindView(int layoutId) {
@@ -63,8 +61,6 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(R.string.menu_show_activity_count);
-        menu.add(R.string.menu_restart_activity_count);
         menu.add(R.string.menu_switch_locale);
         if (getViewModel().isLogin()) {
             menu.add(R.string.menu_sign_out);
@@ -76,11 +72,7 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getTitle().toString().equals(getContext().getString(R.string.menu_show_activity_count))) {
-            getPresenter().showActivityCount();
-        } else if (item.getTitle().toString().equals(getContext().getString(R.string.menu_restart_activity_count))) {
-            getPresenter().resetActivityCount();
-        } else if (item.getTitle().toString().equals(getContext().getString(R.string.menu_switch_locale))) {
+        if (item.getTitle().toString().equals(getContext().getString(R.string.menu_switch_locale))) {
             getPresenter().switchLocale();
         } else if (item.getTitle().toString().equals(getContext().getString(R.string.menu_sign_in))) {
             getPresenter().openLoginDialog();
