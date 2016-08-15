@@ -24,16 +24,6 @@ public abstract class BaseToolbarActivity<P extends BaseToolbarPresenter<VM>, VM
 
     private BaseToolbarActivityBinding mToolbarBinding;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
     public <T extends ViewDataBinding> T setBindView(int layoutId) {
         mToolbarBinding = super.setBindView(R.layout.base_toolbar_activity);
         mToolbarBinding.setViewModel(getViewModel());

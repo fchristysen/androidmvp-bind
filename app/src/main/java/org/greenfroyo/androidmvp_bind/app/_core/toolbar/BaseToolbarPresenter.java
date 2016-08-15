@@ -20,7 +20,7 @@ public abstract class BaseToolbarPresenter<VM extends BaseToolbarViewModel>
     private DeviceInfoManager mDeviceInfoManager;
 
     @Override
-    public void onCreate(Bundle presenterState) {
+    protected void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
         mUserProvider = UserProvider.get();
         getViewModel().setLogin(mUserProvider.isLogin());

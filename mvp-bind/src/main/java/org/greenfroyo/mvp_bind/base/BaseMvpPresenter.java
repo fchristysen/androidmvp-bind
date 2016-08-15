@@ -15,7 +15,7 @@ public abstract class BaseMvpPresenter<VM extends MvpViewModel> extends Presente
     private VM mViewModel;
 
     @Override
-    public final void create(Bundle savedPresenterState) {
+    protected final void create(Bundle savedPresenterState) {
         super.create(savedPresenterState);
         getViewModel().onAttached();
     }
@@ -45,7 +45,7 @@ public abstract class BaseMvpPresenter<VM extends MvpViewModel> extends Presente
     }
 
     @Override
-    public final void destroy() {
+    protected final void destroy() {
         super.destroy();
         getViewModel().onDetached();
     }

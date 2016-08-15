@@ -8,25 +8,25 @@ import org.greenfroyo.mvp_bind.view.MvpView;
 /**
  * Created by fchristysen on 5/20/16.
  */
-public interface MvpPresenter<VM extends MvpViewModel> {
+public abstract class MvpPresenter<VM extends MvpViewModel> {
 
-    String getID();
+    public abstract String getID();
 
-    void attachView();
+    protected abstract void attachView();
 
-    void detachView();
+    protected abstract void detachView();
 
-    VM getViewModel();
+    public abstract VM getViewModel();
 
-    void create(Bundle savedPresenterState);
+    protected abstract void create(Bundle savedPresenterState);
 
-    void saveInstanceState(Bundle outPresenterState);
+    protected abstract void saveInstanceState(Bundle outPresenterState);
 
-    void destroy();
+    protected abstract void destroy();
 
-    void addOnDestroyListener(OnDestroyListener listener);
+    protected abstract void addOnDestroyListener(OnDestroyListener listener);
 
-    boolean removeOnDestroyListener(OnDestroyListener listener);
+    protected abstract boolean removeOnDestroyListener(OnDestroyListener listener);
 
     interface OnDestroyListener{
         void onDestroy(String presenterId);

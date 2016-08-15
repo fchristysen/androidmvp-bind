@@ -11,7 +11,7 @@ import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 public abstract class BaseErrorPresenter<VM extends BaseErrorViewModel> extends BaseToolbarPresenter<VM> {
 
     @Override
-    public void onCreate(Bundle presenterState) {
+    protected void onCreate(Bundle presenterState) {
         super.onCreate(presenterState);
     }
 
