@@ -35,6 +35,8 @@
         <activity android:name=".app.login.LoginActivity">
         </activity>
         <activity android:name=".app.multitab.MultiTabActivity"/>
+
+        <activity android:name=".app.chat.ChatActivity"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package org.greenfroyo.androidmvp_bind.provider.home;
 
+import org.greenfroyo.androidmvp_bind.app.chat.ChatActivity;
 import org.greenfroyo.androidmvp_bind.provider.common.CommonTransformer;
 import org.greenfroyo.androidmvp_bind.app.compoundview.CompoundViewActivity;
 import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity;
@@ -22,6 +23,7 @@ public class HomeProvider extends BaseProvider {
             , CompoundViewActivity.class
             , LoginActivity.class
             , MultiTabActivity.class
+            , ChatActivity.class
     };
 
     public HomeProvider(){

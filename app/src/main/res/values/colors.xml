@@ -6,4 +6,8 @@
 
     <color name="textDark">#111111</color>
     <color name="textLight">#DDDDDD</color>
+
+    <color name="myChatBoxBackground">#BBEEBB</color>
+    <color name="chatBoxBackground">#FFFFFF</color>
+    <color name="chatBoxStroke">#DDDDDD</color>
 </resources>

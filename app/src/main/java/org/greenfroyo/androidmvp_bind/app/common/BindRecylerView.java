@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by fchristysen on 6/26/16.
  */
-public class BindRecylerView extends RecyclerView{
+public class BindRecylerView extends RecyclerView {
     private List mPendingItems;
 
     public BindRecylerView(Context context) {
@@ -29,16 +29,16 @@ public class BindRecylerView extends RecyclerView{
      * @param items
      */
     public void setBindItems(List items) {
-        if(getAdapter() != null) {
+        if (getAdapter() != null) {
             if (getAdapter() instanceof BindAdapter) {
                 BindAdapter adapter = (BindAdapter) getAdapter();
-                if(items.equals(adapter.getDataSet())){
+                if (items.equals(adapter.getDataSet())) {
                     adapter.notifyDataSetChanged();
-                }else{
+                } else {
                     adapter.setDataSet(items);
                 }
             }
-        }else{
+        } else {
             mPendingItems = items;
         }
     }
@@ -46,7 +46,7 @@ public class BindRecylerView extends RecyclerView{
     @Override
     public void setAdapter(Adapter adapter) {
         super.setAdapter(adapter);
-        if(mPendingItems != null){
+        if (mPendingItems != null) {
             if (getAdapter() instanceof BindAdapter) {
                 ((BindAdapter) getAdapter()).setDataSet(mPendingItems);
                 mPendingItems = null;

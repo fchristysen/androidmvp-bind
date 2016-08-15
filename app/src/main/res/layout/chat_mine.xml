@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="org.greenfroyo.androidmvp_bind.app.chat.ChatItemViewModel" />
+    </data>
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:padding="@dimen/space_medium"
-        android:background="@drawable/chat_box_background">
-        <TextView
-            android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="John Doe"/>
-        <TextView
-            android:id="@+id/tv_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginTop="@dimen/space_small"
-            tools:text="Hello World!"/>
+            android:layout_alignParentRight="true"
+            android:background="@drawable/my_chat_box_background"
+            android:padding="@dimen/space_medium">
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginTop="@dimen/space_small"
+                android:text="@{viewModel.text}"
+                tools:text="Hello World!"/>
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+</layout>
