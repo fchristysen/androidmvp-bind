@@ -36,9 +36,6 @@ public abstract class BaseActivity<P extends MvpPresenter<VM>, VM extends BaseVi
     private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
 
     @Override
-    public abstract P createPresenter();
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
