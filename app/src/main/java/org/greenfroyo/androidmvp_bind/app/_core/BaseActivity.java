@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.databinding.library.baseAdapters.BR;
 import com.f2prateek.dart.Dart;
 
+import org.greenfroyo.androidmvp_bind.app._core.delegation.CoreFABDelegate;
 import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
 import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
 import org.greenfroyo.mvp_bind.presenter.PresenterManager;
@@ -40,7 +41,7 @@ public abstract class BaseActivity<P extends MvpPresenter<VM>, VM extends BaseVi
         super.onCreate(savedInstanceState);
         mPresenterManager.onRestoreInstanceState(savedInstanceState);
         mPropertyChangedCallback = getPropertyChangedCallback();
-
+//        CoreFABDelegate coreFABDelegate = new xxx
         Dart.inject(this);
 
         mBinding = onInitView(getPresenter().getViewModel());

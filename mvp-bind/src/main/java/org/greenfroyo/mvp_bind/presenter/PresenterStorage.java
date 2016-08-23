@@ -1,8 +1,9 @@
 package org.greenfroyo.mvp_bind.presenter;
 
+import android.support.annotation.Nullable;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.repacked.antlr.v4.runtime.misc.Nullable;
 
 import org.greenfroyo.mvp_bind.util.AppUtil;
 
