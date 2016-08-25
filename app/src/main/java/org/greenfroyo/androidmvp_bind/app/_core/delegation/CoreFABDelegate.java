@@ -36,7 +36,7 @@ public class CoreFABDelegate<T extends CoreDelegateDependency> extends CoreActiv
      * @return
      */
     public static <T extends CoreDelegateDependency>  CoreFABDelegate createAnchorAppBarFABImpl(T coreDelegateDependency){
-        return createFullImpl(coreDelegateDependency, R.id.core_app_bar, Gravity.BOTTOM | Gravity.END, -1, new ScrollAwareFABBehavior(coreDelegateDependency.getContext(), null));
+        return createFullImpl(coreDelegateDependency, R.id.core_app_bar, Gravity.BOTTOM | Gravity.END, -1, new ScrollAwareFABBehavior());
     }
 
     /**
@@ -70,7 +70,7 @@ public class CoreFABDelegate<T extends CoreDelegateDependency> extends CoreActiv
 
     public CoreFABDelegate(T coreDelegateDependency) {
         super(coreDelegateDependency);
-        ((AppCompatActivity)getContext()).getLayoutInflater().inflate(R.layout.layer_core_fab, getCoordinatorLayout(), true);
+        getLayoutInflater().inflate(R.layout.layer_core_fab, getCoordinatorLayout(), true);
         mFloatingActionButton = (FloatingActionButton) (getCoordinatorLayout().findViewById(R.id.core_fab));
     }
 

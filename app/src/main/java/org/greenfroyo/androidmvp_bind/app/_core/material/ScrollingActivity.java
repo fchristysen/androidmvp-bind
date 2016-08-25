@@ -1,7 +1,8 @@
 package org.greenfroyo.androidmvp_bind.app._core.material;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.behavior.ScrollAwareFABBehavior;
 import org.greenfroyo.androidmvp_bind.app._core.delegation.CoreDelegateDependency;
 import org.greenfroyo.androidmvp_bind.app._core.delegation.CoreFABDelegate;
-import org.greenfroyo.androidmvp_bind.app._core.delegation.ExtendedDelegateDependency;
+import org.greenfroyo.androidmvp_bind.app._core.delegation.CoreTabDelegate;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -23,7 +24,6 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -32,9 +32,9 @@ public class ScrollingActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-//        CoreFABDelegate coreFABDelegate = CoreFABDelegate.createFullImpl(this, getIntent(), -1, -1, Gravity.LEFT|Gravity.BOTTOM, null);
-        ExtendedDelegateDependency coreDelegateDependency = new ExtendedDelegateDependency(this);
+        CoreDelegateDependency coreDelegateDependency = new CoreDelegateDependency(getLayoutInflater(), (CoordinatorLayout) findViewById(R.id.core_coordinator_layout), (AppBarLayout) findViewById(R.id.core_app_bar));
         CoreFABDelegate coreFABDelegate = CoreFABDelegate.createDefaultFABImpl(coreDelegateDependency);
+        coreFABDelegate.setFABBehavior(new ScrollAwareFABBehavior());
         coreFABDelegate.setFABListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,16 +42,10 @@ public class ScrollingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDetail);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 4"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 5"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 6"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 7"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 8"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 9"));
+
+        CoreTabDelegate<CoreDelegateDependency> coreTabDelegate = new CoreTabDelegate<>(coreDelegateDependency);
+        coreTabDelegate.setScrollMode(TabLayout.MODE_SCROLLABLE);
+        coreTabDelegate.createDummyTab(5);
+
     }
 }

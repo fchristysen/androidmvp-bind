@@ -5,6 +5,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 
 import org.greenfroyo.androidmvp_bind.R;
 
@@ -37,7 +38,7 @@ public abstract class CoreActivityDelegate<T extends CoreDelegateDependency>{
         return mCoreDelegateDependency.getCoordinatorLayout();
     }
 
-    protected Context getContext(){
-        return mCoreDelegateDependency.getContext();
+    protected LayoutInflater getLayoutInflater(){
+        return mCoreDelegateDependency.getLayoutInflater();
     }
 }
