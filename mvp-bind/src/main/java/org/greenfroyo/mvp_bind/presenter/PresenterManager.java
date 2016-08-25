@@ -27,10 +27,10 @@ public class PresenterManager<P extends MvpPresenter> {
         }
     }
 
-    public void onAttachedView(MvpView view){
+    public void onAttachedView(){
         getPresenter();
         if (mPresenter != null)
-            mPresenter.attachView(view);
+            mPresenter.attachView();
     }
 
     public void onDetachedView(boolean isFinishing){
@@ -44,7 +44,6 @@ public class PresenterManager<P extends MvpPresenter> {
 
     public void destroyPresenter(){
         mPresenter.destroy();
-        mPresenter = null;
     }
 
     /**

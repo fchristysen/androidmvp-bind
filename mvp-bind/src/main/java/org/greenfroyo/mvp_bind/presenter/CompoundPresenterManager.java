@@ -27,10 +27,10 @@ public class CompoundPresenterManager<P extends MvpPresenter>{
     }
 
     /**
-     * @see PresenterManager#onAttachedView(MvpView)
+     * @see PresenterManager#onAttachedView()
      */
-    public void onAttachedView(MvpView view){
-        mPresenterManager.onAttachedView(view);
+    public void onAttachedView(){
+        mPresenterManager.onAttachedView();
     }
 
     /**

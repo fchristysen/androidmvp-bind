@@ -1,5 +1,7 @@
 package org.greenfroyo.mvp_bind.presenter;
 
+import android.support.annotation.Nullable;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
@@ -31,10 +33,10 @@ public class PresenterStorage {
         if(instance == null){
             instance = new PresenterStorage(MAX_ENTRY, EXPIRATION);
         }
-        AppUtil.log(TAG + " : Count" + instance.mPresenters.size());
         return instance;
     }
 
+    @Nullable
     public <P extends MvpPresenter<?>> P get(String presenterId){
         P presenter = null;
         try {
