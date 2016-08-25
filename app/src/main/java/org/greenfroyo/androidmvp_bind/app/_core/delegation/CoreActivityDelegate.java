@@ -1,11 +1,8 @@
 package org.greenfroyo.androidmvp_bind.app._core.delegation;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -14,16 +11,12 @@ import org.greenfroyo.androidmvp_bind.R;
 /**
  * Created by junius.ang on 8/23/2016.
  */
-public abstract class CoreActivityDelegate{
-    protected Context mContext;
-    private AppBarLayout mAppBarLayout;
-    private Toolbar mToolbar;
-    protected boolean isDelegateDisabled;
-    protected CoordinatorLayout mCoordinatorLayout;
+public abstract class CoreActivityDelegate<T extends CoreDelegateDependency>{
+    T mCoreDelegateDependency;
+
     //temporary solution for appbar dependency
-    public CoreActivityDelegate(Context mContext){
-        this.mContext = mContext;
-        findCoreView();
+    public CoreActivityDelegate(T mCoreDelegateDependency){
+        this.mCoreDelegateDependency = mCoreDelegateDependency;
     }
 
 //    public abstract void onCreate(Bundle savedInstanceState);
@@ -31,20 +24,20 @@ public abstract class CoreActivityDelegate{
 //    public abstract void onResume();
 //    public abstract void onStop();
 
-    protected void findCoreView(){
-        AppCompatActivity activity = (AppCompatActivity) mContext;
-        mCoordinatorLayout = (CoordinatorLayout) activity.findViewById(R.id.coordinator_layout);
-        mToolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+
+    public void setCoreDelegateDependency(T mCoreDelegateDependency) {
+        this.mCoreDelegateDependency = mCoreDelegateDependency;
     }
 
-    public Toolbar getToolbar(){
-        return mToolbar;
+    public T getCoreDelegateDependency(){
+        return mCoreDelegateDependency;
     }
 
-    protected final boolean checkDelegateStatus(){
-        if(isDelegateDisabled){
-            throw new IllegalStateException("This delegate is disabled because the selected screen style does not accomodate it, please choose another");
-        }
-        return true;
+    protected CoordinatorLayout getCoordinatorLayout(){
+        return mCoreDelegateDependency.getCoordinatorLayout();
+    }
+
+    protected Context getContext(){
+        return mCoreDelegateDependency.getContext();
     }
 }

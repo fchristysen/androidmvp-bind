@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:id="@+id/coordinator_layout"
+    android:id="@+id/core_coordinator_layout"
     tools:context="org.greenfroyo.androidmvp_bind.app._core.material.ScrollingActivity">
 
     <android.support.design.widget.AppBarLayout

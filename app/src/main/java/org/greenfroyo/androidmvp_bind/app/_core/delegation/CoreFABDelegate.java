@@ -16,14 +16,14 @@ import org.greenfroyo.androidmvp_bind.app._core.behavior.ScrollAwareFABBehavior;
  * Created by junius.ang on 8/23/2016.
  * must be used from V3 environment
  */
-public class CoreFABDelegate extends CoreActivityDelegate {
+public class CoreFABDelegate<T extends CoreDelegateDependency> extends CoreActivityDelegate<T> {
     /**
      * This builder will create default implementation of FAB in bottom end gravity
-     * @param context
+     * @param coreDelegateDependency
      * @return CoreFABDelegate
      */
-    public static CoreFABDelegate createDefaultFABImpl(Context context){
-        CoreFABDelegate coreFABDelegate = new CoreFABDelegate(context);
+    public static <T extends CoreDelegateDependency>  CoreFABDelegate createDefaultFABImpl(T coreDelegateDependency){
+        CoreFABDelegate coreFABDelegate = new CoreFABDelegate(coreDelegateDependency);
         CoordinatorLayout.LayoutParams p = ((CoordinatorLayout.LayoutParams)coreFABDelegate.getFAB().getLayoutParams());
         p.gravity = Gravity.BOTTOM | Gravity.END;
         coreFABDelegate.getFAB().setLayoutParams(p);
@@ -32,11 +32,11 @@ public class CoreFABDelegate extends CoreActivityDelegate {
 
     /**
      * will call createFullImpl but with predefined value as this builder intended so FAB can stick to the AppBar
-     * @param context
+     * @param coreDelegateDependency
      * @return
      */
-    public static CoreFABDelegate createAnchorAppBarFABImpl(Context context){
-        return createFullImpl(context, R.id.core_app_bar, Gravity.BOTTOM | Gravity.END, -1, new ScrollAwareFABBehavior(context, null));
+    public static <T extends CoreDelegateDependency>  CoreFABDelegate createAnchorAppBarFABImpl(T coreDelegateDependency){
+        return createFullImpl(coreDelegateDependency, R.id.core_app_bar, Gravity.BOTTOM | Gravity.END, -1, new ScrollAwareFABBehavior(coreDelegateDependency.getContext(), null));
     }
 
     /**
@@ -47,8 +47,8 @@ public class CoreFABDelegate extends CoreActivityDelegate {
      * @param behavior this will determine the behavior for FAB, currently only support ScrollAwareFAB behavior, set null to ignore
      * @return CoreFABDelegate
      */
-    public static CoreFABDelegate createFullImpl(Context context, @IdRes int anchorId, int anchorGravity, int gravity, FloatingActionButton.Behavior behavior){
-        CoreFABDelegate coreFABDelegate = new CoreFABDelegate(context);
+    public static <T extends CoreDelegateDependency> CoreFABDelegate createFullImpl(T coreDelegateDependency, @IdRes int anchorId, int anchorGravity, int gravity, FloatingActionButton.Behavior behavior){
+        CoreFABDelegate coreFABDelegate = new CoreFABDelegate(coreDelegateDependency);
         CoordinatorLayout.LayoutParams p = ((CoordinatorLayout.LayoutParams) coreFABDelegate.getFAB().getLayoutParams());
         if(anchorId != -1) {
             p.setAnchorId(anchorId);
@@ -68,10 +68,10 @@ public class CoreFABDelegate extends CoreActivityDelegate {
 
     protected FloatingActionButton mFloatingActionButton;
 
-    public CoreFABDelegate(Context mContext) {
-        super(mContext);
-        ((AppCompatActivity)mContext).getLayoutInflater().inflate(R.layout.layer_core_fab, mCoordinatorLayout, true);
-        mFloatingActionButton = (FloatingActionButton) (mCoordinatorLayout.findViewById(R.id.core_fab));
+    public CoreFABDelegate(T coreDelegateDependency) {
+        super(coreDelegateDependency);
+        ((AppCompatActivity)getContext()).getLayoutInflater().inflate(R.layout.layer_core_fab, getCoordinatorLayout(), true);
+        mFloatingActionButton = (FloatingActionButton) (getCoordinatorLayout().findViewById(R.id.core_fab));
     }
 
     /**
@@ -87,7 +87,7 @@ public class CoreFABDelegate extends CoreActivityDelegate {
      * @return
      */
     public FloatingActionButton getFAB(){
-        return checkDelegateStatus() ? mFloatingActionButton : null;
+        return mFloatingActionButton;
     }
 
     public void setFABListener(View.OnClickListener onClickListener){

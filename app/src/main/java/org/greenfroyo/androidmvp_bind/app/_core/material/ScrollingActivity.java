@@ -11,7 +11,9 @@ import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.behavior.ScrollAwareFABBehavior;
+import org.greenfroyo.androidmvp_bind.app._core.delegation.CoreDelegateDependency;
 import org.greenfroyo.androidmvp_bind.app._core.delegation.CoreFABDelegate;
+import org.greenfroyo.androidmvp_bind.app._core.delegation.ExtendedDelegateDependency;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -31,7 +33,8 @@ public class ScrollingActivity extends AppCompatActivity {
 //            }
 //        });
 //        CoreFABDelegate coreFABDelegate = CoreFABDelegate.createFullImpl(this, getIntent(), -1, -1, Gravity.LEFT|Gravity.BOTTOM, null);
-        CoreFABDelegate coreFABDelegate = CoreFABDelegate.createDefaultFABImpl(this);
+        ExtendedDelegateDependency coreDelegateDependency = new ExtendedDelegateDependency(this);
+        CoreFABDelegate coreFABDelegate = CoreFABDelegate.createDefaultFABImpl(coreDelegateDependency);
         coreFABDelegate.setFABListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
