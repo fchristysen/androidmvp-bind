@@ -6,6 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
 
@@ -40,5 +41,13 @@ public abstract class CoreActivityDelegate<T extends CoreDelegateDependency>{
 
     protected LayoutInflater getLayoutInflater(){
         return mCoreDelegateDependency.getLayoutInflater();
+    }
+
+    /**
+     * helper method for view inside AppBar layout only
+     * @return
+     */
+    protected AppBarLayout.LayoutParams getAppBarLayoutParam(View v){
+        return (AppBarLayout.LayoutParams)v.getLayoutParams();
     }
 }

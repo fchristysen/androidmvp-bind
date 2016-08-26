@@ -32,6 +32,7 @@ public class ScrollingActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
         CoreDelegateDependency coreDelegateDependency = new CoreDelegateDependency(getLayoutInflater(), (CoordinatorLayout) findViewById(R.id.core_coordinator_layout), (AppBarLayout) findViewById(R.id.core_app_bar));
         CoreFABDelegate coreFABDelegate = CoreFABDelegate.createDefaultFABImpl(coreDelegateDependency);
         coreFABDelegate.setFABBehavior(new ScrollAwareFABBehavior());
@@ -44,8 +45,8 @@ public class ScrollingActivity extends AppCompatActivity {
         });
 
         CoreTabDelegate<CoreDelegateDependency> coreTabDelegate = new CoreTabDelegate<>(coreDelegateDependency);
-        coreTabDelegate.setScrollMode(TabLayout.MODE_SCROLLABLE);
-        coreTabDelegate.createDummyTab(5);
-
+        coreTabDelegate.setScrollMode(TabLayout.MODE_FIXED);
+        coreTabDelegate.createDummyTab(2);
+        coreTabDelegate.setCustomViewToTab(R.layout.layer_tab_title, 0, -1);
     }
 }

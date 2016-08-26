@@ -22,7 +22,7 @@ public class CoreFABDelegate<T extends CoreDelegateDependency> extends CoreActiv
      * @param coreDelegateDependency
      * @return CoreFABDelegate
      */
-    public static <T extends CoreDelegateDependency>  CoreFABDelegate createDefaultFABImpl(T coreDelegateDependency){
+    public static <T extends CoreDelegateDependency> CoreFABDelegate createDefaultFABImpl(T coreDelegateDependency){
         CoreFABDelegate coreFABDelegate = new CoreFABDelegate(coreDelegateDependency);
         CoordinatorLayout.LayoutParams p = ((CoordinatorLayout.LayoutParams)coreFABDelegate.getFAB().getLayoutParams());
         p.gravity = Gravity.BOTTOM | Gravity.END;
@@ -33,10 +33,16 @@ public class CoreFABDelegate<T extends CoreDelegateDependency> extends CoreActiv
     /**
      * will call createFullImpl but with predefined value as this builder intended so FAB can stick to the AppBar
      * @param coreDelegateDependency
+     * @param anchorGravity set -1 to ignore, you can use something like Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL to put FAB in the botttom center of appbar
      * @return
      */
-    public static <T extends CoreDelegateDependency>  CoreFABDelegate createAnchorAppBarFABImpl(T coreDelegateDependency){
-        return createFullImpl(coreDelegateDependency, R.id.core_app_bar, Gravity.BOTTOM | Gravity.END, -1, new ScrollAwareFABBehavior());
+    public static <T extends CoreDelegateDependency>  CoreFABDelegate createAnchorAppBarFABImpl(T coreDelegateDependency, int anchorGravity){
+        if(anchorGravity == -1) {
+            return createFullImpl(coreDelegateDependency, R.id.core_app_bar, Gravity.BOTTOM | Gravity.END, -1, null);
+        }
+        else{
+            return createFullImpl(coreDelegateDependency, R.id.core_app_bar, anchorGravity, -1, null);
+        }
     }
 
     /**

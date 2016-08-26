@@ -14,4 +14,5 @@ public class CoreToolbarDelegate<T extends CoreDelegateDependency> extends CoreA
     public void addView(View v, int visibility){
 
     }
+
 }
