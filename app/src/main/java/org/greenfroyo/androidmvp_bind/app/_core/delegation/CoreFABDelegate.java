@@ -1,22 +1,18 @@
 package org.greenfroyo.androidmvp_bind.app._core.delegation;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app._core.behavior.ScrollAwareFABBehavior;
 
 /**
  * Created by junius.ang on 8/23/2016.
  * must be used from V3 environment
  */
-public class CoreFABDelegate<T extends CoreDelegateDependency> extends CoreActivityDelegate<T> {
+public class CoreFABDelegate<T extends CoreDelegateDependency> extends CoreDelegate<T> {
     /**
      * This builder will create default implementation of FAB in bottom end gravity
      * @param coreDelegateDependency

@@ -1,23 +1,18 @@
 package org.greenfroyo.androidmvp_bind.app._core.delegation;
 
-import android.content.Context;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import org.greenfroyo.androidmvp_bind.R;
 
 /**
  * Created by junius.ang on 8/23/2016.
  */
-public abstract class CoreActivityDelegate<T extends CoreDelegateDependency>{
+public abstract class CoreDelegate<T extends CoreDelegateDependency>{
     T mCoreDelegateDependency;
 
     //temporary solution for appbar dependency
-    public CoreActivityDelegate(T mCoreDelegateDependency){
+    public CoreDelegate(T mCoreDelegateDependency){
         this.mCoreDelegateDependency = mCoreDelegateDependency;
     }
 

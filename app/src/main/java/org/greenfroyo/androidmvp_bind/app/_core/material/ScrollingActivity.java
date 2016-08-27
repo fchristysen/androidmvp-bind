@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
@@ -44,7 +43,7 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
-        CoreTabDelegate<CoreDelegateDependency> coreTabDelegate = new CoreTabDelegate<>(coreDelegateDependency);
+        CoreTabDelegate<CoreDelegateDependency> coreTabDelegate = CoreTabDelegate.createDefaultImpl(coreDelegateDependency);
         coreTabDelegate.setScrollMode(TabLayout.MODE_FIXED);
         coreTabDelegate.createDummyTab(2);
         coreTabDelegate.setCustomViewToTab(R.layout.layer_tab_title, 0, -1);
