@@ -19,6 +19,11 @@ public class NumberPickerViewModel extends BaseViewModel {
         return mValue;
     }
 
+    public void setValue(int value) {
+        mValue = value;
+        notifyPropertyChanged(BR.value);
+    }
+
     public void substractValue() {
         mValue--;
         notifyPropertyChanged(BR.value);

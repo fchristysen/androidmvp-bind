@@ -6,14 +6,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import org.greenfroyo.androidmvp_bind.R;
+import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.BaseActivity;
 import org.greenfroyo.androidmvp_bind.app.multitab.lorem.LoremFragment;
 import org.greenfroyo.androidmvp_bind.databinding.MultitabActivityBinding;
 
 /**
  * Created by fchristysen on 6/30/16.
+ * this page demonstrate :
+ *      - view pager in mvpbind architecture
  */
 
 public class MultiTabActivity extends BaseActivity<MultiTabPresenter, MultiTabViewModel> {
@@ -34,7 +39,7 @@ public class MultiTabActivity extends BaseActivity<MultiTabPresenter, MultiTabVi
 
     @Override
     protected ViewDataBinding onInitView(MultiTabViewModel viewModel) {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.multitab_activity);
+        mBinding = setBindView(R.layout.multitab_activity);
         mBinding.setViewModel(viewModel);
         viewModel.setAdapter(new MultiTabAdapter(getSupportFragmentManager(), mPages));
         return mBinding;

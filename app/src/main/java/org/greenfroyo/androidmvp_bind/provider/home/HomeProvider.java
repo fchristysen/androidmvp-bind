@@ -1,8 +1,7 @@
 package org.greenfroyo.androidmvp_bind.provider.home;
 
-import android.content.Context;
-
-import org.greenfroyo.androidmvp_bind.app.common.CommonTransformer;
+import org.greenfroyo.androidmvp_bind.app.chat.ChatActivity;
+import org.greenfroyo.androidmvp_bind.provider.common.CommonTransformer;
 import org.greenfroyo.androidmvp_bind.app.compoundview.CompoundViewActivity;
 import org.greenfroyo.androidmvp_bind.app.intentparam.front.IntentParamFrontActivity;
 import org.greenfroyo.androidmvp_bind.app.login.LoginActivity;
@@ -24,20 +23,20 @@ public class HomeProvider extends BaseProvider {
             , CompoundViewActivity.class
             , LoginActivity.class
             , MultiTabActivity.class
+            , ChatActivity.class
     };
 
-    public HomeProvider(Context context){
-        super(context);
+    public HomeProvider(){
     }
 
     public Observable<MainMenuDataModel> getMenuItems(){
         return Observable.from(PAGES)
                 .map(next -> {
                     try{
-                        Thread.sleep(1000);
+                        Thread.sleep(3000/PAGES.length);
                     }catch (InterruptedException e){}
                     return new MainMenuDataModel(next);
                 })
-                .compose(CommonTransformer.toIOThread());
+                .compose(CommonTransformer.doOnIOThread());
     }
 }

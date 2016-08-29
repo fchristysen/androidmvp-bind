@@ -14,7 +14,7 @@ import java.util.List;
  * Created by fchristysen on 6/24/16.
  */
 
-public abstract class BindAdapter<T, B extends ViewDataBinding> extends RecyclerView.Adapter<BindAdapter.BindViewHolder<B>>{
+public abstract class BindAdapter<T, VH extends BindAdapter.BindViewHolder> extends RecyclerView.Adapter<VH>{
     private Context mContext;
     private List<T> mDataSet;
     private OnRecyclerItemClickListener<T> mListener;
@@ -58,7 +58,7 @@ public abstract class BindAdapter<T, B extends ViewDataBinding> extends Recycler
     }
 
     @Override
-    public void onBindViewHolder(BindAdapter.BindViewHolder<B> holder, int position) {
+    public void onBindViewHolder(VH holder, int position) {
         holder.getBinding().setVariable(BR.viewModel, mDataSet.get(position));
         holder.getBinding().executePendingBindings();
         if(mListener!=null){
@@ -70,12 +70,12 @@ public abstract class BindAdapter<T, B extends ViewDataBinding> extends Recycler
         }
     }
 
-    protected static class BindViewHolder<B extends ViewDataBinding> extends RecyclerView.ViewHolder{
+     public static class BindViewHolder extends RecyclerView.ViewHolder{
         public BindViewHolder(View itemView){
             super(itemView);
         }
 
-        public B getBinding(){
+        public ViewDataBinding getBinding(){
             return DataBindingUtil.getBinding(itemView);
         }
     }

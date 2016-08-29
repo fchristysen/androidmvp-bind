@@ -4,7 +4,7 @@ import android.databinding.Bindable;
 
 import org.greenfroyo.androidmvp_bind.BR;
 import org.greenfroyo.androidmvp_bind.R;
-import org.greenfroyo.androidmvp_bind.app.App;
+import org.greenfroyo.androidmvp_bind.app.MVPBApp;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 
 /**
@@ -16,7 +16,7 @@ public class LoremViewModel extends BaseViewModel{
     private String mText;
 
     public LoremViewModel() {
-        mText = App.resources().getString(R.string.placeholder_page_long);
+        mText = MVPBApp.resources().getString(R.string.placeholder_page_long);
     }
 
     @Bindable

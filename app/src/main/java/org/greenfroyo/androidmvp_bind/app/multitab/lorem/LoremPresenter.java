@@ -10,7 +10,7 @@ public class LoremPresenter extends BasePresenter<LoremViewModel> {
 
 
     @Override
-    public LoremViewModel onInitViewModel() {
+    public LoremViewModel onCreateViewModel() {
         return new LoremViewModel();
     }
 }

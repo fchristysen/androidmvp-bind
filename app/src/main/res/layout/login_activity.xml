@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="org.greenfroyo.androidmvp_bind.app.login.LoginViewModel" />
@@ -23,17 +25,8 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginRight="64dp"
                 android:padding="@dimen/space_medium"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/iv_avatar"
-                    android:layout_width="@dimen/avatar_small"
-                    android:layout_height="@dimen/avatar_small"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/space_medium"
-                    android:layout_marginBottom="@dimen/space_medium"
-                    android:layout_marginLeft="@dimen/space_medium"
-                    android:layout_marginRight="@dimen/space_medium"
-                    android:src="@drawable/ic_add" />
+                android:orientation="vertical"
+                android:visibility="@{viewModel.state!=viewModel.STATE_LOGGEDIN?View.VISIBLE:View.GONE}">
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/vg_username"
                     android:layout_width="match_parent"
@@ -44,6 +37,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_body"
                         android:hint="@string/common_username"
+                        android:error="@{viewModel.usernameError}"
                         android:text="@={viewModel.username}"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -58,6 +52,7 @@
                         android:textSize="@dimen/text_body"
                         android:inputType="textPassword"
                         android:hint="@string/common_password"
+                        android:error="@{viewModel.passwordError}"
                         android:text="@={viewModel.password}"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +62,43 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_large"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/common_login"
+                    android:text="@string/action_login"
+                    android:enabled="@{viewModel.state==viewModel.STATE_DEFAULT}"
+                    android:onClick="@{onClickListener::onClick}"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:padding="@dimen/space_medium"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="@{viewModel.state==viewModel.STATE_LOGGEDIN?View.VISIBLE:View.GONE}" >
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/avatar_large"
+                    android:layout_height="@dimen/avatar_large"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/space_medium"
+                    android:layout_marginBottom="@dimen/space_medium"
+                    android:layout_marginLeft="@dimen/space_medium"
+                    android:layout_marginRight="@dimen/space_medium"
+                    app:avatar="@{viewModel.avatar}" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_title"
+                    android:gravity="center"
+                    android:text='@{"Hello " + viewModel.fullname + ", you are logged in as " + viewModel.username}'/>
+                <Button
+                    android:id="@+id/btn_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_large"
+                    android:text="@string/action_logout"
                     android:onClick="@{onClickListener::onClick}"/>
             </LinearLayout>
         </RelativeLayout>

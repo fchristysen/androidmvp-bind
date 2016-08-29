@@ -3,9 +3,10 @@ package org.greenfroyo.mvp_bind.base;
 import android.databinding.BaseObservable;
 import android.databinding.Observable;
 
-import com.google.repacked.kotlin.jvm.Transient;
 
 import org.greenfroyo.mvp_bind.model.MvpViewModel;
+import org.parceler.Parcel;
+import org.parceler.Transient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,10 @@ import java.util.List;
 /**
  * Created by fchristysen on 7/17/16.
  */
+
+@Parcel
 public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
+
     @Transient
     private OnPropertyChangedCallback mOnPropertyChangedCallback;
     @Transient
@@ -36,7 +40,7 @@ public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
      * There's no need to call this method manually, as it is called through BasePresenter
      * see @addOnPropertyChangeCallback
      */
-    protected final void attachOnPropertyChangeCallback() {
+    public final void onAttached() {
         super.addOnPropertyChangedCallback(mOnPropertyChangedCallback);
     }
 
@@ -44,7 +48,7 @@ public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
      * This methods is used to un-subscribes the main callbacks from the BaseObservable
      * There's no need to call this method manually, as it is called through BasePresenter
      */
-    protected final void detachOnPropertyChangeCallback() {
+    public final void onDetached() {
         super.removeOnPropertyChangedCallback(mOnPropertyChangedCallback);
     }
 
