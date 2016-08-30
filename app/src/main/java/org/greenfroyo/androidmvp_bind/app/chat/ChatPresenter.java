@@ -1,7 +1,5 @@
 package org.greenfroyo.androidmvp_bind.app.chat;
 
-import com.android.databinding.library.baseAdapters.BR;
-
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 
 import java.util.Calendar;

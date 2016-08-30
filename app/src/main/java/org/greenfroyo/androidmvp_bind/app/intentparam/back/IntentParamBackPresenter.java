@@ -3,7 +3,6 @@ package org.greenfroyo.androidmvp_bind.app.intentparam.back;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 
 /**

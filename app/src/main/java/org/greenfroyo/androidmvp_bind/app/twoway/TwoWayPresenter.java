@@ -1,6 +1,5 @@
 package org.greenfroyo.androidmvp_bind.app.twoway;
 
-import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 
 /**
