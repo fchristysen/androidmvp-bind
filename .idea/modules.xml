@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/androidmvp-bind.iml" filepath="$PROJECT_DIR$/androidmvp-bind.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mvp-bind/mvp-bind.iml" filepath="$PROJECT_DIR$/mvp-bind/mvp-bind.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvpb/mvpb.iml" filepath="$PROJECT_DIR$/mvpb/mvpb.iml" />
     </modules>
   </component>
 </project>
