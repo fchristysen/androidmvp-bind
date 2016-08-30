@@ -15,10 +15,10 @@ import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
 
-import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
-import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
-import org.greenfroyo.mvp_bind.presenter.PresenterManager;
-import org.greenfroyo.mvp_bind.view.MvpView;
+import org.greenfroyo.mvpb.presenter.MvpPresenter;
+import org.greenfroyo.mvpb.presenter.PresenterFactory;
+import org.greenfroyo.mvpb.presenter.PresenterManager;
+import org.greenfroyo.mvpb.view.MvpView;
 
 /**
  * Created by fchristysen on 6/30/16.

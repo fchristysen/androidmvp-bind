@@ -5,7 +5,7 @@ import android.databinding.Bindable;
 import com.android.databinding.library.baseAdapters.BR;
 
 import org.greenfroyo.androidmvp_bind.app.MVPBApp;
-import org.greenfroyo.mvp_bind.base.BaseMvpViewModel;
+import org.greenfroyo.mvpb.base.BaseMvpViewModel;
 
 /**
  * Created by fchristysen on 6/7/16.

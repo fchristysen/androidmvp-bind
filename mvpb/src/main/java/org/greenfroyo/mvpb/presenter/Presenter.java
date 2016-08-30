@@ -1,9 +1,9 @@
-package org.greenfroyo.mvp_bind.presenter;
+package org.greenfroyo.mvpb.presenter;
 
 import android.os.Bundle;
 
-import org.greenfroyo.mvp_bind.model.MvpViewModel;
-import org.greenfroyo.mvp_bind.util.AppUtil;
+import org.greenfroyo.mvpb.model.MvpViewModel;
+import org.greenfroyo.mvpb.util.AppUtil;
 
 import java.util.ArrayList;
 import java.util.Random;

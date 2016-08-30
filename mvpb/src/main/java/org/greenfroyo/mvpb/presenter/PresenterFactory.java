@@ -1,4 +1,4 @@
-package org.greenfroyo.mvp_bind.presenter;
+package org.greenfroyo.mvpb.presenter;
 
 /**
  * Created by fchristysen on 5/20/16.

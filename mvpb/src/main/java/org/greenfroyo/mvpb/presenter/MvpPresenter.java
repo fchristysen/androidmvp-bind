@@ -1,9 +1,8 @@
-package org.greenfroyo.mvp_bind.presenter;
+package org.greenfroyo.mvpb.presenter;
 
 import android.os.Bundle;
 
-import org.greenfroyo.mvp_bind.model.MvpViewModel;
-import org.greenfroyo.mvp_bind.view.MvpView;
+import org.greenfroyo.mvpb.model.MvpViewModel;
 
 /**
  * Created by fchristysen on 5/20/16.

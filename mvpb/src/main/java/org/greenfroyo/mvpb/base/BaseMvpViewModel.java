@@ -1,10 +1,10 @@
-package org.greenfroyo.mvp_bind.base;
+package org.greenfroyo.mvpb.base;
 
 import android.databinding.BaseObservable;
 import android.databinding.Observable;
 
 
-import org.greenfroyo.mvp_bind.model.MvpViewModel;
+import org.greenfroyo.mvpb.model.MvpViewModel;
 import org.parceler.Parcel;
 import org.parceler.Transient;
 

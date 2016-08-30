@@ -1,4 +1,4 @@
-package org.greenfroyo.mvp_bind;
+package org.greenfroyo.mvpb;
 
 import org.junit.Test;
 

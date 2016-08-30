@@ -1,7 +1,7 @@
 package org.greenfroyo.androidmvp_bind.app._core;
 
-import org.greenfroyo.mvp_bind.base.BaseMvpPresenter;
-import org.greenfroyo.mvp_bind.model.MvpViewModel;
+import org.greenfroyo.mvpb.base.BaseMvpPresenter;
+import org.greenfroyo.mvpb.model.MvpViewModel;
 
 import rx.subscriptions.CompositeSubscription;
 

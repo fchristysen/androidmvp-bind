@@ -1,10 +1,10 @@
-package org.greenfroyo.mvp_bind.base;
+package org.greenfroyo.mvpb.base;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import org.greenfroyo.mvp_bind.model.MvpViewModel;
-import org.greenfroyo.mvp_bind.presenter.Presenter;
+import org.greenfroyo.mvpb.model.MvpViewModel;
+import org.greenfroyo.mvpb.presenter.Presenter;
 import org.parceler.ParcelerRuntimeException;
 import org.parceler.Parcels;
 

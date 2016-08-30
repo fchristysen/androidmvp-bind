@@ -1,4 +1,4 @@
-package org.greenfroyo.mvp_bind.model;
+package org.greenfroyo.mvpb.model;
 
 import android.databinding.Observable;
 

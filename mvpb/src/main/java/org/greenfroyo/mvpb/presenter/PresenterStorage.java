@@ -1,10 +1,8 @@
-package org.greenfroyo.mvp_bind.presenter;
+package org.greenfroyo.mvpb.presenter;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.repacked.antlr.v4.runtime.misc.Nullable;
-
-import org.greenfroyo.mvp_bind.util.AppUtil;
 
 import java.util.concurrent.TimeUnit;
 

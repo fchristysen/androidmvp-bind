@@ -10,11 +10,9 @@ import android.widget.LinearLayout;
 
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
-import org.greenfroyo.mvp_bind.model.MvpViewModel;
-import org.greenfroyo.mvp_bind.presenter.CompoundPresenterManager;
-import org.greenfroyo.mvp_bind.presenter.MvpPresenter;
-import org.greenfroyo.mvp_bind.presenter.PresenterFactory;
-import org.greenfroyo.mvp_bind.view.MvpView;
+import org.greenfroyo.mvpb.presenter.CompoundPresenterManager;
+import org.greenfroyo.mvpb.presenter.PresenterFactory;
+import org.greenfroyo.mvpb.view.MvpView;
 
 /**
  * Created by fchristysen on 6/28/16.
