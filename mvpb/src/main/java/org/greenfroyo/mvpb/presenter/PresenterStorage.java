@@ -1,8 +1,16 @@
 package org.greenfroyo.mvpb.presenter;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.google.repacked.antlr.v4.runtime.misc.Nullable;
+
+import org.ehcache.Cache;
+import org.ehcache.CacheManager;
+import org.ehcache.ValueSupplier;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.CacheManagerBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.ehcache.expiry.Duration;
+import org.ehcache.expiry.Expirations;
+import org.ehcache.expiry.Expiry;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,13 +25,19 @@ public class PresenterStorage {
 
     private static PresenterStorage instance;
 
-    private final Cache<String, MvpPresenter<?>> mPresenters;
+    private final CacheManager mCacheManager;
+    private final Cache<String, MvpPresenter> mPresenters;
 
     private PresenterStorage(long maxEntry, long expirationSeconds){
-        mPresenters = CacheBuilder.newBuilder()
-                .maximumSize(maxEntry)
-                .expireAfterWrite(expirationSeconds, EXPIRATION_UNIT)
-                .build();
+        mCacheManager = CacheManagerBuilder
+                .newCacheManagerBuilder()
+                .build(true);
+
+        mPresenters = mCacheManager.createCache("presenterStorage",
+                CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, MvpPresenter.class,
+                        ResourcePoolsBuilder.heap(maxEntry))
+                        .withExpiry(Expirations.timeToLiveExpiration(new Duration(expirationSeconds, EXPIRATION_UNIT))).build());
+
     }
 
     public static PresenterStorage getInstance(){
@@ -37,7 +51,7 @@ public class PresenterStorage {
     public <P extends MvpPresenter<?>> P get(String presenterId){
         P presenter = null;
         try {
-            presenter = (P)mPresenters.getIfPresent(presenterId);
+            presenter = (P)mPresenters.get(presenterId);
         }catch(ClassCastException e){
             e.printStackTrace();
         }
@@ -49,9 +63,14 @@ public class PresenterStorage {
         presenter.addOnDestroyListener(new MvpPresenter.OnDestroyListener() {
             @Override
             public void onDestroy(String presenterId) {
-                mPresenters.invalidate(presenterId);
+                mPresenters.remove(presenterId);
             }
         });
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        mCacheManager.close();
+    }
 }
