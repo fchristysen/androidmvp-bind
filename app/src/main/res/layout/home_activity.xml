@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:padding="@dimen/space_large"
             android:background="@color/colorPrimary"
-            android:textSize="@dimen/text_headline"
+            android:textSize="@dimen/text_body"
             android:textColor="@color/textLight"
             android:text="@{viewModel.pageTitle}"
             tools:text="Title here"/>

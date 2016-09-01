@@ -1,9 +1,6 @@
 package org.greenfroyo.androidmvp_bind.widget.numberpicker;
 
-import android.os.Bundle;
-
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
-import org.parceler.Parcels;
 
 /**
  * Created by fchristysen on 6/28/16.
@@ -11,15 +8,23 @@ import org.parceler.Parcels;
 
 public class NumberPickerPresenter extends BasePresenter<NumberPickerViewModel> {
     @Override
-    public NumberPickerViewModel onInitViewModel() {
+    public NumberPickerViewModel onCreateViewModel() {
         return new NumberPickerViewModel();
     }
 
-    public void substractValue(){
+    public void setValue(int value) {
+        getViewModel().setValue(value);
+    }
+
+    public void getValue() {
+        getViewModel().getValue();
+    }
+
+    public void substractValue() {
         getViewModel().substractValue();
     }
 
-    public void addValue(){
+    public void addValue() {
         getViewModel().addValue();
     }
 }

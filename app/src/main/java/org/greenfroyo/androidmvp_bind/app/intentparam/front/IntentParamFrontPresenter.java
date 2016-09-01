@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
-import org.greenfroyo.androidmvp_bind.app.intentparam.back.Henson;
+import org.greenfroyo.androidmvp_bind.app.Henson;
+import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarPresenter;
 
 /**
  * Created by fchristysen on 6/7/16.
  */
 
-public class IntentParamFrontPresenter extends BasePresenter<IntentParamFrontViewModel>{
+public class IntentParamFrontPresenter extends BaseToolbarPresenter<IntentParamFrontViewModel> {
 
     @Override
     public void onCreate(@Nullable Bundle presenterState) {
@@ -20,20 +20,20 @@ public class IntentParamFrontPresenter extends BasePresenter<IntentParamFrontVie
     }
 
     @Override
-    public IntentParamFrontViewModel onInitViewModel() {
+    public IntentParamFrontViewModel onCreateViewModel() {
         IntentParamFrontViewModel model = new IntentParamFrontViewModel();
         return model;
     }
 
     //region actionable
-    public void onIncrementValue(){
+    public void onIncrementValue() {
         getViewModel().incrementValue();
     }
 
-    public void openIntentParamBack(Context context){
+    public void openIntentParamBack(Context context) {
         Intent intent = Henson.with(context)
                 .gotoIntentParamBackActivity()
-                .mValue(getViewModel().mValue.get())
+                .mValue(getViewModel().getValue())
                 .build();
         context.startActivity(intent);
     }

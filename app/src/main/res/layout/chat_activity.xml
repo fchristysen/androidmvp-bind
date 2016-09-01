@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="org.greenfroyo.androidmvp_bind.app.chat.ChatViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/chat_wallpaper">
+
+        <RelativeLayout
+            android:id="@+id/vg_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_sheet_height"
+            android:layout_alignParentBottom="true">
+
+            <EditText
+                android:id="@+id/et_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/space_medium"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/btn_send"
+                android:background="@drawable/chat_box_background"
+                android:text="@={viewModel.inputText}"/>
+
+            <ImageButton
+                android:id="@+id/btn_send"
+                android:layout_width="@dimen/image_button_size"
+                android:layout_height="@dimen/image_button_size"
+                android:background="@null"
+                android:src="@drawable/ic_send"
+                android:layout_alignTop="@+id/et_text"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <org.greenfroyo.androidmvp_bind.app.common.BindRecylerView
+            android:id="@+id/lv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/vg_bottom"
+            android:padding="@dimen/space_medium"
+            android:clipToPadding="false"
+            tools:listitem="@layout/chat_mine"
+            android:bindItems="@{viewModel.chats}">
+
+        </org.greenfroyo.androidmvp_bind.app.common.BindRecylerView>
+    </RelativeLayout>
+</layout>

@@ -5,6 +5,7 @@
 
     <data>
         <variable name="viewModel" type="org.greenfroyo.androidmvp_bind.app.compoundview.CompoundViewViewModel"/>
+        <variable name="listener" type="android.view.View.OnClickListener"/>
     </data>
 
     <LinearLayout

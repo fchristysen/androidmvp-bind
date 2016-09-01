@@ -14,8 +14,8 @@ import org.parceler.ParcelProperty;
 
 @Parcel
 public class HomeItemViewModel extends BaseObservable{
-    @ParcelProperty("class") private Class mClass;
-    @ParcelProperty("displayName") private String mDisplayName;
+    @ParcelProperty("class") protected Class mClass;
+    @ParcelProperty("displayName") protected String mDisplayName;
 
     @ParcelConstructor
     public HomeItemViewModel(@ParcelProperty("class") Class pageClass, @ParcelProperty("displayName") String displayName) {
