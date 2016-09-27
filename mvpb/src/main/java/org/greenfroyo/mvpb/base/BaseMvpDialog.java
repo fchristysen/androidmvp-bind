@@ -10,6 +10,7 @@ import android.os.Bundle;
 import org.greenfroyo.mvpb.presenter.MvpPresenter;
 import org.greenfroyo.mvpb.presenter.PresenterFactory;
 import org.greenfroyo.mvpb.presenter.PresenterManager;
+import org.greenfroyo.mvpb.view.MainPropertyChangeCallback;
 import org.greenfroyo.mvpb.view.MvpView;
 
 /**
@@ -24,7 +25,7 @@ public abstract class BaseMvpDialog<P extends MvpPresenter<VM>, VM extends BaseM
 
     private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager = new PresenterManager(this);
-    private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
+    private MainPropertyChangeCallback mPropertyChangedCallback;
     private DialogListener mDialogListener;
 
     @Override
@@ -50,8 +51,8 @@ public abstract class BaseMvpDialog<P extends MvpPresenter<VM>, VM extends BaseM
      */
     protected abstract ViewDataBinding onInitView(VM viewModel);
 
-    public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
-        return new Observable.OnPropertyChangedCallback() {
+    public MainPropertyChangeCallback getPropertyChangedCallback() {
+        return new MainPropertyChangeCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 onViewModelChanged(observable, i);

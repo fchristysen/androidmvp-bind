@@ -18,47 +18,9 @@ import java.util.List;
 @Parcel
 public class BaseMvpViewModel extends BaseObservable implements MvpViewModel {
 
-    @Transient
-    private OnPropertyChangedCallback mOnPropertyChangedCallback;
-    @Transient
-    private List<OnPropertyChangedCallback> mOnPropertyChangedCallbackList;
-
     public BaseMvpViewModel() {
-        mOnPropertyChangedCallback = new OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable observable, int i) {
-                for (OnPropertyChangedCallback callback : mOnPropertyChangedCallbackList) {
-                    callback.onPropertyChanged(observable, i);
-                }
-            }
-        };
-        mOnPropertyChangedCallbackList = new ArrayList<>();
+
     }
 
-    /**
-     * This methods is used to subscribes the main callbacks to the BaseObservable
-     * There's no need to call this method manually, as it is called through BasePresenter
-     * see @addOnPropertyChangeCallback
-     */
-    public final void onAttached() {
-        super.addOnPropertyChangedCallback(mOnPropertyChangedCallback);
-    }
 
-    /**
-     * This methods is used to un-subscribes the main callbacks from the BaseObservable
-     * There's no need to call this method manually, as it is called through BasePresenter
-     */
-    public final void onDetached() {
-        super.removeOnPropertyChangedCallback(mOnPropertyChangedCallback);
-    }
-
-    @Override
-    public final synchronized void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-        mOnPropertyChangedCallbackList.add(callback);
-    }
-
-    @Override
-    public final synchronized void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
-        mOnPropertyChangedCallbackList.remove(callback);
-    }
 }
