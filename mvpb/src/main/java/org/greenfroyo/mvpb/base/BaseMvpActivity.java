@@ -13,6 +13,7 @@ import android.util.SparseArray;
 import org.greenfroyo.mvpb.presenter.MvpPresenter;
 import org.greenfroyo.mvpb.presenter.PresenterFactory;
 import org.greenfroyo.mvpb.presenter.PresenterManager;
+import org.greenfroyo.mvpb.view.MainPropertyChangeCallback;
 import org.greenfroyo.mvpb.view.MvpView;
 
 
@@ -29,7 +30,7 @@ public abstract class BaseMvpActivity<P extends MvpPresenter<VM>, VM extends Bas
 
     private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager = new PresenterManager(this);
-    private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
+    private MainPropertyChangeCallback mPropertyChangedCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +48,8 @@ public abstract class BaseMvpActivity<P extends MvpPresenter<VM>, VM extends Bas
      */
     protected abstract ViewDataBinding onInitView(VM viewModel);
 
-    public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
-        return new Observable.OnPropertyChangedCallback() {
+    public MainPropertyChangeCallback getPropertyChangedCallback() {
+        return new MainPropertyChangeCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 onViewModelChanged(observable, i);

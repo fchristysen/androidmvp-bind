@@ -10,18 +10,18 @@ import java.util.List;
 /**
  * Created by fchristysen on 6/26/16.
  */
-public class BindRecylerView extends RecyclerView {
+public class BindRecyclerView extends RecyclerView {
     private List mPendingItems;
 
-    public BindRecylerView(Context context) {
+    public BindRecyclerView(Context context) {
         super(context);
     }
 
-    public BindRecylerView(Context context, @Nullable AttributeSet attrs) {
+    public BindRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public BindRecylerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public BindRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

@@ -19,7 +19,7 @@ public abstract class BaseViewModel extends BaseMvpViewModel {
     protected String mToastMessage;
 
     public BaseViewModel() {
-
+        super();
     }
 
     @Bindable
@@ -42,4 +42,6 @@ public abstract class BaseViewModel extends BaseMvpViewModel {
     public boolean needToShowToast() {
         return mToastMessage != null;
     }
+
+
 }

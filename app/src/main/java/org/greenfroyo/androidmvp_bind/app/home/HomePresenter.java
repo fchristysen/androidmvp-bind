@@ -53,6 +53,7 @@ public class HomePresenter extends BaseErrorPresenter<HomeViewModel> {
             }, () -> {
                 hideError();
                 getViewModel().setPageState(HomeViewModel.STATE_SHOW);
+                getViewModel().setToastMessage("Load has been completed");
             });
         } else {
             showError(BaseErrorViewModel.ERROR_500);

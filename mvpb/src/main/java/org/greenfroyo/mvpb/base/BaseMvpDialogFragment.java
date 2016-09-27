@@ -18,6 +18,7 @@ import android.widget.Toast;
 import org.greenfroyo.mvpb.presenter.MvpPresenter;
 import org.greenfroyo.mvpb.presenter.PresenterFactory;
 import org.greenfroyo.mvpb.presenter.PresenterManager;
+import org.greenfroyo.mvpb.view.MainPropertyChangeCallback;
 import org.greenfroyo.mvpb.view.MvpView;
 
 /**
@@ -46,7 +47,7 @@ public abstract class BaseMvpDialogFragment<P extends MvpPresenter<VM>, VM exten
     private LayoutInflater mLayoutInflater;
     private ViewDataBinding mBinding;
     private PresenterManager<P> mPresenterManager = new PresenterManager(this);
-    private Observable.OnPropertyChangedCallback mPropertyChangedCallback;
+    private MainPropertyChangeCallback mPropertyChangedCallback;
     private int mCallerType;
     private int mRequestCode;
     private int mResultCode;
@@ -80,8 +81,8 @@ public abstract class BaseMvpDialogFragment<P extends MvpPresenter<VM>, VM exten
      */
     protected abstract ViewDataBinding onInitView(LayoutInflater inflater, VM viewModel);
 
-    public Observable.OnPropertyChangedCallback getPropertyChangedCallback() {
-        return new Observable.OnPropertyChangedCallback() {
+    public MainPropertyChangeCallback getPropertyChangedCallback() {
+        return new MainPropertyChangeCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 onViewModelChanged(observable, i);
