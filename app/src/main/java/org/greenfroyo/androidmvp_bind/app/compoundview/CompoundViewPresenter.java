@@ -12,4 +12,10 @@ public class CompoundViewPresenter extends BaseToolbarPresenter<CompoundViewView
         CompoundViewViewModel model = new CompoundViewViewModel();
         return model;
     }
+
+    public void resetAll(){
+        getViewModel().setNum1(0);
+        getViewModel().setNum2(0);
+        getViewModel().setNum3(0);
+    }
 }

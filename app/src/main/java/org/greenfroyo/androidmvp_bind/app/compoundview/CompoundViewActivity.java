@@ -14,13 +14,15 @@ import org.greenfroyo.androidmvp_bind.databinding.CompoundViewActivityBinding;
  *      - Capability of retaining the compound view model through save and restore instance state
  */
 
-public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresenter, CompoundViewViewModel>{
+public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresenter, CompoundViewViewModel>
+        implements View.OnClickListener{
     private CompoundViewActivityBinding mBinding;
 
     @Override
     protected ViewDataBinding onInitView(CompoundViewViewModel viewModel) {
         mBinding = setBindView(R.layout.compound_view_activity);
         mBinding.setViewModel(viewModel);
+        mBinding.btnReset.setOnClickListener(this);
         return mBinding;
     }
 
@@ -29,4 +31,10 @@ public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresen
         return new CompoundViewPresenter();
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.equals(mBinding.btnReset)){
+            getPresenter().resetAll();
+        }
+    }
 }

@@ -3,11 +3,16 @@ package org.greenfroyo.androidmvp_bind.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Parcelable;
+import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.SparseArray;
+import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
+import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.BasePresenter;
 import org.greenfroyo.androidmvp_bind.app._core.BaseViewModel;
 import org.greenfroyo.mvpb.presenter.CompoundPresenterManager;
@@ -45,11 +50,25 @@ public abstract class MVPLinearLayout<P extends BasePresenter<VM>, VM extends Ba
         onInitView();
     }
 
+    public <T extends ViewDataBinding> T setBindView(int layoutId) {
+        T binding = null;
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        if(isInEditMode()){
+            inflater.inflate(layoutId, this, true);
+        }else {
+            binding = DataBindingUtil.inflate(inflater, layoutId, null, false);
+            addView(binding.getRoot());
+        }
+        return binding;
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        mPresenterManager.onAttachedView();
-        onBindView(getPresenter().getViewModel());
+        if(!isInEditMode()) { // need to check isInEditMode, ehcache error
+            mPresenterManager.onAttachedView();
+            onBindView(getPresenter().getViewModel());
+        }
     }
 
     @Override
