@@ -13,6 +13,8 @@ import org.parceler.Parcel;
 @Parcel
 public class NumberPickerViewModel extends BaseViewModel {
     int mValue;
+    int mFactorial;
+    int mExpon;
 
     @Bindable
     public int getValue() {
@@ -32,5 +34,25 @@ public class NumberPickerViewModel extends BaseViewModel {
     public void addValue() {
         mValue++;
         notifyPropertyChanged(BR.value);
+    }
+
+    @Bindable
+    public int getFactorial() {
+        return mFactorial;
+    }
+
+    public void setFactorial(int factorial) {
+        mFactorial = factorial;
+        notifyPropertyChanged(BR.factorial);
+    }
+
+    @Bindable
+    public int getExpon() {
+        return mExpon;
+    }
+
+    public void setExpon(int expon) {
+        mExpon = expon;
+        notifyPropertyChanged(BR.expon);
     }
 }

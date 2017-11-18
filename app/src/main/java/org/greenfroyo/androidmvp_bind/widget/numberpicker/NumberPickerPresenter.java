@@ -14,17 +14,30 @@ public class NumberPickerPresenter extends BasePresenter<NumberPickerViewModel> 
 
     public void setValue(int value) {
         getViewModel().setValue(value);
-    }
-
-    public void getValue() {
-        getViewModel().getValue();
+        recalculate();
     }
 
     public void substractValue() {
         getViewModel().substractValue();
+        recalculate();
     }
 
     public void addValue() {
         getViewModel().addValue();
+        recalculate();
+    }
+
+    public void recalculate(){
+        int value = getViewModel().getValue();
+
+        getViewModel().setFactorial(factorial(value));
+        getViewModel().setExpon((int)Math.pow(value, 2));
+    }
+
+    public static int factorial(int number){
+        if(number > 0){
+            return number * factorial(number-1);
+        }
+        return 1;
     }
 }

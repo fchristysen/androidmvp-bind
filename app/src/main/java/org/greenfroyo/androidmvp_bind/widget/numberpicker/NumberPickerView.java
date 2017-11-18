@@ -32,8 +32,7 @@ public class NumberPickerView extends MVPLinearLayout<NumberPickerPresenter, Num
     }
 
     public final void onInitView(){
-        mBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.number_picker_view, null, false);
-        addView(mBinding.getRoot());
+        setBindView(R.layout.number_picker_view);
     }
 
     public final void onBindView(NumberPickerViewModel viewModel) {
@@ -59,7 +58,4 @@ public class NumberPickerView extends MVPLinearLayout<NumberPickerPresenter, Num
         getPresenter().setValue(value);
     }
 
-    public void getValue(){
-        getPresenter().getValue();
-    }
 }

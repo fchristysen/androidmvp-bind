@@ -5,9 +5,8 @@
         <variable name="listener" type="android.view.View.OnClickListener" />
     </data>
     <RelativeLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/iv_sub"
             android:layout_width="@dimen/list_item_min"
@@ -26,17 +25,37 @@
             android:layout_alignParentEnd="true"
             android:onClick="@{listener::onClick}"
             android:src="@drawable/ic_add" />
-        <TextView
-            android:id="@+id/tv_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:textSize="@dimen/text_headline"
-            android:textStyle="bold"
             android:layout_toRightOf="@+id/iv_sub"
             android:layout_toLeftOf="@+id/iv_add"
-            android:text='@{"" + viewModel.value, default=0}'/>
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/text_headline"
+                android:textStyle="bold"
+                android:text='@{"Value = " + viewModel.value}'/>
+            <TextView
+                android:id="@+id/tv_fact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/text_body"
+                android:textStyle="bold"
+                android:text='@{"Factorial of " + viewModel.value + " is " + viewModel.factorial}'/>
+            <TextView
+                android:id="@+id/tv_expon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/text_body"
+                android:textStyle="bold"
+                android:text='@{"Exponent of " + viewModel.value + " is " + viewModel.expon}'/>
+        </LinearLayout>
 
     </RelativeLayout>
 </layout>
