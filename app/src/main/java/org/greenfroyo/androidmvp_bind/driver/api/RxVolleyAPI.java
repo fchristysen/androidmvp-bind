@@ -7,14 +7,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.repacked.antlr.v4.codegen.model.ExceptionClause;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -22,7 +16,9 @@ import java.util.Map;
 
 import rx.Observable;
 
+
 /**
+ * ¬
  * Created by fchristysen on 7/27/16.
  */
 
@@ -41,17 +37,17 @@ public class RxVolleyAPI implements ApiDriver {
     public <R> Observable<R> get(final String url, final Class<R> responseClass) {
         return Observable.create(subscriber -> {
             GetRequest request = new GetRequest(url
-                , response -> {
-                    Gson gson = new Gson();
-                    try{
-                        R responseObject = gson.fromJson(response, responseClass);
-                        subscriber.onNext(responseObject);
-                    }catch (Exception e) {
-                        subscriber.onError(e);
-                    }
-                    subscriber.onCompleted();
-                }, error -> {
-                    subscriber.onError(error);
+                    , response -> {
+                Gson gson = new Gson();
+                try {
+                    R responseObject = gson.fromJson(response, responseClass);
+                    subscriber.onNext(responseObject);
+                } catch (Exception e) {
+                    subscriber.onError(e);
+                }
+                subscriber.onCompleted();
+            }, error -> {
+                subscriber.onError(error);
             });
 
             addTravelokaHeaders(request);
@@ -67,10 +63,10 @@ public class RxVolleyAPI implements ApiDriver {
 
             PostRequest request = new PostRequest(url, gson.toJson(body)
                     , response -> {
-                try{
+                try {
                     R responseObject = gson.fromJson(response.toString(), responseClass);
                     subscriber.onNext(responseObject);
-                }catch (Exception e) {
+                } catch (Exception e) {
                     subscriber.onError(e);
                 }
                 subscriber.onCompleted();
@@ -88,10 +84,10 @@ public class RxVolleyAPI implements ApiDriver {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("Origin", "m.traveloka.com"); //NON-NLS
 
-        if(request.getMethod() == Request.Method.GET){
+        if (request.getMethod() == Request.Method.GET) {
 //            params.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"); //NON-NLS
             params.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-        }else{
+        } else {
             params.put("Accept", "text/json"); //NON-NLS
         }
         try {
@@ -105,7 +101,7 @@ public class RxVolleyAPI implements ApiDriver {
         mRequestQueue.cancelAll(getClass().getSimpleName());
     }
 
-    public static class GetRequest extends StringRequest{
+    public static class GetRequest extends StringRequest {
         Map<String, String> mHeader;
 
         public GetRequest(String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
@@ -119,11 +115,15 @@ public class RxVolleyAPI implements ApiDriver {
         }
     }
 
-    public static class PostRequest extends StringRequest{
-        /** Charset for request. */
+    public static class PostRequest extends StringRequest {
+        /**
+         * Charset for request.
+         */
         private static final String PROTOCOL_CHARSET = "utf-8";
 
-        /** Content type for request. */
+        /**
+         * Content type for request.
+         */
         private static final String PROTOCOL_CONTENT_TYPE =
                 String.format("application/json; charset=%s", PROTOCOL_CHARSET); //NON-NLS
 
