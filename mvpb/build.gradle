@@ -27,9 +27,6 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:26.0.2'
 
-    //PresenterStorage
-    compile 'org.ehcache:ehcache:3.1.1'
-
     //Parcel annotation
     //https://github.com/johncarl81/parceler
     compile 'org.parceler:parceler-api:1.1.9'
