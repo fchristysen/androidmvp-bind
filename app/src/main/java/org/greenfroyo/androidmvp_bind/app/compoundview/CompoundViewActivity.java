@@ -23,6 +23,15 @@ public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresen
         mBinding = setBindView(R.layout.compound_view_activity);
         mBinding.setViewModel(viewModel);
         mBinding.btnReset.setOnClickListener(this);
+        mBinding.npSelector1.setValueListener(newValue -> {
+            getViewModel().setNum1(newValue);
+        });
+        mBinding.npSelector2.setValueListener(newValue -> {
+            getViewModel().setNum2(newValue);
+        });
+        mBinding.npSelector3.setValueListener(newValue -> {
+            getViewModel().setNum3(newValue);
+        });
         return mBinding;
     }
 

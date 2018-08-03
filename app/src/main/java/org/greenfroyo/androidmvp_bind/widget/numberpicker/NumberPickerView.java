@@ -18,6 +18,7 @@ public class NumberPickerView extends MVPLinearLayout<NumberPickerPresenter, Num
     implements View.OnClickListener{
 
     private NumberPickerViewBinding mBinding;
+    private Listener mListener;
 
     public NumberPickerView(Context context) {
         super(context);
@@ -49,13 +50,27 @@ public class NumberPickerView extends MVPLinearLayout<NumberPickerPresenter, Num
     public void onClick(View v) {
         if(v.equals(mBinding.ivAdd)){
             getPresenter().addValue();
+            if(mListener!=null){
+                mListener.onValueChange(getViewModel().getValue());
+            }
         }else if(v.equals(mBinding.ivSub)){
             getPresenter().substractValue();
+            if(mListener!=null){
+                mListener.onValueChange(getViewModel().getValue());
+            }
         }
     }
 
     public void setValue(int value){
         getPresenter().setValue(value);
+    }
+
+    public void setValueListener(Listener listener){
+        mListener = listener;
+    }
+
+    public interface Listener{
+        void onValueChange(int newValue);
     }
 
 }

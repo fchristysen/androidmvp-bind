@@ -12,7 +12,6 @@ import org.parceler.Parcels;
  * Created by fchristysen on 7/17/16.
  */
 public abstract class BaseMvpPresenter<VM extends MvpViewModel> extends Presenter<VM> {
-    private VM mViewModel;
 
     @Override
     protected final void create(Bundle savedPresenterState) {
@@ -23,13 +22,13 @@ public abstract class BaseMvpPresenter<VM extends MvpViewModel> extends Presente
     protected VM onRestoredViewModel(Bundle savedPresenterState) {
         if (savedPresenterState != null && savedPresenterState.containsKey(KEY_VIEW_MODEL)) {
             try {
-                mViewModel = Parcels.unwrap(savedPresenterState.getParcelable(KEY_VIEW_MODEL));
+                return Parcels.unwrap(savedPresenterState.getParcelable(KEY_VIEW_MODEL));
             } catch (ParcelerRuntimeException e) {
                 Log.e("ParcelerRuntimeError", this.getClass() + " can not parcel the view model please check if it has @Parcel annotation.");
                 Log.w("ParcelerRuntimeError", e.getMessage());
             }
         }
-        return mViewModel;
+        return null;
     }
 
     @Override
