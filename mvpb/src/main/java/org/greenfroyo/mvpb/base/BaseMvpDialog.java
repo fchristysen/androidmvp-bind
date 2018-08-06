@@ -126,4 +126,10 @@ public abstract class BaseMvpDialog<P extends MvpPresenter<VM>, VM extends BaseM
 
         void onDismiss(Dialog dialog);
     }
+
+    //Unused, as dialog not persist through config changes
+    @Override
+    public boolean shouldSaveViewModel() {
+        return true;
+    }
 }

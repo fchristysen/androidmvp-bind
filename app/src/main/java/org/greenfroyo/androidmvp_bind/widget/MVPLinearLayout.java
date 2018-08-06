@@ -84,8 +84,17 @@ public abstract class MVPLinearLayout<P extends BasePresenter<VM>, VM extends Ba
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        Parcelable r = mPresenterManager.onSaveInstanceState(this, super.onSaveInstanceState());
+        Parcelable r = mPresenterManager.onSaveInstanceState(this, super.onSaveInstanceState(), shouldSaveViewModel());
         return r;
+    }
+
+    @Override
+    public boolean shouldSaveViewModel() {
+        Activity parent = getParentActivity();
+        if(parent!=null && parent instanceof MvpView){
+            return ((MvpView)parent).shouldSaveViewModel();
+        }
+        return true;
     }
 
     @Override

@@ -96,7 +96,11 @@ public abstract class BaseMvpActivity<P extends MvpPresenter<VM>, VM extends Bas
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mPresenterManager.onSaveInstanceState(outState);
+        mPresenterManager.onSaveInstanceState(outState, shouldSaveViewModel());
+    }
+
+    public boolean shouldSaveViewModel(){
+        return true;
     }
 
     protected void onViewModelChanged(Observable observable, int i) {

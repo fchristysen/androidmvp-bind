@@ -1,10 +1,12 @@
 package org.greenfroyo.androidmvp_bind.app.compoundview;
 
+import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.view.View;
 
 import org.greenfroyo.androidmvp_bind.R;
 import org.greenfroyo.androidmvp_bind.app._core.toolbar.BaseToolbarActivity;
+import org.greenfroyo.androidmvp_bind.app.navigation.Henson;
 import org.greenfroyo.androidmvp_bind.databinding.CompoundViewActivityBinding;
 
 /**
@@ -45,5 +47,10 @@ public class CompoundViewActivity extends BaseToolbarActivity<CompoundViewPresen
         if(v.equals(mBinding.btnReset)){
             getPresenter().resetAll();
         }
+    }
+
+    @Override
+    public boolean shouldSaveViewModel() {
+        return false;
     }
 }

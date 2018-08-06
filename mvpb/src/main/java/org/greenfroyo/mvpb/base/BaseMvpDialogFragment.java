@@ -1,5 +1,6 @@
 package org.greenfroyo.mvpb.base;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -130,9 +131,18 @@ public abstract class BaseMvpDialogFragment<P extends MvpPresenter<VM>, VM exten
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mPresenterManager.onSaveInstanceState(outState);
+        mPresenterManager.onSaveInstanceState(outState, shouldSaveViewModel());
         outState.putInt(REQUEST_CODE, mRequestCode);
         outState.putInt(CALLER_TYPE, mCallerType);
+    }
+
+    @Override
+    public boolean shouldSaveViewModel() {
+        Activity parent = getActivity();
+        if(parent!=null && parent instanceof MvpView){
+            return ((MvpView)parent).shouldSaveViewModel();
+        }
+        return true;
     }
 
     @Override

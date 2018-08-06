@@ -27,4 +27,11 @@ public interface MvpView<P extends MvpPresenter, VM extends MvpViewModel> {
      */
     P getPresenter();
 
+    /**
+     * This flag is used to decide wether to save state view model or not
+     *
+     * @return a currently attached presenter or null.
+     */
+    boolean shouldSaveViewModel();
+
 }

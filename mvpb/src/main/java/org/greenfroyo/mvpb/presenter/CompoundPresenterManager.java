@@ -47,7 +47,7 @@ public class CompoundPresenterManager<P extends MvpPresenter>{
         return state;
     }
 
-    public Parcelable onSaveInstanceState(ViewGroup viewGroup, Parcelable outState){
+    public Parcelable onSaveInstanceState(ViewGroup viewGroup, Parcelable outState, boolean shouldSaveViewModel){
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_PARENT_STATE, outState);
         SparseArray<Parcelable> childState = new SparseArray();
@@ -55,7 +55,7 @@ public class CompoundPresenterManager<P extends MvpPresenter>{
             viewGroup.getChildAt(i).saveHierarchyState(childState);
         }
         bundle.putSparseParcelableArray(KEY_CHILDREN_STATE, childState);
-        mPresenterManager.onSaveInstanceState(bundle);
+        mPresenterManager.onSaveInstanceState(bundle, shouldSaveViewModel);
         return bundle;
     }
 

@@ -1,5 +1,6 @@
 package org.greenfroyo.mvpb.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
@@ -105,7 +106,16 @@ public abstract class BaseMvpFragment<P extends MvpPresenter<VM>, VM extends Bas
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mPresenterManager.onSaveInstanceState(outState);
+        mPresenterManager.onSaveInstanceState(outState, shouldSaveViewModel());
+    }
+
+    @Override
+    public boolean shouldSaveViewModel() {
+        Activity parent = getActivity();
+        if(parent!=null && parent instanceof MvpView){
+            return ((MvpView)parent).shouldSaveViewModel();
+        }
+        return true;
     }
 
     @Override

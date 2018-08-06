@@ -2,6 +2,8 @@ package org.greenfroyo.mvpb.presenter;
 
 import android.os.Bundle;
 
+import org.greenfroyo.mvpb.base.BaseMvpPresenter;
+
 
 /**
  * Created by fchristysen on 5/20/16.
@@ -47,10 +49,12 @@ public class PresenterManager<P extends MvpPresenter> {
     /**
      * @param outState activity's bundle
      */
-    public void onSaveInstanceState(Bundle outState){
+    public void onSaveInstanceState(Bundle outState, boolean shouldSaveStateVM){
         if(mPresenter != null){
             Bundle presenterBundle = new Bundle();
-            mPresenter.saveInstanceState(presenterBundle);
+            if(shouldSaveStateVM) {
+                mPresenter.saveInstanceState(presenterBundle);
+            }
             presenterBundle.putString(KEY_PRESENTER_ID, mPresenter.getID());
             outState.putBundle(KEY_PRESENTER_STATE, presenterBundle);
         }
